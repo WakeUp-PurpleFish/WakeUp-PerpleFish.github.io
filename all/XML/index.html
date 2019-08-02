@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+    <!-- title -->
+
+
+
+
+<!-- keywords -->
+
+
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="author" content="紫鱼">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="紫鱼">
+    
+    <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
+    
+    <meta name="description" content="一只学习狗">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>XML · Wake Up</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+</style>
+
+    <link rel="preload" href="/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="stylesheet" href="/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
+
+
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
+</script>
+
+    <link rel="icon" href="/assets/favicon.ico">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script">
+    <link rel="preload" href="/scripts/main.js" as="script">
+    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+</head>
+
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >Wake Up</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">XML</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href=/>Wake Up</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro" style="
+
+
+
+
+
+
+
+height:50vh;
+">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            XML
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "java">java</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">3.5k</span>阅读时长: <span class="post-count reading-time">14 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/08/02</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "/lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <h3 id="XML"><a href="#XML" class="headerlink" title="XML"></a>XML</h3><p>  xml是指可扩展标记语言（eXtensible  Markup Language）它是一种标记语言，很类似HTML。它是一种标记语言，很类似HTML。它被设计的宗旨是传输数据而非显示数据。</p>
+<p><strong><em>xml***</em></strong>技术可以解决的问题***</p>
+<p>•XML语言出现的根本目的在于描述有关系的数据。如：省市。</p>
+<p>•XML是一种通用的数据交换格式</p>
+<p>•在XML语言中，它允许用户自定义标签。一个标签用于描述一个数据；一个标签可分为开始标签和结束标签，在起始标签之间，又可以使用其他标签描述其他数据，以此来实现数据关系的描述。</p>
+<p>•XML中的数据必须通过软件程序来解析执行或者显示，如IE;这样的解析程序称之为Parser（解析器）</p>
+<h3 id="xml文档的组成"><a href="#xml文档的组成" class="headerlink" title="xml文档的组成"></a>xml文档的组成</h3><h5 id="文档声明"><a href="#文档声明" class="headerlink" title="文档声明"></a>文档声明</h5><p>•在编写XML文档时，需要先使用文档声明来声明XML文档.且必须出现在文档的第一行</p>
+<p>•最简单的语法：<?xml version="1.0"?></p>
+<p>•用encoding属性说明文档所使用的字符编码，默认为UTF-8.保存在磁盘上的文件编码要与声明的编码一致。</p>
+<p>•如：<?xml  version="1.0"  encoding="GB2312"?></p>
+<p>•用standalone属性说明文档是否独立，即是否依赖其他文档。</p>
+<p>•如：<?xml  version="1.0" standalone="yes"?></p>
+<h5 id="元素"><a href="#元素" class="headerlink" title="元素"></a>元素</h5><p>•XML元素指XML文件中出现的标签。一个标签分为起始和结束标签不能省略。一个标签有如下几种书写形式：</p>
+<p>–包含标签主体：<mytag>some content</mytag></p>
+<p>–不含标签主体：<mytag></mytag></p>
+<p>•一个标签中可以嵌套若干子标签，但所有标签必须合理的嵌套，不允许有交叉嵌套。</p>
+<p>–<mytag1><mytag2></mytag2></mytag1>WRONG</p>
+<p>•一个XML文档必须有且仅有一个根标签，其他标签都是这个根标签的子标签或者孙标签</p>
+<p>•XML中不会忽略主体内容中出现的空格和换行。</p>
+<p>•第一段    –&lt;中国&gt;&lt;北京&gt;&lt;海淀/&gt;&lt;/北京&gt;&lt;/中国&gt;  </p>
+<p>•第二段   –&lt;中国&gt;\r\n\t&lt;北京&gt;&lt;海淀/&gt;&lt;/北京&gt;&lt;/中国&gt;</p>
+<p><em>注</em>：由于在XML中，空格和换行都作为原始内容被处理，所以，在编写XML文件时，使用换行和缩进等方式来让原文件中的内容清晰可读的”良好”书写习惯可能要被迫改变</p>
+<h5 id="元素属性"><a href="#元素属性" class="headerlink" title="元素属性"></a>元素属性</h5><p>•一个元素可以有多个属性，每个属性都有自己的名称和取值。例：&lt;mytag name=”value”…./&gt;</p>
+<p>•属性值一定要用引号(单引号或双引号)引起来</p>
+<p>•属性名称的命名规范与元素的命名规范相同</p>
+<p>•元素中的属性是不允许重复的</p>
+<p>•在XML技术中，标签属性所代表的信息也可以被改成用子元素的形式来描述，例如：</p>
+<p>–<mytag></mytag></p>
+<p>•<name></name></p>
+<p>   –<firstname></firstname></p>
+<p>   –<lastname></lastname></p>
+<p><strong>•元素命名规范</strong></p>
+<p>•元素（标签）的名称可以包含字母、数字、减号、下划线和英文句点，但必须遵守下面的一些规范：</p>
+<p>–严格区分大小写</p>
+<p>–只能以字母或者下划线开头</p>
+<p>–不能以XML开头</p>
+<p>–名称字符之间不能有空格或者制表符</p>
+<p>–名称字符之间不能使用冒号</p>
+<p>##### </p>
+<h5 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h5><p>•XML中的注释语法为：<!--这是注释--></p>
+<p>•<em>注意</em>：</p>
+<p>–xml声明之前不能有注释</p>
+<p>–注释不能嵌套</p>
+<h5 id="CDATA区"><a href="#CDATA区" class="headerlink" title="CDATA区"></a>CDATA区</h5><p>•CDATA是Character   Data的缩写</p>
+<p>•作用：把标签当做普通文本内容</p>
+<p>•语法：<!--[CDATA[内容]]--></p>
+<!--[CDATA[  <itcom>这是一个文本非标签</itcom>  ]]-->
+
+<h5 id="特殊字符"><a href="#特殊字符" class="headerlink" title="特殊字符"></a>特殊字符</h5><p>•对于一些特殊字符，若要在元素主体内容中显示，必须进行转义</p>
+<p>特殊字符  代替符号</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  &amp;             &amp;amp;</span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;              &amp;<span class="attr">lt</span>;</span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">  \&gt;</span>            &amp;gt;</span><br><span class="line"></span><br><span class="line">  "              &amp;quot;</span><br><span class="line"></span><br><span class="line">  '              &amp;apos;  </span><br><span class="line">~</span><br></pre></td></tr></table></figure>
+
+<h5 id="处理指令-PI-Processing-Instruction"><a href="#处理指令-PI-Processing-Instruction" class="headerlink" title="处理指令 (PI:Processing  Instruction)"></a>处理指令 (PI:Processing  Instruction)</h5><p>•处理指令简称PI</p>
+<p>•作用：用来指挥软件如何解析XML文档</p>
+<p>•语法：必须以”<?"作为开头，以"?>“作为结尾</p>
+<p>•常用处理指令：</p>
+<p>–XML声明：<?xml  version="1.0" encoding="GB2312"?></p>
+<p>–xml-stylesheet指令：</p>
+<p>•作用：指示xml文档所使用的css样式xsl。</p>
+<p>•<strong>注</strong>：对中文命名的标签元素不起作用</p>
+<h3 id="DTD"><a href="#DTD" class="headerlink" title="DTD"></a>DTD</h3><p>  DTD（Document Type Definition）：文档类型定义。<br>  作用：约束XML的书写规范</p>
+  <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">文件清单：book.xml</span><br><span class="line">&lt;？xml version=<span class="string">"1.0"</span>？&gt;</span><br><span class="line">&lt;IDOCTYPE 书架SYSTEM<span class="string">"book.dtd"</span>&gt;</span><br><span class="line">&lt;书架〉</span><br><span class="line">&lt;书&gt;</span><br><span class="line">〈书名&gt;Java就业培训教程&lt;/书名〉</span><br><span class="line">&lt;作者〉张孝祥&lt;/作者〉</span><br><span class="line">〈售价〉39.00元&lt;/售价〉</span><br><span class="line">&lt;/书&gt;</span><br><span class="line">〈书&gt;</span><br><span class="line">〈书名&gt;JavaScript网页开发&lt;/书名〉</span><br><span class="line">&lt;作者〉张孝祥&lt;/作者〉</span><br><span class="line">&lt;售价&gt;28.00元&lt;/售价&gt;</span><br><span class="line">&lt;/书&gt;</span><br><span class="line">〈/书架〉</span><br><span class="line"></span><br><span class="line">文件清单：book.dtd</span><br><span class="line">&lt;！ELEMENT 书架（书+）〉</span><br><span class="line">〈！ELEMENT书（书名，作者，售价）〉</span><br><span class="line">〈！ELEMENT 书名（#PCDATA）〉&lt;！ELEMENT 作者（#PCDATA）〉</span><br><span class="line">〈！ELEMENT售价（#PCDATA）〉</span><br></pre></td></tr></table></figure>
+
+<p>DTD语法细节</p>
+<h5 id="定义元素"><a href="#定义元素" class="headerlink" title="定义元素"></a>定义元素</h5><p>•在DTD文档中使用ELEMENT关键字来声明一个XML元素。</p>
+<p>•语法：<!ELEMENT  元素名称  使用规则></p>
+<p><strong>使用规则</strong></p>
+<p>•(#PCDATA):指示元素的主体内容只能是普通的文本</p>
+<p>•EMPTY：用于指示元素的主体为空</p>
+<p>•ANY：用于指示元素的主体内容为任意类型</p>
+<p>•(子元素)：指示元素中包含的子元素</p>
+<p>–定义子元素及描述他们的关系</p>
+<p>•如果子元素是用逗号分开，说明必须按照声明顺序去编写XML文档</p>
+<p>   例：&lt;!ELEMENT FILE (TITLE,AUTHOR,EMAIL)</p>
+<p>•如果子元素用”|”分开，说明任选其一</p>
+<p>  例：&lt;!ELEMENT FILE (TITLE|AUTHOR|EMAIL)</p>
+<p>•用+、*、？来表示元素出现的次数</p>
+<p> –  如果元素后面没有+*？表示必须且只能出现一次</p>
+<p> –  +表示至少出现一次，一次或多次</p>
+<p> –  *：表示可有可无，零次，一次或者多次</p>
+<p> – ？：表示可以有，也可以无，有的话只能有一次，零次或一次</p>
+<p>  如：&lt;!ELEMENT MYFILE((TITLE<em>,AUTHOR?,EMAIL)</em>|COMMENT)</p>
+<h5 id="定义属性"><a href="#定义属性" class="headerlink" title="定义属性"></a>定义属性</h5><p><strong>属性一</strong>：</p>
+<p>在DTD文档中使用ATTLIST关键字来为一个元素声明属性</p>
+<p>语法：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">!ATTLIST</span> 元素名</span></span><br><span class="line"><span class="tag">属性名<span class="attr">1</span>  属性值类型  设置说明</span></span><br><span class="line"><span class="tag">属性名<span class="attr">2</span>  属性值类型  设置说明</span></span><br><span class="line"><span class="tag">……</span></span><br><span class="line"><span class="tag">&gt;</span></span><br><span class="line"></span><br><span class="line">例如：</span><br><span class="line"><span class="tag">&lt;<span class="name">!ATTLIST</span> 商品</span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">   类别  <span class="attr">CDATA</span> #<span class="attr">REQUIRED</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">   颜色 <span class="attr">CDATA</span>#<span class="attr">IMPLIED</span>         &gt;</span></span><br><span class="line"></span><br><span class="line">对应的XML为：<span class="tag">&lt;<span class="name">商品</span> 类别 =<span class="string">“服装”</span> 颜色=<span class="string">“黄色”/</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>属性二</strong></p>
+<p>•属性值类型：</p>
+<p>–CDATA：表示属性的取值为普通的文本字符串</p>
+<p>–ENUMERATED(DTD没有此关键字)：表示枚举，只能从枚举列表中任选其一，如：(鸡肉|猪肉|鱼肉|牛肉)</p>
+<p>–ID：表示属性的取值不能重复</p>
+<p>•设置说明：</p>
+<p>– #REQUIRED：表示该属性必须出现</p>
+<p>– #IMPLIED：表示该属性可有可无</p>
+<p>– #FIXED：表示属性的取值为一个固定值。语法：#FIXED“固定值”</p>
+<p>直接值：表示属性的取值为该默认值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">示例：</span><br><span class="line">&lt;？xml version=&quot;1.0&quot;encoding=&quot;GB2312&quot;？&gt;</span><br><span class="line">&lt;！DOCTYPE 联系人列表[</span><br><span class="line">&lt;！ELEMENT 联系人列表ANY〉</span><br><span class="line">&lt;！ELEMENT 联系人（姓名，EMAIL）〉</span><br><span class="line">&lt;！ELEMENT 姓名（#PCDATA）〉</span><br><span class="line">&lt;！ELEMENT EMAIL（#PCDATA）&gt;</span><br><span class="line">&lt;！ATTLIST 联系人编号ID#REQUIRED〉</span><br><span class="line">    ]&gt;</span><br><span class="line">〈联系人列表》</span><br><span class="line">〈联系人编号=“a&quot;&gt;&lt;姓名〉张三&lt;/姓名》</span><br><span class="line">&lt;EMAIL&gt;zhang@it315.org&lt;/EMAIL〉</span><br><span class="line">&lt;/联系人〉</span><br><span class="line">&lt;联系人编号=“b&quot;〉&lt;姓名〉李四&lt;/姓名〉</span><br><span class="line">&lt;EMAIL&gt;1i@it315.org&lt;/EMAIL〉</span><br><span class="line">&lt;/联系人〉</span><br><span class="line">&lt;/联系人列表〉</span><br></pre></td></tr></table></figure>
+
+<h5 id="定义实体"><a href="#定义实体" class="headerlink" title="定义实体"></a>定义实体</h5><p>•概念：在DTD中定义，在DTD中使用</p>
+<p>•语法：<!ENTITY %实体名称 "实体内容"></p>
+<p>•引用方式(注意是在DTD中使用):%实体名称；</p>
+<p> <em>例：</em></p>
+<p>•DTD中定义：</p>
+  <!ELEMENT % TAG_NAMES "姓名|EMAIL|电 话|地址">
+
+<p>•DTD中引用:</p>
+  <!ELEMENT 个人信息(%TAG_NAMES;|生日)>
+
+ <!ELEMENT 客户信息(%TAG_NAMES;|公司名)>
+
+<h3 id="java解析XML概述"><a href="#java解析XML概述" class="headerlink" title="java解析XML概述"></a>java解析XML概述</h3><p>•XML解析方式分为两种：DOM方式和SAX方式</p>
+<p>–DOM：Document  Object  Model,文档对象模型。这种方式是w3c推荐的处理XML的一种方式</p>
+<p>–SAX：Simple API for XML 。这种方式不是官方标准，属于开源社区</p>
+<p>•XML解析开发包</p>
+<p>–JAXP：是SUN公司推出的解析标准实现。</p>
+<p>–Dom4J：是开源组织推出的解析开发包。</p>
+<p>–JDom：是开源组织推出的解析开发包</p>
+<h6 id="JAXP"><a href="#JAXP" class="headerlink" title="JAXP"></a>JAXP</h6><p>JAXP：（Java API for XML Processing）开发包是javaSE的一部分，它由以下几个包及其子包组成:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">–org.w3c.dom:提供DOM方式解析XML的标准接口</span><br><span class="line"></span><br><span class="line">–org.xml.sax:提供SAX方式解析XML的标注接口</span><br><span class="line"></span><br><span class="line">–javax.xml:提供了解析XML文档的类</span><br></pre></td></tr></table></figure>
+
+<p>•javax.xml.parsers包中,定义了几个工厂类.我们可以通过调用这些工厂类，得到对XML文档进行解析的DOM和SAX解析器对象。</p>
+<p> –DocumentBuilderFactory</p>
+<p> –SAXParserFactory</p>
+<h6 id="使用JAXP进行DOM解析"><a href="#使用JAXP进行DOM解析" class="headerlink" title="使用JAXP进行DOM解析"></a>使用JAXP进行DOM解析</h6><p>  javax.xml.parsers包中的DocumentBuilderFactory用于创建DOM模式的解析器对象，DocumentBuilderFactory是一个抽象工厂类，它不能直接实例化，但该类提供了一个newInstance方法，这个方法会根据本地平台默认安装的解析器，自动创建一个工厂的对象并返回。</p>
+<h6 id="获得JAXP中的DOM解析器"><a href="#获得JAXP中的DOM解析器" class="headerlink" title="获得JAXP中的DOM解析器"></a>获得JAXP中的DOM解析器</h6><p>•调用DocumentBuilderFactory.newInstance（）方法得到创建DOM解析器的工厂。</p>
+<p>•调用工厂对像的newDocumentBuilder方法得到DOM解析器对象</p>
+<p>•调用DOM解析器对象的parse()方法解析XML文档，得到代表整个文档的Document对象，进行可以利用DOM特性对整个XML文档进行操作 </p>
+<h6 id="Document对象"><a href="#Document对象" class="headerlink" title="Document对象"></a>Document对象</h6><p>DOM4j中，获得Document对象的方式有三种：    </p>
+<p>1、读取XML文件，获得document对象</p>
+<p>– SAXReader  reader =new   SAXReader();</p>
+<p>– Document  document = reader.read(new File(“input.xml”));</p>
+<p>2、解析XML形式的文本，得到document对象</p>
+<p>– String  text  =”<members></members>“</p>
+<p>– Document  document=DocumentHelper.parseText(text);</p>
+<p>3、主动创建document对象</p>
+<p>– Document document  =DocumentHelper.createDocument();</p>
+<p>– //创建根节点</p>
+<p>– Element root  = document.addElement(“members”);        </p>
+<h6 id="节点对象（nade）"><a href="#节点对象（nade）" class="headerlink" title="节点对象（nade）"></a>节点对象（nade）</h6><p>1、获取文档的根节点</p>
+<p>–Element root =document.getRootElement();–</p>
+<p>2、取得某个节点的子节点</p>
+<p>–Element element = node.element(“书名”);</p>
+<p>3、取得节点的文字</p>
+<p>–String text =node.getText();</p>
+<p>4、取得某节点下所有名为”member”的子节点，并进行遍历。</p>
+<p>–List nodes =rootElm.elements(“member”);</p>
+<p>–for(Iterator it=nodes.iterator();it.hasNext();){</p>
+<p>Element elm =(Element)it.next();    }</p>
+<p>5、对某节点下的所有子节点进行遍历</p>
+<p>–for(Iterator it = root.elementIterator();it.hasNext();){</p>
+<p>lement element =(Element)it.next();   }</p>
+<p>6、在某节点下添加子节点</p>
+<p>–Element ageElm = newMemberElm.addElement(“age”);</p>
+<p>7、设置节点文字</p>
+<p>–element.setText(“29”);</p>
+<p>8、删除某节点</p>
+<p>//childElm是待删除的节点，parentElm是其父节点</p>
+<p>–parentElm.remove(childElm);</p>
+<p>9、添加一个CDATA节点</p>
+<p>–Element contentElm = infoElm.addElement(“content”);</p>
+<p>–contentElm.addCDATA(diary.getContent());</p>
+<h6 id="节点对象属性"><a href="#节点对象属性" class="headerlink" title="节点对象属性"></a>节点对象属性</h6><p>1、取得某节点下的某属性</p>
+<p>–Element root = document.getRootElement();</p>
+<p>–Attribute attribute = root.attribute(“size”);</p>
+<p>2、取得属性的文字</p>
+<p>–String text = attribute.getText();</p>
+<p>3、删除某属性</p>
+<p>–Attribute attribute = root.attribute(“size”);</p>
+<p>-root.remove(attribute);</p>
+<p>4、遍历某节点的所有属性</p>
+<p>–Element root = document.getRootElement();</p>
+<p>–for(Iterator it=root.attributeIterator();it.hasNext();){</p>
+<p>Attribute attribute =(Attribute)it.next();</p>
+<p>String text =attribute.getText();</p>
+<p>System.out.println(Text);     }</p>
+<p>5、设置某节点的属性和文字</p>
+<p>–newMemberElm.addAttribute(“name”,”sitinspring”);</p>
+<p>6、设置属性的文字</p>
+<p>–Attribute attribute = root.attribute(“name”);</p>
+<p>–attribute.setText(“sitinspring”);</p>
+<h3 id="XML-Schema"><a href="#XML-Schema" class="headerlink" title="XML Schema"></a>XML Schema</h3><p>•XML Schema也是一种用于定义和描述XML文档结构与内容的模式语言，其出现时为了克服DTD的局限性</p>
+<p><em>XML Schema VS DTD</em>:</p>
+<p>1、XML Schema符合XML语法结构</p>
+<p>2、DOM、SAX等XML API很容易解析出XML Schema文档中的内容</p>
+<p>3、XML Schema对名称空间支持的非常好</p>
+<p>4、XML Schema比XML DTD支持更多的数据类型，并支持用户自定义新的数据类型</p>
+<p>5、XML Schema定义约束能力非常强大，可以对XML实例文档做出细致的语义限制</p>
+<p>6、XML Schema 不能像DTD一样定义实体，比DTD更复杂，但Xml Schema现在已是w3c组织的标准，它正逐步取代DTD</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">book.xsd文件</span><br><span class="line"><span class="meta">&lt;?xml version="1.0"encoding="UTF-8"？&gt;</span></span><br><span class="line"><span class="meta">&lt;xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"</span></span><br><span class="line"><span class="meta">    //标准的名称空间</span></span><br><span class="line"><span class="meta">    targetNamespace="http://www.itcast.cn"</span></span><br><span class="line"><span class="meta">    //将该schema文档绑定到http:/www.itcast.cn名称空间</span></span><br><span class="line"><span class="meta">    elementFormDefault="qualified"&gt;</span></span><br><span class="line"><span class="meta">&lt;xs:element name='书架’〉</span></span><br><span class="line"><span class="meta">〈xs:complexType&gt;</span></span><br><span class="line"><span class="meta">&lt;xs:sequence maxOccurs='unbounded'〉</span></span><br><span class="line"><span class="meta">&lt;xs:element name='书’〉</span></span><br><span class="line"><span class="meta">〈xs:complexType〉</span></span><br><span class="line"><span class="meta">&lt;xs:sequence&gt;</span></span><br><span class="line"><span class="meta">&lt;xs:element name='书名’type='xs:string'/&gt;&lt;xs:element name='作者’type='xs:string'/〉〈xs:element name='售价’type='xs:string'/&gt;</span></span><br><span class="line"><span class="meta">〈/xs:sequence〉</span></span><br><span class="line"><span class="meta">〈/xs:complexType&gt;</span></span><br><span class="line"><span class="meta">&lt;/xs:element〉</span></span><br><span class="line"><span class="meta">&lt;/xs:sequence&gt;</span></span><br><span class="line"><span class="meta">&lt;/xs:complexType〉</span></span><br><span class="line"><span class="meta">&lt;/xs:element〉</span></span><br><span class="line"><span class="meta">&lt;/xs:schema&gt;</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">&lt;Qxml version="1.0"encoding-"UTF-8"？&gt;</span></span><br><span class="line"><span class="meta">&lt;itcast：书架xmlns:itcast="http://www.itcast.cn"</span></span><br><span class="line"><span class="meta">xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"</span></span><br><span class="line"><span class="meta">xsi:schemalocation=“http://www.itcast.cn book.xsd"&gt;</span></span><br><span class="line"><span class="meta">&lt;itcast：书&gt;</span></span><br><span class="line"><span class="meta">&lt;itcast：书名）JavaScript网页开发&lt;/itcast：书名）</span></span><br><span class="line"><span class="meta">&lt;itcast：作者〉张孝祥&lt;/itcast：作者》</span></span><br><span class="line"><span class="meta">〈itcast：售价〉28.00元&lt;/itcast：售价〉</span></span><br><span class="line"><span class="meta">&lt;/itcast：书&gt;</span></span><br><span class="line"><span class="meta">〈/itcast：书架〉</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="名称空间的概念"><a href="#名称空间的概念" class="headerlink" title="名称空间的概念"></a>名称空间的概念</h6><p>  在XML Schema中，每个约束模式文档都可以被赋予一个唯一的名称空间，名称空间用一个唯一的URI来表示。在Xml文件中书写标签时，可以通过名称空间声明，来声明当前编写的标签来自哪个Schema约束文档。</p>
+<p>例：</p>
+<p>&lt;comhh :书架  xmlns:comhh=”http://……”&gt;</p>
+<p><a href="itcast:书" target="_blank" rel="noopener">itcast:书</a>……&lt;/itcast:书&gt;</p>
+<p>&lt;/comhh:书架&gt;</p>
+<p>此处用comhh来指向声明的名称，以便于后面对名称空间的引用</p>
+<p><strong>注意</strong>：名称空间的 名字语法容易让人混淆，尽管以http://开始，哪个URL:根本没有指向任何文件，只是一个分配的名字</p>
+<h6 id="使用名称空间引入Schema"><a href="#使用名称空间引入Schema" class="headerlink" title="使用名称空间引入Schema"></a>使用名称空间引入Schema</h6><p>为了在一个XML文档中声明它所遵循的Schema文件的具体位置，通常需要在Xml文档中的根节点中使用schemaLocation属性来指定，例如：</p>
+<p>•&lt;comhh:书架 xmlns:comhh=”http://……”–xmlns:xsi=”http:……”   xsi：schemaLocation=”…….xsd”&gt;</p>
+<p>schemaLocation此属性有两个值。第一个值是需要使用的命名空间。第二个值是供命名空间使用的XML  Schema的位置，两者之间用空格分隔。</p>
+<p><strong>注意</strong>，在使用schemaLocation属性时，也需要指定该属性来自哪里</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">使用名称空间引入多个XML Schema文档</span><br><span class="line"><span class="tag">&lt;<span class="name">？xml</span> <span class="attr">version</span>=<span class="string">"1.0"</span><span class="attr">encoding</span>=<span class="string">"UTF-8"</span>？&gt;</span></span><br><span class="line">〈书架xmlns="http://www.it315.org/xmlbook/schema"</span><br><span class="line">xmlns:demo="http://www.it315.org/demo/schema"</span><br><span class="line">xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"</span><br><span class="line">xsi:schemalocation="http://www.it315.org/xmlbook/schema http://www.it315.org/xmlbook.xsdhttp://www.it315.org/demo/schema http://www.it315.org/demo.xsd"&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">书</span>&gt;</span></span><br><span class="line">〈书名&gt;JavaScript网页开发<span class="tag">&lt;/<span class="name">书名〉</span></span></span><br><span class="line">&lt;作者〉张孝祥&lt;/作者〉</span><br><span class="line"><span class="tag">&lt;<span class="name">售价demo：币种=”人民币”</span>&gt;</span>28.00元<span class="tag">&lt;/<span class="name">售价〉</span></span></span><br><span class="line">&lt;/书&gt;</span><br><span class="line"><span class="tag">&lt;/<span class="name">书架〉</span></span></span><br><span class="line"><span class="tag">    </span></span><br><span class="line"><span class="tag">不使用名称空间引入<span class="attr">XML</span> <span class="attr">Schema</span>文档 </span></span><br><span class="line">    &lt;？xml version="1.0"encoding="UTF-8"？&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">书架xmlns:xsi="http:</span>//<span class="attr">www.w3.org</span>/<span class="attr">2001</span>/<span class="attr">XMLSchema-instance</span>"</span></span><br><span class="line"><span class="tag"><span class="attr">xsi:noNamespaceSchemaLocation</span>=<span class="string">"xmlbook.xsd"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">书</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">书名</span>&gt;</span>JavaScript网页开发<span class="tag">&lt;/<span class="name">书名</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">作者</span>&gt;</span>张孝祥<span class="tag">&lt;/<span class="name">作者</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">售价</span>&gt;</span>28.00元<span class="tag">&lt;/<span class="name">售价</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">书</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">书架</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+    </article>
+    <!-- license  -->
+    
+        <div class="license-wrapper">
+            <p>原文作者：<a href="http://yoursite.com">紫鱼</a>
+            <p>原文链接：<a href="http://yoursite.com/all/XML/">http://yoursite.com/all/XML/</a>
+            <p>发表日期：<a href="http://yoursite.com/all/XML/">August 2nd 2019, 10:13:58 am</a>
+            <p>更新日期：<a href="http://yoursite.com/all/XML/">August 2nd 2019, 2:11:23 pm</a>
+            <p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
+        </div>
+    
+    <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/all/Stream流/" title= "Stream流">
+                    <div class="prevTitle">Stream流</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:12345@qq.com" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/Wake Up" class="iconfont-archer github" target="_blank" title=github></a>
+            
+        
+    
+        
+            
+                <span class="iconfont-archer wechat" title=wechat>
+                  
+                  <img class="profile-qr" src="/assets/  （ example_qr.png）" />
+                </span>
+            
+        
+    
+        
+            
+                <span class="iconfont-archer qq" title=qq>
+                  
+                  <img class="profile-qr" src="/assets/" />
+                </span>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+            
+                <a href="/assets/" class="iconfont-archer steam" target="_blank" title=steam></a>
+            
+        
+    
+        
+    
+        
+            
+                <a href="/atom.xml" class="iconfont-archer rss" target="_blank" title=rss></a>
+            
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+    <div class="busuanzi-container">
+    
+     
+    <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+    
+    </div>
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#XML"><span class="toc-number">1.</span> <span class="toc-text">XML</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#xml文档的组成"><span class="toc-number">2.</span> <span class="toc-text">xml文档的组成</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#文档声明"><span class="toc-number">2.0.1.</span> <span class="toc-text">文档声明</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#元素"><span class="toc-number">2.0.2.</span> <span class="toc-text">元素</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#元素属性"><span class="toc-number">2.0.3.</span> <span class="toc-text">元素属性</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#注释"><span class="toc-number">2.0.4.</span> <span class="toc-text">注释</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#CDATA区"><span class="toc-number">2.0.5.</span> <span class="toc-text">CDATA区</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#特殊字符"><span class="toc-number">2.0.6.</span> <span class="toc-text">特殊字符</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#处理指令-PI-Processing-Instruction"><span class="toc-number">2.0.7.</span> <span class="toc-text">处理指令 (PI:Processing  Instruction)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DTD"><span class="toc-number">3.</span> <span class="toc-text">DTD</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#定义元素"><span class="toc-number">3.0.1.</span> <span class="toc-text">定义元素</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#定义属性"><span class="toc-number">3.0.2.</span> <span class="toc-text">定义属性</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#定义实体"><span class="toc-number">3.0.3.</span> <span class="toc-text">定义实体</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java解析XML概述"><span class="toc-number">4.</span> <span class="toc-text">java解析XML概述</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#JAXP"><span class="toc-number">4.0.0.1.</span> <span class="toc-text">JAXP</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#使用JAXP进行DOM解析"><span class="toc-number">4.0.0.2.</span> <span class="toc-text">使用JAXP进行DOM解析</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#获得JAXP中的DOM解析器"><span class="toc-number">4.0.0.3.</span> <span class="toc-text">获得JAXP中的DOM解析器</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Document对象"><span class="toc-number">4.0.0.4.</span> <span class="toc-text">Document对象</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#节点对象（nade）"><span class="toc-number">4.0.0.5.</span> <span class="toc-text">节点对象（nade）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#节点对象属性"><span class="toc-number">4.0.0.6.</span> <span class="toc-text">节点对象属性</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#XML-Schema"><span class="toc-number">5.</span> <span class="toc-text">XML Schema</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#名称空间的概念"><span class="toc-number">5.0.0.1.</span> <span class="toc-text">名称空间的概念</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#使用名称空间引入Schema"><span class="toc-number">5.0.0.2.</span> <span class="toc-text">使用名称空间引入Schema</span></a></li></ol></li></ol></li></ol></li></ol>
+    </div>
+    
+    <div class="back-top iconfont-archer">&#xe639;</div>
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 6
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2019 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/02</span><a class="archive-post-title" href= "/all/XML/" >XML</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/01</span><a class="archive-post-title" href= "/all/Stream流/" >Stream流</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/31</span><a class="archive-post-title" href= "/all/类和集合等/" >类和集合等</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/30</span><a class="archive-post-title" href= "/all/网络编程/" >网络编程</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/27</span><a class="archive-post-title" href= "/all/在windows系统 blog的构建/" >在windows系统 blog的构建</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/26</span><a class="archive-post-title" href= "/all/hello-world/" >Hello World</a>
+        </li>
+    
+    </div>
+  </div>
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="other"><span class="iconfont-archer">&#xe606;</span>other</span>
+    
+        <span class="sidebar-tag-name" data-tags="java"><span class="iconfont-archer">&#xe606;</span>java</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br/>
+    1、请确保node版本大于6.2<br/>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "紫鱼"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="/scripts/main.js"></script>
+    <!-- algolia -->
+    
+    <!-- busuanzi  -->
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
+     
+    </body>
+</html>
+
+
