@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+    <!-- title -->
+
+
+
+
+<!-- keywords -->
+
+
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="author" content="紫鱼">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="紫鱼">
+    
+    <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
+    
+    <meta name="description" content="一只学习狗">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>一个女孩 · Wake Up</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+</style>
+
+    <link rel="preload" href="/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="stylesheet" href="/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
+
+
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
+</script>
+
+    <link rel="icon" href="/assets/favicon.ico">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script">
+    <link rel="preload" href="/scripts/main.js" as="script">
+    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+</head>
+
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >Wake Up</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">一个女孩</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href=/>Wake Up</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro" style="
+
+
+
+
+
+
+
+height:50vh;
+">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            一个女孩
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "故事">故事</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">13.1k</span>阅读时长: <span class="post-count reading-time">43 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/08/03</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "/lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <h1 id="一个女孩从生到死亡"><a href="#一个女孩从生到死亡" class="headerlink" title="一个女孩从生到死亡"></a>一个女孩从生到死亡</h1><h2 id="一个女孩一岁到十岁"><a href="#一个女孩一岁到十岁" class="headerlink" title="一个女孩一岁到十岁"></a>一个女孩一岁到十岁</h2><h3 id="紫鱼"><a href="#紫鱼" class="headerlink" title="紫鱼"></a>紫鱼</h3><p>  一个男人在产房外坐立不安。他的手在口袋上摸来摸去，始终没有拿出那一盒烟。最后产房的门打开了。一个小孩的哭声从里面传出来。护士出来说母子平安。男人开心的冲到女人的病床前，像一个小孩子一样的兴奋。他轻轻的摸了一下那个虚弱的女人的头发，慢慢的走进的孩子旁边，虽然自己的父母都希望抱一个孙子但是看这个新生的小生命他觉的是男是女都无所谓了，他好像看到了自己的新生。  他紧贴着玻璃细细看着这个只有自己手掌大的孩子。窗帘的缝隙里透出了一丝丝新出生的光明，日出了，这一日是1998年5月12日。男人在心里牢牢的默念了这个日期因为他觉的这是他人生中最重要的一天了。</p>
+<p>  随着时间的推移孩子和母亲都出院了。在这此期间都来了很多人。小女孩的外公外婆，爷爷奶奶都来看了一下这个孩子。就是奶奶虽有些不悦，但是没有表现出来。女人也没有都说话很复杂的眼神不知道往哪放。外公外婆很是疼爱这个外孙女。只有那个男人全身心的在这个小女孩上没有察觉到着里的气氛已经有些不对了。</p>
+<p>给孩子起什么名字？虽然早就想了很多但是就是没有定下来。孩子的爷爷看拿手指轻轻的摸着孩子的脸说。这个孩子是日出生出的，就叫旸谷吧。“日出旸谷”（出自诗经）。男人听见自己的父亲发话了就连声附和好、好、好名字。</p>
+<p>随着时间的推移家里虽然有吵架，但是孩子还是平平安安的度过一岁。断奶了。但是孩子所需的东西价钱很贵。男人每天加班挣钱。一天到晚很累，回来还要听妻子的抱怨这里那里。母亲想要个男孩的愿望。有时他都感觉自己快崩溃了，但是自己看见了孩子过去轻轻的亲吻一下旸谷的脸什么烦恼都没有了。看见旸谷对自己拍手笑，感觉自己做的一切都值得了。他刮了一下旸谷的鼻子自言自语说：“每天晚上你可没少折腾你老子我呀！”旸谷也不知道懂不懂，却笑的更欢快了。男人也不由的露出了笑脸。</p>
+<p>两岁半了，旸谷开始准备学走路了。其他人家的孩子都有学走了学步车，男人想给她也买一个，他跑到超市里看着学步车的价位，他沉默了。他一次次看着旸谷学走路，一直跌到然后在傻笑的爬起来继续，好像就不会哭。旸谷每次与大地接触。男人心里就疼一下。他暗暗下定决心一定要给旸谷买一个学步车。两个月后男人买回了一个学步车，可是旸谷已经学会了走路不摔跤了。女人在屋子里骂男人浪费钱。但是男人看见旸谷坐在车里一脸兴奋的摔着手臂。嘿嘿的笑着。开心的要命。</p>
+<p>四岁了旸谷去了公立幼儿园。身边好多孩子都去了很好的私立幼儿园。他看着孩子有时回来不是很高兴。他问孩子，但旸谷也什么都不说。他拖着疲惫的身体，也没有洗漱倒在了沙发就睡了。</p>
+<p>七岁旸谷很争气考了一个好成绩，去了不错的公立小学。全家人位了旸谷考了好小学庆祝了一番。那天在饭店旸谷，吃的满嘴是油。</p>
+<p>九岁了，男人看见小旸谷瘦了一圈，去问旸谷怎么回事。旸谷没有说，他偷偷问其他旸谷的同学，他感觉到旸谷受到了排挤。因为名字。小孩子们叫她“肠子”。旸谷终于有一天回来哭着说我要改名字。这个名字不好。他们叫我“肠子”，他们说我名字脏兮兮的。男人不知到该怎么说了。这时女人出来说。哪有名字随便乱来的。旸谷哭骂道：“那个傻子给我起的名字。“男人忽的一巴掌就扇一耳光。旸谷气的跑出了屋子。男人愣了一下追了上去。男人偷偷跟着旸谷。偷偷看着她，她不知道在干什么她瞎转着。男人一路上有些恍惚。他第一次打旸谷，他心里很疼，疼到快哭了。这些年来多苦他都没有掉一滴眼泪。他那次出差下巴被划破在没有麻醉的情况下缝了十七针。他还调侃这工伤给多加钱了哈。好给我女儿买一个大熊娃娃她可喜欢了。那时他想到她就一点都不疼。这次他眼睛红了。父亲给女儿起了旸谷这个名字。父亲在自己出差时，心脏病突发抢救无效没有了。他连自己父亲最后一面都没有见，他想到这里更加难受，他感觉自己快呼吸不上来了。他偷偷的跟着旸谷三个小时，最后旸谷总于饿的不行了回家了。他在家门口安安静静的抽了一支烟。摸了一把眼泪。又去超市带了旸谷最喜欢的零食回家了。</p>
+<p>十岁旸谷长高了有一米四了。他看着旸谷有些恍惚了，怎么回事？她就长大了，张这么大，明明感觉她只有巴掌那么大，现在已经这么大了。旸谷不喜欢穿校服，就喜欢穿裙子。旸谷说穿裙子好看。男人笑了，女儿知道打扮了。一天旸谷回来就说爸爸，有个男孩怎么老是拽我辫子，老是招惹我烦死了。男人笑着说：“是不是那个男孩喜欢我们家的旸谷呀！“旸谷翻了个白眼说：”我才不稀罕呢，哼，他还说’要做我的英雄呢？恶心’”。男人看着旸谷神气的表情笑了。他想着旸谷的生日快到了，给她准备一个大大的蛋糕和一个毛茸茸的娃娃。他永远也猜不到黑暗就在不远的前方。5月12日男人上了一上午的班，就请假了。去买了蛋糕和娃娃。回家时旸谷就上学去了。他就在家里开始准备为旸谷庆祝十岁的生日。</p>
+<p> 旸谷刚进入教室。那个小男孩就坐在她后面说以后我保护你。旸谷不屑的笑了笑说：“你比我还低算了吧。如果有人欺负你你可以叫我来帮你，前提是你叫我姐姐。”小男生耸耸小肩膀尴尬一笑。第一节课上了快有半个小时。所有的孩子都想着还有十分钟下课，该玩什么好呢？忽然整个房子都摇动了起来。班主任忽然推门而入大喊：“快快跑呀！“老师就一边喊跑上楼。所有孩子都开始跑。旸谷吓傻了。教室里一瞬间就没人了。只有旸谷趴在桌子下。忽然有人笨拙踢开桌子，拉着旸谷跑。旸谷也不知道发生了什么事。只跟着跑。快跑出了楼门口突然门口掉了一块玻璃碎成一片。旸谷吓的大喊。忽然旸谷感觉屁股有人踢了一脚。旸谷一个踉跄跑过了门口滚下楼梯。有男老师看见赶紧跑过来。拉着远离了教学楼。旸谷看见了看清了是那个男孩，是哪个说要保护她的男孩一路拉着她跑。她一边哭一边口齿不清的大喊里面还有人。没人理她。她也挣脱不开老师的拉扯。她离教学楼越来越远。然后看见教学楼轰然都下。灰尘有一米高。那年她的十岁。</p>
+<hr>
+<h2 id="一个女孩十一到二十岁"><a href="#一个女孩十一到二十岁" class="headerlink" title="一个女孩十一到二十岁"></a>一个女孩十一到二十岁</h2><h3 id="霏"><a href="#霏" class="headerlink" title="霏"></a>霏</h3><p>   应急救援队经过三天的搜救，救出了27名被埋没在废墟中的孩子，然而有7个小孩的生命永久地留在了这片废墟里，其中包括那个救了旸谷的小男孩。旸谷知道后，她哭了，哭的特别伤心，她有做过最坏的猜想，可当她真正听到这个消息的时候，心里还是不能接受，觉得死亡不该离她这么近的，这是旸谷第一次感受到除了亲人以外还有人愿意为了她牺牲自己。在后来的很长一段时间里，旸谷都没能走出这场意外带给她的阴影，她内疚自责，如果不是因为那场突如其来的地震，如果不是因为自己，或许那个小男孩现在还站在自己的跟前，对自己说“以后我保护你”。旸谷的父母不想让她再这么伤心下去，决定搬到R市居住，希望换个环境她能忘记伤心的回忆重新生活。</p>
+<p>在父母的陪伴下，旸谷逐渐变得乐观起来，在新的学校里交了新的朋友，学习成绩也依旧很优秀，只是在每年生日那天她还是会想起教学楼倒塌的那一幕，想起那个救了她的小男孩。三年后，旸谷小学毕业，考进了附近的一所中学。那年暑假，旸谷和父母去了清城旅游，那是她第一次出远门，一路上都特别开心，她喜欢这里的野生动物园和海洋水族馆，对那些奇奇怪怪的生物充满了好奇，她也喜欢这里繁华的夜景和浩瀚的大海，令人流连忘返。</p>
+<p>暑假过得很快，眨眼间就到了开学的日子，虽然是进入新的学习环境，但这对于本就乐观开朗的旸谷来说，并没有什么影响，她主动和其他同学打招呼，很快就熟悉了班里一大半的同学。因为成绩优异，旸谷被老师暂定为学习委员，当然，经过后面学习成绩的鉴定，这个学委一当便是三年。</p>
+<p>苡晨是旸谷初中时期的好闺蜜，她俩第一次见面是在去清城旅行的火车上，当时她们的床位是挨着的，这俩小孩性格差不多，很是合拍，没过多久便玩儿到一块儿了，后来才知道她们考上了同一所初中，苡晨说，要是能分到一个班就更好了。结果开学第一天，旸谷惊喜的发现，她们还真的分到了同一个班，或许这就是缘分吧。初中三年，旸谷和苡晨形影不离，她们一起学习，一起吃饭，一起参加活动，一起逛街，总之有旸谷的地方总能见到苡晨，有苡晨的地方也少不了旸谷。她们会时常向对方倾诉自己的心事，当一个人被欺负时，另一个人总会霸气的护着对方。旸谷时常感慨自己很幸运，遇见了这么贴心的好朋友。</p>
+<p>初中正是叛逆的时期，每个班总会出那么几个小混混，成天不好好学习，一言不合就是“放学别走，校门口见”，在旸谷的班级里也不意外。初二那年，有一次周五放学，旸谷拉着苡晨就往书店跑，因为她喜欢的一个歌手出新的专辑了，路上旸谷正歪着头和苡晨说事儿，不小心撞到了一个男生，当时男生手里拿着一个礼物，这一撞，礼物就掉在了地上，悲剧的是，礼物是玻璃做的，瞬间就碎了，那个男生脸顿时黑了，本就痞里痞气的他把旸谷吓到了，苡晨见势不对，赶紧拉着旸谷道歉，但是男生好像并不想就这么算了，甚至还恐吓她们以后小心点儿。这一幕恰巧被路过的泠然(此人正是旸谷班上的小混混之一，有一定的名气）撞见了，仔细一看一边是班上的同学，另一边是自己同道上的哥们，于是一身正气的泠然准备化解他们之间的矛盾，他走过去将哥们拉到一边，旸谷不知道他们说了些什么，等他们再次回来的时候那个男生只说了句“都是误会一场，以后走路看着点儿”，然后就潇洒的离开了。旸谷和苡晨非常感谢泠然，两人决定请他吃饭。其实在这之前，旸谷和泠然并不是很熟，虽然在同一个班里，但是他们就属于那种两个星球里的人，没什么共同语言，自然也就没什么交集了，所以这一次泠然能够帮她们，旸谷也感到很惊讶，不过更多的还是感激。之后旸谷专注于学习，与泠然也就没有过多的接触。</p>
+<p>初三上学期的第一次月考后，班主任老师施行了一个“一带一”的学习计划，也就是一个优生带一个差生，因为是最后一年了，希望能通过这个方法来帮助大家学习。旸谷和泠然分到了一组，旸谷说：“这还真是有缘呢，以前你帮过我，那我也会尽力帮你的”。旸谷的优异成绩不是白来的，她有自己独特的学习方法，而且效率也很高，她将自己的秘籍分享给了泠然，同时根据泠然的学习情况为他制定了一套学习计划。从那之后，旸谷每天带着泠然学习，泠然似乎也不再像他以前那样做一个小混混，而是将心思放在了学习上，或许是升学压力所致吧。</p>
+<p>紧凑的学习生活日复一日，泠然的成绩提高得很快，从年级的末尾跃进了年级前100，旸谷对泠然说：“不错嘛，继续加油就能出师了！”泠然笑着回道：“多谢师傅指点，徒儿定当竭尽全力，在‘战场上’杀他个片甲不留！”那表情和动作都跟电视剧里学的有模有样的，旸谷瞬间笑得直不起腰了。</p>
+<p>中考前夕，班主任老师提出举办一次毕业座谈会，于是班委们开始精心筹备。座谈会定在了考前的最后一个周日晚上，那晚，大家都将桌子移向四周，围成了一个圈，中间空出的地方作为大家的舞台，班长还为大家准备了零食饮料。先是表演节目，接着以宿舍为单位发表感言，大家畅所欲言，有的同学说出了对朋友老师的美好祝愿，有的同学跟大家分享了和朋友之间的奇闻趣事，也有同学为曾经发生过的不愉快而道歉。那天晚上，大家有欢笑，有感动，有对未来的憧憬，也有对过去三年的不舍。最后，大家一起合唱了《那些年》，座谈会在歌声中渐渐迎来了尾声。那一晚的座谈会深深地留在了旸谷的记忆里，那是初中时期最难忘的回忆。</p>
+<p>2014年6月14日，中考结束。旸谷、苡晨和泠然考进了同一所重点高中，只是被分在了不同的班级，旸谷和苡晨在尖子班，泠然在普通班。他们离学校都挺远的，所以从高一开始便住在了学校，这是旸谷第一次住校，她还挺期待宿舍生活的，每天去哪儿都会跟舍友一起，很快就熟络了起来，也渐渐和她们成为了好朋友。</p>
+<p>高一进校第一周便是军训，大家统一穿上军训服，在校园里，无论走到哪儿，都是一道亮丽的风景线。全年级共24个班，苡晨在1班，泠然在10班，旸谷在24班。带领24班训练的是一位90后教官，与大家年龄相差五岁左右，他幽默风趣，经常逗得大家笑到肚子疼，他也很照顾同学们，别的班级都是顶着烈日训练，而他总会为他们班找一块阴凉地儿，同学们都很喜欢他，把他当哥哥一样看待。白天，大家站军姿、练步伐，晚上大家一起唱红歌、看电影，还会有比赛，虽然每天很累，但是大家都很开心。军训第五天，训练的项目是去靶场打靶，旸谷很是激动，因为去了靶场就能见识一下真正的枪了，而且，据说以往的学长学姐们军训都没有这个项目，旸谷再一次感到自己很幸运。到了目的地，每个人有五发子弹，旁边会有教练进行专业指导。旸谷为了纪念这次的靶场训练，把自己打出的子弹壳都收藏了起来。一周的军训时间过得很快，结束之际全班给教官买了礼物表示感谢。之后，旸谷新一阶段的学习生活便正式开始了。</p>
+<p>高一下学期实行文理分班，所以从进校开始，泠然每天都在努力学习，希望自己能分到尖子班去。最后，1班定为文科尖子班，24班定位理科尖子班，苡晨和旸谷各选了文、理科，留在了原来的班级里，泠然选了理科，通过自己的努力考进了24班。旸谷和泠然初中时就很熟了，这次又分在了同一个班级，俩人都很开心，时常在一起讨论学习，也经常会在课间嬉笑打闹。</p>
+<p>分班后，学校在4月份为高一年级组织了一次远足活动，大家都十分激动。为了方便管理，将全年级分为了两个部，1-12班为一级部，13-24为二级部，两个部去的地方也不同。远足的前一个周末，旸谷和苡晨去逛超市，买了好多好吃的，都是为远足准备的，只是都很遗憾不能去同一个地方，不过她俩已经约好回来后一起分享感受。远足那天早上，大家统一穿着校服，浩浩荡荡地出发了。一级部的路线大多是平坦的，二级部的路线则是全程爬山。旸谷和舍友们走在一起，一路上有说有笑，大家还会互相分享自己的零食。每个班时不时会喊喊口号、唱唱歌，整个山间回荡着大家的歌声和欢笑声。或许是学习久了，偶尔出来玩一趟，大家都感到很轻松，走在树林里，踏在青石上，越往高处走，还会有白茫茫的雾笼罩着山林，犹如仙境一般，路过之处，偶尔还会发现能吃的果子。旸谷班上的英语老师H也跟着他们班一起参加了这次活动，平日里大家都挺喜欢她的，因为她对待同学们特别和善，她的课堂也很有趣，工作中很负责，经常会为了批改同学们的作业而忘记吃饭，没课的时候都是在办公室里备课，或给同学们解惑，其他老师都称她为“拼命三郎”，这次远足，她还给大家带了自己在家做的肉和清明菜团子，大家也将自己的零食分享给H老师。走了大概三个小时才到了山顶，老师嘱咐大家注意安全，可以自由活动，但不能走太远。旸谷看泠然没带多少吃的，便将自己的零食分了一些给他。没过多久，天开始下小雨了，老师组织大家按班级顺序排好，准备下山。刚出山雨就下大了，有的同学带了伞，有的没带，好几个人挤在一把伞下奔回学校，泠然见旸谷没带伞，就将伞借给了她，自己淋着跑回了学校。旸谷呆呆的看着他的背影，心里暖暖的。大家赶回学校后，洗了热水澡，休息了一晚，第二天又开始日常的学习生活了。</p>
+<p>2016年5月12日，是旸谷的18岁生日。这天早上，旸谷刚起床，就收到了舍友们的礼物和祝福，舍友A送了她一双高跟鞋，舍友E亲手画了一幅旸谷的偶像画送给她，好朋友苡晨还特地赶了个大早去旸谷宿舍送礼物。大家都知道，因为08年的那场地震，5月12日成了一个特殊的日子，他们很庆幸自己能躲过那场灾难，只有旸谷对每年的这一天还心有余悸，她不想让父母太过担心，从初中开始，便学会了用微笑掩饰自己。泠然是在初三那年，无意间知道了她的这个小秘密，所以从那以后，旸谷都会在生日这天收到来自泠然的惊喜，因为泠然觉得有了惊喜，或许她就不会去想那些惊吓了吧。旸谷这次的生日也不例外，依旧收到了很多惊喜。第二天就是周五，下午放学回家后，旸谷的父母为庆祝她成年，带她出去吃了一顿大餐，吃完后，旸谷的母亲拿出一个礼盒，说是给旸谷准备的生日礼物，旸谷打开一看，是她小时候最喜欢的哆啦A梦，那时候还小，在电视里面看到了哆啦A梦，就超级喜欢，想让母亲给她买一个玩偶，但是母亲觉得买那个浪费钱，就应该买点儿学习资料好好学习，旸谷哭闹着非要它不可，母亲就狠狠地打骂了她一顿，后来旸谷看见喜欢的玩具也没敢跟父母说，只是努力学习，成为了别人眼中的乖孩子。这一次，母亲说：“自小时候那件事过后，你就一直很听话，我想那时候可能对你太苛刻了，虽然你父亲时常护着你，宠着你，或许你心里对我还是有怨言的，今天送你这个是想还你一个童年，跟你说声对不起，还想告诉你，今后你就是一个成年人了，你要学着长大，学着承担责任，学着规划未来，但是在父母心里，你永远都是孩子，无论何时有了任何的磕磕绊绊，父母的臂弯永远都为你敞开着。”旸谷扑在母亲的怀里，开心地哭了。</p>
+<p>2016年5月28日，H老师因病去世了。这段时间，H老师身体一直不好，还住了几次院，身体日渐消瘦，英语课都是其他老师带的，大家得知这个消息后，都非常伤心，周末都会抽时间去看看她，只是最后病魔还是将老师带离了这个世界。大家回想起与H老师相处的点点滴滴，都默默地流下了眼泪。旸谷还写了一首诗送给H老师，愿老师在另一个世界里永远健康快乐。追悼会那天，全班同学都去送H老师最后一程，大家在她的灵前宣誓，一定会考上好大学，成为H老师的骄傲。</p>
+<p>高三，是被作业和考试填满的一年，有人说人生最具学识的时候是高三，上知天文下知地理，好像，也挺有道理。这一年，大家斗志昂扬，只为一个目标——考上理想的大学。旸谷每天的生活就是典型的“三点一线”，有时候晚上睡觉，梦里都是做题的情景。旸谷和舍友们也经常会在宿舍里聊天到深夜，大家一起聊着过往，聊着未来，或许是因为快毕业了，以后大家各奔东西，相聚在一起的时间就少了，便会有很多感慨和不舍吧。2017年5月，全班拍了毕业照，意味着每天穿梭的校园，就要到说再见的时候了。2017年6月6日，老师最后一次站在讲台上嘱咐着注意事项，给同学们加油鼓劲儿。2017年6月7、8日，人生的转折点，大家一起为自己的理想奋战。</p>
+<p>考完后，班主任老师说志愿统一去学校填，填完全班一起聚一聚，算作是一场离别宴。6月24日下午，大家统一在学校机房填志愿，填完后相约去了酒店，那晚，大家为毕业感到开心，也为离别感到难过，互相说着祝福的话。旸谷从小到大没怎么喝过酒，也在那一天喝了好几杯，好在并没有喝醉。宴席结束后，泠然送旸谷回家，快到家的时候，泠然向旸谷表白了，说起了很多很多两人以前的故事，旸谷在平时与泠然的相处中对他也有好感，就同意了，于是，旸谷便开始了人生中的第一次恋爱。</p>
+<p>2017年7月，旸谷收到了南昭大学船舶与海洋工程专业的录取通知书，苡晨被省内一所师范大学的汉语言文学专业录取，泠然被㫥一大学计算机系录取，三人幸运地都留在了省内的M市。旸谷同宿舍里的舍友A和B也被本省的其他学校录取了，舍友C选择了复读，剩下的都去了外省。</p>
+<p>2017年9月，旸谷和泠然满怀期待坐上了开往M市的火车，看着车窗外倒退的田园山河，旸谷心中不禁感慨：12年的寒窗苦读，就为换来今天这一次旅途，所期待的大学生活，又会是怎样的呢！</p>
+<p>旸谷来到南昭大学，被它的恢宏气势所震撼，被它的优美环境所吸引，瞬间爱上了这里。舍友们来自全国各地，大家相聚在南昭，是一场缘分。半个月的军训过后，正式开始上课，旸谷发现，大学的教学模式跟中学截然不同，不再有班主任每天盯着学习，教室里不再有固定的同桌，即使是同班同学，也很少见面，有时候甚至都不能将名字与人对号入座，也不再有堆积如山的课后作业，有的只是每天朝夕相处的舍友。旸谷觉得，上了大学好像就失去了好多，但也获得了更多的自由，她加入了社团、学生会，认识了很多学长学姐和一群有着共同爱好的朋友们，大家一起做着自己喜欢的事情，有时候因为举办活动太忙，都顾不上吃饭，但她依旧很开心。旸谷经常跟苡晨和高中舍友聊天，大家互相分享着各自的大学生活。</p>
+<p>大学里的第一个国庆节，旸谷和泠然一起玩遍了整个M市，吃遍了M市所有的小吃，泠然还带着旸谷参观了㫥一大学，旸谷走在泠然每天都会走过的路上，听着泠然讲他的日常，仿佛他们每天都在一起一般。</p>
+<p>转眼间，一学期过去了，寒假如期而至，旸谷回到R市，看着半年未见的父母，开心地抱着他们，随后拿出自己在M市买的礼物送给父母，母亲为旸谷做了一大桌好吃的，一家人幸福地吃着团圆饭。</p>
+<p>放假后不久，旸谷高中班里的班长组织了一次同学聚会，还请了班主任和好几位任课老师。时隔半年，大家又聚在了一起，这次的聚会与半年前不同，似乎大家进了大学后都有了变化，变得更漂亮、更帅气、更成熟了。班主任老师说：“我时常关注着你们的QQ空间、微信朋友圈，大家的变化都看在眼里，恭喜你们实现了自己的大学梦，也祝你们未来前程似锦。”说完，大家响起了热烈的掌声。后来聊到了谈恋爱的话题，大家将焦点指向了旸谷和泠然，两人本是和各自的舍友坐在一桌，同学们一起哄，便将两人凑在了一桌，老师和同学们纷纷说着祝福的话。临别时，班长建议，以后若是可以，大家每年寒假都聚一聚，只是，这以后的事儿，谁又能说的准呢？</p>
+<p>跨年夜里，旸谷找了个理由遛出家，同泠然、苡晨以及其他几个朋友一起放烟花，吃夜宵，大家一起等待零点的钟声敲响，许下了2018年的第一个愿望。旸谷的愿望很简单：希望父母、朋友身体健康，快快乐乐，和泠然永远好好的。</p>
+<p>新的一学期，对旸谷来说，同上学期没有太大的差别，只是对校园更熟悉了，不会再像刚进学校那般分不清方向了。平日里上课，周末举办活动，偶尔和舍友们一起出去逛逛，再有空闲时间便会去㫥一大学找泠然。</p>
+<p>三四月的南昭是最美的，因为学校里各种花都争相开放，许多未曾见过的花总是能让人看一眼就舍不得离开。旸谷拉着舍友拍了很多照片，恨不得将这满园春色都留下来。同高中的朋友们分享了学校的美景后，旸谷说，有机会一定也要去别的大学逛逛。</p>
+<p>这一切看似平静又美好的日子在5月的某一天，突然变了。</p>
+<p>5月26日下午，旸谷和舍友取完快递回来，看见了校园里的无偿献血车，旸谷便对舍友说：“咱们去献血吧，长这么大还没献过呢！”于是二人向工作人员了解了情况，第二天便去献血，旸谷完成了所有的准备工作，就在等着抽血时，医生告知她不适合献血，当时旸谷震惊了一下，心想：近期没感冒呀，身体也没有其他不适，怎么会不适合呢？但医生并没有做过多的解释。下午没人的时候，旸谷又和舍友去找那个医生问了问情况，医生说：“你的血液有问题，建议你去医院检查一下，有可能是乙肝。”旸谷谢过医生，回到宿舍便不知所措，舍友们建议去医院查清楚了再说。5月28日，旸谷去了医院，检查结果显示，她真的有乙肝，是大三阳，旸谷心慌了，医生问她，父母亲人是否有人有乙肝，然而，这些她并不知道，父母从未跟她说起过，她也从未觉得自己身上会发生这样的事，医生再次跟旸谷说：“你的检查结果显示，肝功能正常，现在也不需要治疗，只要注意不让别人接触你的血液，自己平时注意不要饮酒、熬夜，定期复查，就没什么大碍。”听完医生的嘱咐，旸谷出了医院后便给父母打电话，父母说他们并没有这个病，然后便安慰旸谷，让她多注意身体，别多想，会好起来的。</p>
+<p>此时此刻，旸谷想怨，却不知道该怨谁，旸谷想哭，却强忍着不想流下眼泪，在20岁该有的青春里，旸谷只觉得眼前一片黑暗，她站在十字路口，任凭路灯由红变绿再变红，却不知该何去何从！</p>
+<hr>
+<h2 id="一个女孩二十一到三十岁"><a href="#一个女孩二十一到三十岁" class="headerlink" title="一个女孩二十一到三十岁"></a>一个女孩二十一到三十岁</h2><h3 id="紫鱼-1"><a href="#紫鱼-1" class="headerlink" title="紫鱼"></a>紫鱼</h3><p><strong>人物关系介绍或已出场的人物</strong>：</p>
+<p>旸谷：女，这个故事的主人公1998年出生。</p>
+<p>旸谷的父亲。旸过 嘻嘻</p>
+<p>旸谷的母亲。Xxx</p>
+<p>旸谷的祖父母</p>
+<p>小学同班小男孩在大地震中牺牲了。</p>
+<p>旸谷的小学老师，在地震中未知生死。</p>
+<p>苡晨 是旸谷初中的好友</p>
+<p>泠然 是初中同班同学有点想正义的二五仔，在后来很努力的学习</p>
+<p>大一的一个军训教练。很开朗。</p>
+<p>英语老师h 高中 很认真的对待事情和学生。后离开的人世。</p>
+<p>A、B、C高中宿友打酱油 </p>
+<p><strong><em>正文：</em></strong></p>
+<p>  二十一岁，旸谷知道自己有乙肝虽然是慢性的但还是停学了一年。在家慢慢调理和治疗慢性乙肝，她听医生的建议：三分药治，七分调理；需有战胜病魔的信心及意志，精神愉快，生活规律，合理饮食，不宜过度营养引起肥胖；慢慢的调理中治好这个疾病。在此期间只要有假期苡晨和泠然常常来看望她。也有好多人来问她的病情。她总是以笑脸相应。并不想让自己的好友担心她的身体。旸谷的父亲常常看见自己的女儿常常失落的表情一个人。一时间却不知道怎么安慰自己的女儿。而自己的女儿到底在想什么，自己怎么帮助她。旸谷也常常心事重重的在自己的房间默默不语。</p>
+<p>  二十二岁那年旸谷病终于康复可以去学校了。一时间自己有些不适应因为自己拉下很多课程这些课程都需要自己一一不回来。一时间旸谷觉得自己的压力很大。从开学两三个月中自己天天有课，忙的不可开交。有时吃饭都顾不上了。更别说自己和朋友出去玩。除了上正常的课还有补拉下的课。旸谷的宿舍状态基本上就是载头就睡，连洗漱的时间都没有了。她也能感觉到自己变得很邋遢了。但是这些事对她感觉疲劳来说真的事微不足道了。渐渐的不知为什么她和苡晨、泠然联系的也很少了。有时就是微信上快上课是快速的问候几句。渐渐的她们的身影在自己的视线中淡化了很多。这些对于现在的旸谷来说根本又没察觉到，她但现在一直担心下一门的考试或着下下一门的考试。</p>
+<p>  二十三岁的这一年里旸谷。忙忙碌碌的半年年了，自己终于算是差不多补全了自己拉下的课程和所需的证书。在对于他来说的第四个学期末，又是自己生日要不是自己的父亲发来红包祝福自己生日快乐自己是真的忘了。她今天决定放羊一天了。她细细盘算着这一年她感觉很充实但也有一种莫名的空虚。她说不出来。她翻阅着自己的朋友圈，忽然发现自己闺蜜苡晨有了对象。那竟然是小一年前的事了，自己想来了苡晨提过这个男孩在她面前。但她没有想到她们尽然走在了一起。泠然呢？不知道泠然怎么样了。她莫名的想到了这个男孩。一时间觉的自己交的朋友挺少的一下子就是能想到这几个人。她看见宿舍有些空空荡荡的她发现自己的宿舍并不是很热闹的类型到是都是比较喜欢安安静静的。宿友应该去图书馆或者去外面玩了吧。她想到这里又想到泠然。不知道他现在干什么了。一想到和他关系很好，要是能成为她的女友也不错不到他是怎么想到。一想到这里旸谷感觉到自己脸在发烫。Emmm。怎么晚了怎么只有父母给我发祝福。他们呢？不知道他们在干什么？真想现在就见面聊聊天。算了学期快结束了，等回家后在和他们聚一聚吧。想到这里旸谷就去洗澡去了。</p>
+<p>等她洗完发现自己手机好几个未接来电。她看见是泠然和苡晨打的。她赶紧回了电话，泠然很神秘的样子说。你下楼下来我在你的楼下。旸谷感觉莫名其妙但是是泠然也就没多想。穿了一套整洁的衣服小小的精心打扮了一番。她下宿舍楼看见泠然在快步走过来，拉着自己的走就往操场上走，虽然自己不知道泠然要去操场的方向干什么，但是他是泠然就随他跟着他走。到了操场上刚一转角就听见一声surprise，然后看见苡晨推着一个被烛光围绕的蛋糕而来，月光喝着烛光那一刻她被这个画面美呆了。他们一起唱着生日快乐歌。一下子旸谷激动的就哭了，他还想着这个生日就这样结束了。不过更让人诧异或者是惊喜吧。泠然随后就向旸谷表白了。旸谷很激动也很兴奋在旁的人的起哄下的一直点头。旸谷认为这是她大学中最美好的时光了吧。</p>
+<p>二十四岁这是旸谷准备毕业季到来了。苡晨和泠然去年已经毕业了，自己还和他们一起拍照了。他们都早到工作了。苡晨回到的R市工作。因为她说她不想离家远了，就像在自己父母跟前找一个工作。将来也好照顾自己的父母，而现在就考研也很幸运他考上本校的研究生。泠然是一个喜欢闯荡的性格他早早就准备去外面找工作。这样旸谷和泠然已经有了半年的异地恋感情了。过年的那一段时间旸谷和泠然在一起跨年了。在半年未见的情感终于见面了。他们在过年期间尝到了爱情的果实。一想到泠然自己和他又有小半年没有见面了，拿起手机给泠然发了微信问他现在在干什么。泠然没有回可能又加班了吧实习生都是这么忙，旸谷跟自己这么说。自己还有几个月时间要毕业了。她也试着考研看是没有考上，她想着要补考公务员吧。或者做一个老师，但是做老师虽然自己有了教师资格证但是还有一段路要走才行。</p>
+<p>终于迎来了毕业季。旸谷快激动的哭了，自己的论文不知道被打回来了几次，终于完成了并通过老师的问答了。在通过老师问答的时候自己激动差点哭出来。而最近她也受到了R市的offer，给出的工资也不错。剩下的就是拍照留念和聚餐。苡晨和泠然在她的毕业典礼上回来为她庆祝。那一天她很开心。苡晨那一天和她在一起睡，那一晚上她们聊了很多。苡晨和她对象分手了。原因是异地恋太心累了。自己坚持不下去了。况且虽然还再读书但是自己肯定不会离开R市的。对于她的对象也是不会理开他的家乡。所以为了以后的考虑就分手了，没有任何的纠结，因为苡晨说她虽然大大咧咧但是家里教育的还是比较保守没有太大的投入。也就放下了。旸谷听到这些不知道说什么好呀。自己想着自己的工作是在R市而泠然在更大的城市。怎么办，如果泠然在工作上不退让自己也想在父母身边这个两难的处境怎么办？而泠然也说了自己的父亲岗位调动全家已经搬家定居到其他市已经不在R市了。她一下迷茫了不知道该怎么办？她隐隐约约有种不好的预感。“旸谷、旸谷，你怎么了脸色怎么这么不好看”苡晨有些着急的问道。旸谷缓过神来说：“没事，没事！”说着又和苡晨打闹在一起了。第二天旸谷回家，苡晨回去学校了，泠然也回去工作了。旸谷回到家中。收拾了自己大学所有的东西。 她一边整理自己的东西一边回想着自己大学的五年的过去。喜悦和幸酸。越想越对未来更加迷茫了。</p>
+<p>二十五岁她开始工作已经一年了，公司决定开始把旸谷转正。旸谷很开心，自己努力工作了终于得到了回报。这天她把这个好消息告诉了泠然。泠然一直没有回话。直到第二天才回话。旸谷有些生气。泠然解释到是自己忙于应酬喝的有些多了没有看到手机的信息。泠然在电话中尴尬的说等我忙完这一段时间一定回去给你庆祝。旸谷听到这里感觉忽然一下只开心了起来。有期待着与泠然的下一次的见面。</p>
+<p>六月份是苡晨的毕业季，这一天旸谷来到苡晨的学校，一下感觉自己如果还在读书该多好呀。也不用每天都和领导打交道都小心翼翼的生怕出来什么差错。见到苡晨两个开心分享着这一段的事情。苡晨忽然问旸谷你和泠然真么样了？旸谷笑着说：“老样子吧！“苡晨思考一下问：”你打算怎么办？泠然一定会在定居的那个市，意思说你要放弃你这边的工作吗？去他的那个市这样离你父母就很远了。这样的事情你考虑过吗？你要放弃你这些年的东西远离这里去他的那个市吗？“旸谷一下只愣住了不知道该怎么办了。但旸谷还是和苡晨说：”走一步算一步，车道山前必有路。“苡晨尴尬的笑了一下。最后她们拍了学士服。重要的是她们一起吃了这个学习很多好吃的甜点。旸谷想着还是吃比其他的好玩，吃才是王道。</p>
+<p>二十六这一年是真的快呀。又到了年末。准备新年的东西。父母又给旸谷旁敲侧击的想让旸谷找对象。旸谷心想我有对象不用你们担心。但是旸谷还是没有说出来，只是小跑过去抱着母亲的胳膊说：“我的好妈妈，我还年轻不着急，就不要管我了。”母亲把胳膊拽出来说：“都二十六的还年轻，再过几年都没人要了。我看xxx家的孩子就很好。要不你们见一见面看看怎么样？你觉得呢？”旸谷给父亲一个撒娇的眼神。父亲尴尬的说：“咱闺女怎么好看，怎么可能嫁不出，如果嫁不出我就养一辈子。”旸谷给父亲比了一个加油的手势。正月里旸谷和泠然如期见了面。在酒店里，旸谷有写尴尬的说我妈又让我相亲了。泠然一下只明白了什么意思。泠然站在窗子旁边点了一根烟。过了一会说：“要不你辞职了你这里的工作去。我工作的市吧。咱们两个人也好有个照应。我已经攒了一些钱让父母们贴补一些应该就可以负担起首付了。“旸谷说：”我父母就我一个孩子，我不想离家太远，而你父母又不在你现在工作的市里。那你可以回来工作吗？“泠然沉默了。屋子里的气氛开始很压抑。旸谷再次打破这种沉闷。在这个沉默里旸谷感觉自己都快要窒息了。旸谷说：“怎么样？旸谷感觉自己的要求也不过分，但是就是感觉自己没有底气。”。泠然吸完那支烟说道：“不要无理取闹！”旸谷一下只就傻眼了。“什么？我无理取闹？”旸谷一脸震惊的说着。因为这是她第一次听到泠然用这么冷的语气回话。我是想让他回来工作呀。即使成家也离父母这里不远呀。这又怎么成了无理取闹？旸谷想到苡晨以前和她对象分手的原因。她现在才感觉到这个纠结感。泠然说着：“我好不容易在那边打拼下一片天地，你就让我这么轻易放弃？你知道不知道这里面有多少我的汗水？真可笑你说让我放弃就放弃？”旸谷愤怒的回道：“就你那工作工资就比我高那么一些？你让我过去陪你喝西北风呀？在哪努力的有什么用，都成了白费功夫，浪费青春了！你看R市发展前景不错，你当时在R市发展说不定比你现在不知道好了多少倍能，我也是为咱们两个人考虑呀！“泠然先是一愣，然后喃喃自语”白费功夫。没用！”然后发疯了一样喊道：“好啊！那你找没有白费功夫的人呀！”说着摔门而去。只留下旸谷傻傻的做在床上不知道自己说错了什么？然后在震惊中缓过神来就哭了起来。</p>
+<p>二十七对于两人的情况旸谷很迷茫，那次吵架过了两个月了，旸谷几次想打泠然的电话但最后都没有打出去，泠然也在醉酒中，白天工作晚上就喝酒。知道一天胃穿孔了，被送往了急救室。旸谷这一天正常上班苡晨忽然给电话，询问具体情况。杨哥这才知道赶快买飞机票去了那个城市到了医院旸谷就开始照顾泠然。看到泠然虚弱的样子旸谷一直哭，在泠然醒来以后摸着旸谷的头说没事不要哭了。哭化妆就不好看了。旸谷一撅嘴说：“我还没有来得及化妆”。随后旸谷决定辞去R市的工作来到泠然的身旁照顾泠然。在和泠然同居后的她终于开始学做饭了，每天等泠然回来一起尝自己做的饭。泠然也不知道自己哪来那么大的毅力吃下去，只是默默祈祷这食物没有毒。旸谷的父母知道旸谷去了那个城市跟着男朋友去了，母亲哭了很久，父亲也沉默了久久的说了一句：“女儿长大了，是该离家了。”</p>
+<p>二十八岁泠然和旸谷求婚，后结婚，在婚礼上，旸谷父亲只说了一句：“如果你不喜欢了，请给我好端端的送回来。”在场的人都笑了，只有旸谷父亲看着女儿流泪不止，真的不忍心在多看一眼，他怕自己太舍不得了，想强留下自己的女儿。因为他不信任这个泠然。这个人身上散发着不是一个踏踏实实人的气息。要不是女儿非要嫁给泠然，他是第一个不同意这段感情。那天他不知道自己怎么回到酒店。他隐隐感觉到自己的孩子要受苦了。旸谷很开心，她觉得她是今天这个世界上最快乐的女孩了。随后他们出国度蜜月。拍了很多婚纱照。最满意的是她和泠然在巴黎铁塔下拍的。永世的承诺。万万没有想到这个承诺还是？</p>
+<p>二十九岁那年旸谷怀孕了双胞胎。一家人很开心。苡晨常常来看望自己的未出生小侄女，旸谷常常看见苡晨都说一些体己话。两个人在卧室常常打闹说：“如果你不想要一个，可以我抱走一个”旸谷说回一句”自己生“苡晨回一句我怕疼。旸谷根本没有意识到有多疼但是她根本就在想下一次了。在12月12日在家里旸谷自己的羊水破了她的母亲刚快给泠然打电话，泠然第一时间就赶回来了。急急忙忙的送到医院，旸谷回忆到那一段疼痛自己真的不想在尝试了。打了麻药都不顶用，自己还是感觉很疼，疼到有时自己都快感觉自己快没有意识。那一瞬间她感觉自己死了算了。最后决定用刨妇产。还是无比的疼痛。最后终于生出来了是两个女孩。泠然父母有些不悦。收拾东西回家，给了旸谷一万。在就没有来照顾只给些钱顾了个保姆来照看。坐月子的她和刚出生的两个孩子。旸谷的母亲过来帮忙。那一段时间她感觉自己很恍恍惚惚觉得自己得了产后抑郁。</p>
+<p>三十岁的那年自己的两个孩子早每天晚上就是会哭。这天晚上，旸谷被一阵急促的敲门声音惊醒，旸谷整个心脏不停的跳。平静不下来。自己走到门那里听到了泠然的声音。她打开门泠然一个身影就压了上来。一下吐了旸谷一身。自己身体几天乏的没洗衣服自己现在就这一件睡衣是干净的，泠然一直吐。她使用了全身的力气把泠然搬到厕所，她不知道为什么他那么重他身材都变形了，自己想尽一切方法扒了被泠然吐的不成样子的睡衣和泠然的衣服。自己一时间不知道该穿什么。这时一孩子在卧室里哭，自己就光着身子去喂孩子奶，这时另一个孩子也哭了。不停的闹，自己抱着这个孩子过去看另一个屁股下是湿的小孩尿床了。她抱着这个小孩抽走了被尿湿的床单。想到卫生间还有个喝的不省人事的泠然。一时间不知道怎么办。抱着两个孩子，在孩子的哭闹中和泠然呻吟中，自己再也忍不住，任由眼泪不住的流着。</p>
+<p>———————————————————————————————————————</p>
+
+    </article>
+    <!-- license  -->
+    
+        <div class="license-wrapper">
+            <p>原文作者：<a href="http://yoursite.com">紫鱼</a>
+            <p>原文链接：<a href="http://yoursite.com/all/story/一个女孩/">http://yoursite.com/all/story/一个女孩/</a>
+            <p>发表日期：<a href="http://yoursite.com/all/story/一个女孩/">August 3rd 2019, 9:44:12 am</a>
+            <p>更新日期：<a href="http://yoursite.com/all/story/一个女孩/">August 3rd 2019, 10:15:14 am</a>
+            <p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
+        </div>
+    
+    <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/all/technology/XML/" title= "XML">
+                    <div class="prevTitle">XML</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:12345@qq.com" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/Wake Up" class="iconfont-archer github" target="_blank" title=github></a>
+            
+        
+    
+        
+            
+                <span class="iconfont-archer wechat" title=wechat>
+                  
+                  <img class="profile-qr" src="/assets/  （ example_qr.png）" />
+                </span>
+            
+        
+    
+        
+            
+                <span class="iconfont-archer qq" title=qq>
+                  
+                  <img class="profile-qr" src="/assets/QQ.jpg" />
+                </span>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+            
+                <a href="/assets/" class="iconfont-archer steam" target="_blank" title=steam></a>
+            
+        
+    
+        
+    
+        
+            
+                <a href="/atom.xml" class="iconfont-archer rss" target="_blank" title=rss></a>
+            
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+    <div class="busuanzi-container">
+    
+     
+    <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+    
+    </div>
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一个女孩从生到死亡"><span class="toc-number">1.</span> <span class="toc-text">一个女孩从生到死亡</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#一个女孩一岁到十岁"><span class="toc-number">1.1.</span> <span class="toc-text">一个女孩一岁到十岁</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#紫鱼"><span class="toc-number">1.1.1.</span> <span class="toc-text">紫鱼</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一个女孩十一到二十岁"><span class="toc-number">1.2.</span> <span class="toc-text">一个女孩十一到二十岁</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#霏"><span class="toc-number">1.2.1.</span> <span class="toc-text">霏</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一个女孩二十一到三十岁"><span class="toc-number">1.3.</span> <span class="toc-text">一个女孩二十一到三十岁</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#紫鱼-1"><span class="toc-number">1.3.1.</span> <span class="toc-text">紫鱼</span></a></li></ol></li></ol></li></ol>
+    </div>
+    
+    <div class="back-top iconfont-archer">&#xe639;</div>
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 7
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2019 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/03</span><a class="archive-post-title" href= "/all/story/一个女孩/" >一个女孩</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/02</span><a class="archive-post-title" href= "/all/technology/XML/" >XML</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/01</span><a class="archive-post-title" href= "/all/technology/Stream流/" >Stream流</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/31</span><a class="archive-post-title" href= "/all/technology/类和集合等/" >类和集合等</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/30</span><a class="archive-post-title" href= "/all/technology/网络编程/" >网络编程</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/27</span><a class="archive-post-title" href= "/all/technology/在windows系统 blog的构建/" >在windows系统 blog的构建</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/26</span><a class="archive-post-title" href= "/all/technology/hello-world/" >Hello World</a>
+        </li>
+    
+    </div>
+  </div>
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="other"><span class="iconfont-archer">&#xe606;</span>other</span>
+    
+        <span class="sidebar-tag-name" data-tags="java"><span class="iconfont-archer">&#xe606;</span>java</span>
+    
+        <span class="sidebar-tag-name" data-tags="故事"><span class="iconfont-archer">&#xe606;</span>故事</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br/>
+    1、请确保node版本大于6.2<br/>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "紫鱼"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="/scripts/main.js"></script>
+    <!-- algolia -->
+    
+    <!-- busuanzi  -->
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
+     
+    </body>
+</html>
+
+
