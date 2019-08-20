@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+    <!-- title -->
+
+
+
+
+<!-- keywords -->
+
+
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="author" content="紫鱼">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="紫鱼">
+    
+    <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
+    
+    <meta name="description" content="一只学习狗">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>‘MySQL基础 · Wake Up</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+</style>
+
+    <link rel="preload" href="/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="stylesheet" href="/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
+
+
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
+</script>
+
+    <link rel="icon" href="/assets/favicon.ico">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script">
+    <link rel="preload" href="/scripts/main.js" as="script">
+    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+</head>
+
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >Wake Up</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">‘MySQL基础</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href=/>Wake Up</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro" style="
+
+
+
+
+
+
+
+height:50vh;
+">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            ‘MySQL基础
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "数据库">数据库</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">3.6k</span>阅读时长: <span class="post-count reading-time">16 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/08/20</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "/lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <h3 id="MySQL数据库"><a href="#MySQL数据库" class="headerlink" title="MySQL数据库"></a>MySQL数据库</h3><p>  数据库是用来存储和管理数据的仓库。</p>
+<p>  <strong>数据库存储数据的优先</strong>：</p>
+<p>​    可存储大量数据；<br>​    方便检索；<br>​    保持数据的一致性、完整性；<br>​    安全，可共享；<br>​    通过组合分析，可产生新数据。</p>
+<p>  <strong>常见的数据库有</strong>：</p>
+<p>  Oracle： 甲骨文；    DB2：IBM；    sql server：微软；    sybase：塞尔斯；    MySQL：甲骨文；</p>
+<p><strong>应用程序与数据库</strong></p>
+<p>  应用程序向数据库请求数据、并显示结果。<br>  数据库服务器接收到应用程序的操作和查询并响应和提供数据给此应用程序。<br>  数据库存储数据。</p>
+<h3 id="MySQL数据库的安装和注意事项"><a href="#MySQL数据库的安装和注意事项" class="headerlink" title="MySQL数据库的安装和注意事项"></a>MySQL数据库的安装和注意事项</h3><p><strong>MySQL的安装目录下</strong>：</p>
+<p> bin目录中都是可以执行文件；<br> my.ini文件是MySQL的配置文件；</p>
+<h6 id="基本命令"><a href="#基本命令" class="headerlink" title="基本命令"></a>基本命令</h6><p>　<strong>启动和关闭mysql服务器</strong></p>
+<p>​        启动：net start mysql；<br>​        关闭：net stop mysql；<br>​        在启动mysql服务后，打开windows任务管理器，会有一个名为mysqld.exe的进程运行，所以mysqld.exe才是MySQL服务器程序。 </p>
+<p>​    <strong>客户端登录退出mysql</strong></p>
+<p>​        在启动MySQL服务器后，我们需要使用管理员用户登录MySQL服务器，然后来对服务器进行操作。登录MySQL需要使用MySQL的客户端程序：mysql.exe</p>
+<pre><code>**登录**：mysql -u root -p 123 -h localhost；
+
+-u：后面的root是用户名，这里使用的是超级管理员root；</code></pre><p>​      -p：后面的123是密码，这是在安装MySQL时就已经指定的密码；</p>
+<p>​      -h：后面给出的localhost是服务器主机名，它是可以省略的，例如：mysql     -u root -p 123；</p>
+<p>​      <strong>退出</strong>：quit或exit； </p>
+<p>​        在登录成功后，打开windows任务管理器，会有一个名为mysql.exe的进程运行，所以mysql.exe是客户端程序。</p>
+<h3 id="SQL语句"><a href="#SQL语句" class="headerlink" title="SQL语句"></a>SQL语句</h3><p>  sql是结构化查询语言，他是对关系型数据库的操作语言。</p>
+<h6 id="语法要求"><a href="#语法要求" class="headerlink" title="语法要求"></a>语法要求</h6><p>​    SQL语句可以单行或多行书写，以分号结尾；<br>​    可以用空格和缩进来来增强语句的可读性；<br>​    关键字不区别大小写，建议使用大写；</p>
+<h4 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h4><pre><code>DDL（Data Definition Language）：数据定义语言，用来定义数据库对象：库、表、列等；
+
+DML（Data Manipulation Language）：数据操作语言，用来定义数据库记录（数据）；</code></pre><p>​     DCL（Data Control Language）：数据控制语言，用来定义访问权限和安全级别；</p>
+<p>​      DQL（Data Query Language）：数据查询语言，用来查询记录（数据）。</p>
+<h5 id="DDL"><a href="#DDL" class="headerlink" title="DDL"></a>DDL</h5><p><strong>基本操作</strong></p>
+<p>  查看所有数据库名称：SHOW DATABASES；　</p>
+<p>  切换数据库：USE mydb1，切换到mydb1数据库；</p>
+<p><strong>操作数据库</strong></p>
+<p>​    创建数据库：CREATE DATABASE [IF NOT EXISTS] mydb1；</p>
+<p>​    创建数据库，例如：CREATE DATABASE mydb1，创建一个名为mydb1的数据库。如果这个数据已经存在，那么会报错。例如CREATE DATABASE IF NOT EXISTS mydb1，在名为mydb1的数据库不存在时创建该库，这样可以避免报错。</p>
+<p>   删除数据库：DROP DATABASE [IF EXISTS] mydb1；</p>
+<p>删除数据库，例如：DROP DATABASE mydb1，删除名为mydb1的数据库。如果这个数据库不存在，那么会报错。DROP DATABASE IF EXISTS mydb1，就算mydb1不存在，也不会的报错。</p>
+<p>   修改数据库编码：ALTER DATABASE mydb1 CHARACTER SET utf8</p>
+<p>​    修改数据库mydb1的编码为utf8。注意，在MySQL中所有的UTF-8编码都不能使用中间的“-”，即UTF-8要书写为UTF8。</p>
+<h6 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h6><p>  int：整型<br>  double：浮点型，例如double(5,2)表示最多5位，其中必须有2位小数，即最大值为999.99；<br>  decimal：泛型型，在表单钱方面使用该类型，因为不会出现精度缺失问题；<br>  char：固定长度字符串类型；<br>  varchar：可变长度字符串类型；<br>  text：字符串类型；<br>  blob：字节类型；<br>  date：日期类型，格式为：yyyy-MM-dd；<br>  time：时间类型，格式为：hh:mm:ss<br>  timestamp：时间戳类型；</p>
+<h5 id="实例操作"><a href="#实例操作" class="headerlink" title="实例操作"></a>实例操作</h5><p>  <strong>创建表</strong>：</p>
+<p>  CAEATE TABLE 表名(</p>
+<p>​    列名 列类型,</p>
+<p>​    列名 列类型,</p>
+<p>…………………….</p>
+<p>);</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE stu(</span><br><span class="line">	sid	    CHAR(6),</span><br><span class="line">	sname	VARCHAR(20),</span><br><span class="line">	age		INT,</span><br><span class="line">	gender	VARCHAR(10) </span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">CREATE TABLE emp(</span><br><span class="line">	eid		CHAR(6),</span><br><span class="line">	ename	VARCHAR(50),</span><br><span class="line">	age		INT,</span><br><span class="line">	gender	VARCHAR(6),</span><br><span class="line">	birthday	DATE,</span><br><span class="line">	hiredate	DATE,</span><br><span class="line">	salary	DECIMAL(7,2),</span><br><span class="line">	resume	VARCHAR(1000)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>  查看当前数据库中所有表名称：SHOW TABLES；　</p>
+<p>  查看指定表的创建语句：SHOW CREATE TABLE emp，查看emp表的创建语句；</p>
+<p>  查看表结构：DESC emp，查看emp表结构；</p>
+<p>  删除表：DROP TABLE emp，删除emp表；</p>
+<p>  修改表：</p>
+<ol>
+<li>修改之添加列：给stu表添加classname列：</li>
+</ol>
+<p>ALTER TABLE stu ADD (classname varchar(100));</p>
+<ol start="2">
+<li>修改之修改列类型：修改stu表的gender列类型为CHAR(2)：</li>
+</ol>
+<p>ALTER TABLE stu MODIFY gender CHAR(2);</p>
+<ol start="3">
+<li>修改之修改列名：修改stu表的gender列名为sex：</li>
+</ol>
+<p>ALTER TABLE stu change gender sex CHAR(2);</p>
+<ol start="4">
+<li>修改之删除列：删除stu表的classname列：</li>
+</ol>
+<p>ALTER TABLE stu DROP classname;</p>
+<ol start="5">
+<li>修改之修改表名称：修改stu表名称为student：</li>
+</ol>
+<p>ALTER TABLE stu RENAME TO student;</p>
+<h5 id="DML"><a href="#DML" class="headerlink" title="DML"></a>DML</h5><h6 id="插入数据语法"><a href="#插入数据语法" class="headerlink" title="插入数据语法"></a><strong>插入数据语法</strong></h6><p>  INSERT INTO 表名(列名1，列名2，……)VALUES(值1，值2)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO stu(sid, sname,age,gender) VALUES(&apos;s_1001&apos;, &apos;zhangSan&apos;, 23, &apos;male&apos;);</span><br><span class="line"></span><br><span class="line">INSERT INTO stu(sid, sname) VALUES(&apos;s_1001&apos;, &apos;zhangSan&apos;);</span><br></pre></td></tr></table></figure>
+
+<p>INSERT INTO 表名 VALUES(值1,值2，……)</p>
+<p>因为没有指定要插入的列，表示按创建表时列的顺序插入所有列的值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO stu VALUES(&apos;s_1002&apos;, &apos;liSi&apos;, 32, &apos;female&apos;);</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意</strong>：所有字符串数据必须使用单引用！</p>
+<h6 id="修改数据语法"><a href="#修改数据语法" class="headerlink" title="修改数据语法"></a><strong>修改数据语法</strong></h6><p> UPDATE 表名 SET 列名1=值1, … 列名n=值n [WHERE 条件]</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">UPDATE stu SET sname=’zhangSanSan’, age=’32’, gender=’female’ WHERE sid=’s_1001’;</span><br><span class="line">UPDATE stu SET sname=’liSi’, age=’20’ WHERE age&gt;50 AND gender=’male’;</span><br><span class="line">UPDATE stu SET sname=’wangWu’, age=’30’ WHERE age&gt;60 OR gender=’female’;</span><br><span class="line">UPDATE stu SET gender=’female’ WHERE gender IS NULL</span><br><span class="line">UPDATE stu SET age=age+1 WHERE sname=’zhaoLiu’;</span><br></pre></td></tr></table></figure>
+
+<h6 id="删除数据语法"><a href="#删除数据语法" class="headerlink" title="删除数据语法"></a>删除数据语法</h6><p>DELETE FROM 表名 [WHERE 条件]</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DELETE FROM stu WHERE sid=’s_1001’003B</span><br><span class="line">DELETE FROM stu WHERE sname=’chenQi’ OR age &gt; 30;</span><br><span class="line">DELETE FROM stu ;</span><br></pre></td></tr></table></figure>
+
+<p>TRUNCATE TABLE 表名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TRUNCATE TABLE stu;</span><br></pre></td></tr></table></figure>
+
+<p>​        虽然TRUNCATE和DELETE都可以删除表的所有记录，但有原理不同。DELETE的效率没有TRUNCATE高！</p>
+<p>​        TRUNCATE其实属性DDL语句，因为它是先DROP TABLE，再CREATE TABLE。而且TRUNCATE删除的记录是无法回滚的，但DELETE删除的记录是可以回滚的（回滚是事务的知识！）。</p>
+<h5 id="DCL"><a href="#DCL" class="headerlink" title="DCL"></a>DCL</h5><h6 id="创建用户语法"><a href="#创建用户语法" class="headerlink" title="创建用户语法"></a>创建用户语法</h6><p>CREATE USER 用户名@地址 IDENTIFIED BY ‘密码’;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CREATE USER user1@localhost IDENTIFIED BY ‘123’; </span><br><span class="line">CREATE USER user2@’%’ IDENTIFIED BY ‘123’;</span><br></pre></td></tr></table></figure>
+
+<h6 id="用户授权语法"><a href="#用户授权语法" class="headerlink" title="用户授权语法"></a>用户授权语法</h6><p>GRANT 权限1, … , 权限n ON 数据库.* TO 用户名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">GRANT CREATE,ALTER,DROP,INSERT,UPDATE,DELETE,SELECT ON mydb1.* TO user1@localhost;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">GRANT ALL ON mydb1.* TO user2@localhost;</span><br><span class="line">GRANT ALL PRIVILEGES ON  *.* TO liushao@localhost IDENTIFIED BY &apos;admin&apos;;</span><br></pre></td></tr></table></figure>
+
+<h6 id="撤销授权语法"><a href="#撤销授权语法" class="headerlink" title="撤销授权语法"></a>撤销授权语法</h6><p>REVOKE权限1, … , 权限n ON 数据库.* FORM 用户名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">REVOKE CREATE,ALTER,DROP ON mydb1.* FROM user1@localhost;</span><br></pre></td></tr></table></figure>
+
+<h6 id="查看用户全限语法"><a href="#查看用户全限语法" class="headerlink" title="查看用户全限语法"></a>查看用户全限语法</h6><p>SHOW GRANTS FOR 用户名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SHOW GRANTS FOR user1@localhost;</span><br></pre></td></tr></table></figure>
+
+<p>删除用户语法</p>
+<p>DROP USER 用户名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DROP USER user1@localhost;</span><br></pre></td></tr></table></figure>
+
+<h6 id="修改用户密码语法"><a href="#修改用户密码语法" class="headerlink" title="修改用户密码语法"></a>修改用户密码语法</h6><p>USE mysql;<br>UPDATE USER SET PASSWORD=PASSWORD(‘密码’) WHERE User=’用户名’ and Host=’IP’;<br>FLUSH PRIVILEGES;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">UPDATE USER SET PASSWORD=PASSWORD(&apos;1234&apos;) WHERE User=&apos;user2&apos; and Host=’localhost’;</span><br><span class="line">FLUSH PRIVILEGES;</span><br></pre></td></tr></table></figure>
+
+<h5 id="DQL-数据查询语法"><a href="#DQL-数据查询语法" class="headerlink" title="DQL(数据查询语法)"></a>DQL(数据查询语法)</h5><p>​        DQL就是数据查询语言，数据库执行DQL语句不会对数据进行改变，而是让数据库发送结果集给客户端</p>
+<p>  SELECT selection_list     <strong>要查询的列名称</strong><br>  FROM table_list     <strong>要查询的表名称</strong><br>  WHERE condition     <strong>行条件</strong><br>  GROUP BY grouping_columns     <strong>对结果分组</strong><br>  HAVING condition     <strong>分组后的行条件</strong><br>  ORDER BY sorting_columns     <strong>对结果分组</strong><br>  LIMIT offset_start, row_count     <strong>结果限定</strong></p>
+<p><strong>创建名</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"> 学生表：stu；</span><br><span class="line">CREATE TABLE stu (</span><br><span class="line">	sid	CHAR(6),</span><br><span class="line">	sname		VARCHAR(50),</span><br><span class="line">	age		INT,</span><br><span class="line">	gender	VARCHAR(50)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">INSERT INTO stu VALUES(&apos;S_1001&apos;, &apos;liuYi&apos;, 35, &apos;male&apos;);</span><br><span class="line">INSERT INTO stu VALUES(&apos;S_1002&apos;, &apos;chenEr&apos;, 15, &apos;female&apos;);</span><br><span class="line">INSERT INTO stu VALUES(&apos;S_1003&apos;, &apos;zhangSan&apos;, 95, &apos;male&apos;);</span><br><span class="line">INSERT INTO stu VALUES(&apos;S_1004&apos;, &apos;liSi&apos;, 65, &apos;female&apos;);</span><br><span class="line">INSERT INTO stu VALUES(&apos;S_1005&apos;, &apos;wangWu&apos;, 55, &apos;male&apos;);</span><br><span class="line">INSERT INTO stu VALUES(&apos;S_1006&apos;, &apos;zhaoLiu&apos;, 75, &apos;female&apos;);</span><br><span class="line">INSERT INTO stu VALUES(&apos;S_1007&apos;, &apos;sunQi&apos;, 25, &apos;male&apos;);</span><br><span class="line">INSERT INTO stu VALUES(&apos;S_1008&apos;, &apos;zhouBa&apos;, 45, &apos;female&apos;);</span><br><span class="line">INSERT INTO stu VALUES(&apos;S_1009&apos;, &apos;wuJiu&apos;, 85, &apos;male&apos;);</span><br><span class="line">INSERT INTO stu VALUES(&apos;S_1010&apos;, &apos;zhengShi&apos;, 5, &apos;female&apos;);</span><br><span class="line">INSERT INTO stu VALUES(&apos;S_1011&apos;, &apos;xxx&apos;, NULL, NULL);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">雇员表：emp</span><br><span class="line">CREATE TABLE emp(</span><br><span class="line">	empno		INT,</span><br><span class="line">	ename		VARCHAR(50),</span><br><span class="line">	job		VARCHAR(50),</span><br><span class="line">	mgr		INT,</span><br><span class="line">	hiredate	DATE,</span><br><span class="line">	sal		DECIMAL(7,2),</span><br><span class="line">	comm		decimal(7,2),</span><br><span class="line">	deptno		INT</span><br><span class="line">) ;</span><br><span class="line"></span><br><span class="line">NSERT INTO emp values(7369,&apos;SMITH&apos;,&apos;CLERK&apos;,7902,&apos;1980-12-17&apos;,800,NULL,20);</span><br><span class="line">INSERT INTO emp values(7499,&apos;ALLEN&apos;,&apos;SALESMAN&apos;,7698,&apos;1981-02-20&apos;,1600,300,30);</span><br><span class="line">INSERT INTO emp values(7521,&apos;WARD&apos;,&apos;SALESMAN&apos;,7698,&apos;1981-02-22&apos;,1250,500,30);</span><br><span class="line">INSERT INTO emp values(7566,&apos;JONES&apos;,&apos;MANAGER&apos;,7839,&apos;1981-04-02&apos;,2975,NULL,20);</span><br><span class="line">INSERT INTO emp values(7654,&apos;MARTIN&apos;,&apos;SALESMAN&apos;,7698,&apos;1981-09-28&apos;,1250,1400,30);</span><br><span class="line">INSERT INTO emp values(7698,&apos;BLAKE&apos;,&apos;MANAGER&apos;,7839,&apos;1981-05-01&apos;,2850,NULL,30);</span><br><span class="line">INSERT INTO emp values(7782,&apos;CLARK&apos;,&apos;MANAGER&apos;,7839,&apos;1981-06-09&apos;,2450,NULL,10);</span><br><span class="line">INSERT INTO emp values(7788,&apos;SCOTT&apos;,&apos;ANALYST&apos;,7566,&apos;1987-04-19&apos;,3000,NULL,20);</span><br><span class="line">INSERT INTO emp values(7839,&apos;KING&apos;,&apos;PRESIDENT&apos;,NULL,&apos;1981-11-17&apos;,5000,NULL,10);</span><br><span class="line">INSERT INTO emp values(7844,&apos;TURNER&apos;,&apos;SALESMAN&apos;,7698,&apos;1981-09-08&apos;,1500,0,30);</span><br><span class="line">INSERT INTO emp values(7876,&apos;ADAMS&apos;,&apos;CLERK&apos;,7788,&apos;1987-05-23&apos;,1100,NULL,20);</span><br><span class="line">INSERT INTO emp values(7900,&apos;JAMES&apos;,&apos;CLERK&apos;,7698,&apos;1981-12-03&apos;,950,NULL,30);</span><br><span class="line">INSERT INTO emp values(7902,&apos;FORD&apos;,&apos;ANALYST&apos;,7566,&apos;1981-12-03&apos;,3000,NULL,20);</span><br><span class="line">INSERT INTO emp values(7934,&apos;MILLER&apos;,&apos;CLERK&apos;,7782,&apos;1982-01-23&apos;,1300,NULL,10);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">部分表：dept</span><br><span class="line">CREATE TABLE dept(</span><br><span class="line">	deptno		INT,</span><br><span class="line">	dname		varchar(14),</span><br><span class="line">	loc		varchar(13)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">INSERT INTO dept values(10, &apos;ACCOUNTING&apos;, &apos;NEW YORK&apos;);</span><br><span class="line">INSERT INTO dept values(20, &apos;RESEARCH&apos;, &apos;DALLAS&apos;);</span><br><span class="line">INSERT INTO dept values(30, &apos;SALES&apos;, &apos;CHICAGO&apos;);</span><br><span class="line">INSERT INTO dept values(40, &apos;OPERATIONS&apos;, &apos;BOSTON&apos;);</span><br></pre></td></tr></table></figure>
+
+<h6 id="基础查询"><a href="#基础查询" class="headerlink" title="基础查询"></a>基础查询</h6><p>  <strong>查询所有列</strong></p>
+<p>  SELECT * FORM stu;</p>
+<p>  <strong>查询指定列</strong></p>
+<p>  SELECT sid,sname,age FROM stu;</p>
+<h6 id="条件查询"><a href="#条件查询" class="headerlink" title="条件查询"></a>条件查询</h6><p>条件查询就是在查询时给出WHERE子句，在WHERE子句中可以使用如下运算符及关键字：</p>
+<p>  =、!=、&lt;&gt;、&lt;、&lt;=、&gt;、&gt;=；</p>
+<p>  BETWEEN…AND；</p>
+<p>  IN(set)；</p>
+<p>  IS NULL；</p>
+<p>  AND；</p>
+<p>  OR；</p>
+<p>  NOT；</p>
+<p><strong>查询性别为女，并且年龄50的记录</strong></p>
+<p>　SELECT * FROM stu WHERE gender=’female’ AND ge&lt;50;</p>
+<p><strong>查询学号为S_1001,或者姓名为liSi的记录</strong></p>
+<p>   SELECT * FROM stu WHERE sid =’S_1001’ OR sname=’liSi’;</p>
+<p><strong>查询学号为S_1001,S_1002,S_1003的记录</strong></p>
+<p>  SELECT * FROM stu WHERE sid IN(‘S_1001’,’S_1002’,’S_1003’);</p>
+<p><strong>查询年龄为null的记录</strong></p>
+<p> SELECT * FROM stu WHERE age IS NULL;</p>
+<p><strong>查询年龄在20到40之间的学生记录</strong></p>
+<p>SELECT * FROM  stu WHERE age&gt;=20 AND age&lt;=40;</p>
+<p>SELECT * FROM stu WHERE age BETWEEN 20 AND 40;</p>
+<p><strong>查询性别非男的学生记录</strong></p>
+<p>SELECT * FROM stu WHERE gender！=’male’;</p>
+<p>SELECT * FROM stu WHERE gender&lt;&gt;’male’;</p>
+<p>SELECT * FROM stu WHERE NOT gender=’male’;</p>
+<p><strong>查询姓名不为null的学生记录</strong></p>
+<p>SELECT * FROM stu WHERE NOT sname IS NULL;</p>
+<p>SELECT * FROM stu WHERE  sname IS NOT NULL;</p>
+<h6 id="模糊查询"><a href="#模糊查询" class="headerlink" title="模糊查询"></a>模糊查询</h6><p>​    当想查询姓名中包含a字母的学生时就需要使用模糊查询了。模糊查询需要使用关键字LIKE</p>
+<p><strong>查询姓名由5个字母构成的学生记录</strong></p>
+<p>SELECT  *  FROM stu    WHERE sname LIKE ‘_____’;</p>
+<p>模糊查询必须使用LIKE关键字。其中 “_”匹配任意一个字母，5个“_”表示5个任意字母。 </p>
+<p><strong>查询姓名由5个字母构成，并且第5个字母为“i”的学生记录</strong></p>
+<p>SELECT   *  FROM stu    WHERE sname LIKE ‘____i’; </p>
+<p><strong>查询姓名以“z”开头的学生记录</strong></p>
+<p>SELECT  *  FROM stu    WHERE sname LIKE ‘z%’;</p>
+<p>其中“%”匹配0~n个任何字母。 </p>
+<p><strong>查询姓名中第2个字母为“i”的学生记录</strong></p>
+<p>SELECT  *   FROM stu    WHERE sname LIKE ‘_i%’; </p>
+<p><strong>查询姓名中包含“a”字母的学生记录</strong></p>
+<p>SELECT  *  FROM stu    WHERE sname LIKE ‘%a%’;</p>
+<h6 id="字段控制查询"><a href="#字段控制查询" class="headerlink" title="字段控制查询"></a><strong>字段控制查询</strong></h6><p>   <strong>去除重复记录</strong></p>
+<p>​        去除重复记录（两行或两行以上记录中系列的上的数据都相同），例如emp表中sal字段就存在相同的记录。当只查询emp表的sal字段时，那么会出现重复记录，那么想去除重复记录，需要使用DISTINCT：</p>
+<p>SELECT DISTINCT sal FROM emp;</p>
+<p><strong>查看雇员的月薪与佣金之和</strong></p>
+<p>​        因为sal和comm两列的类型都是数值类型，所以可以做加运算。如果sal或comm中有一个字段不是数值类型，那么会出错。<br>​          SELECT *,sal+comm FROM emp;</p>
+<p>​        comm列有很多记录的值为NULL，因为任何东西与NULL相加结果还是NULL，所以结算结果可能会出现NULL。下面使用了把NULL转换成数值0的函数IFNULL：<br>          SELECT *,sal+IFNULL(comm,0) FROM emp;</p>
+<p><strong>给列名添加别名</strong></p>
+<p>​        在上面查询中出现列名为sal+IFNULL(comm,0)，这很不美观，现在我们给这一列给出一个别名，为total：<br>​            SELECT *, sal+IFNULL(comm,0) AS total FROM emp;</p>
+<p>​        给列起别名时，是可以省略AS关键字的：<br>​            SELECT *,sal+IFNULL(comm,0) total FROM emp;</p>
+<h6 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h6><p><strong>查询所有学生记录，按年龄升序排序</strong></p>
+<p>  SELECT  *  FROM stu  ORDER BY sage ASC;</p>
+<p>  SELECT  *  FROM stu ORDER BY  sage;</p>
+<p><strong>查询所有学生记录，按年龄降序排序</strong></p>
+<p>SELECT  *  FROM stu ORDER BY age DESC;</p>
+<p><strong>查询所有雇员，按月薪降序排序，如果月薪相同时，按编号升序排序</strong></p>
+<p>SELECT  *  FROM emp ORDER BY sal DESC,empno ASC;</p>
+<p><strong>聚合函数</strong></p>
+<p>聚合函数是用来做纵向运算的函数：</p>
+<p> COUNT()：统计指定列不为NULL的记录行数；<br> MAX()：计算指定列的最大值，如果指定列是字符串类型，那么使用字符串排序运算；<br> MIN()：计算指定列的最小值，如果指定列是字符串类型，那么使用字符串排序运算；<br> SUM()：计算指定列的数值和，如果指定列类型不是数值类型，那么计算结果为0；<br> AVG()：计算指定列的平均值，如果指定列类型不是数值类型，那么计算结果为0；</p>
+<h6 id="COUNT"><a href="#COUNT" class="headerlink" title="COUNT"></a>COUNT</h6><p>  <strong>查询emp表中记录数：</strong></p>
+<p> SELECT COUNT(*) AS cnt FROM emp; </p>
+<p>  <strong>查询emp表中有佣金的人数：</strong></p>
+<p> SELECT COUNT(comm) cnt FROM emp;</p>
+<p><strong>注意</strong>：因为count()函数中给出的是comm列，那么只统计comm列非NULL的行数。</p>
+<p>  <strong>查询emp表中月薪大于2500的人数：</strong></p>
+<p> SELECT COUNT(*) FROM emp WHERE sal &gt; 2500;</p>
+<p>  <strong>统计月薪与佣金之和大于2500元的人数：</strong></p>
+<p>SELECT COUNT(*) AS cnt FROM emp WHERE sal+IFNULL(comm,0) &gt; 2500;</p>
+<p>  <strong>查询有佣金的人数，以及有领导的人数：</strong></p>
+<p>SELECT COUNT(comm), COUNT(mgr) FROM emp;</p>
+<h6 id="SUM和AVG"><a href="#SUM和AVG" class="headerlink" title="SUM和AVG"></a>SUM和AVG</h6><p>当需要纵向求和时使用sum()函数。</p>
+<p>l  查询所有雇员月薪和：</p>
+<p><strong>SELECT SUM(sal) FROM emp;</strong></p>
+<p>l  查询所有雇员月薪和，以及所有雇员佣金和：</p>
+<p><strong>SELECT SUM(sal), SUM(comm) FROM emp;</strong></p>
+<p>l  查询所有雇员月薪+佣金和：</p>
+<p><strong>SELECT SUM(sal+IFNULL(comm,0)) FROM emp;</strong></p>
+<p>l  统计所有员工平均工资：</p>
+<p><strong>SELECT SUM(sal), COUNT(sal) FROM emp;</strong></p>
+<p>或者</p>
+<p><strong>SELECT AVG(sal) FROM emp;</strong></p>
+<p>6.3　MAX和MIN</p>
+<p>l  查询最高工资和最低工资：</p>
+<p><strong>SELECT MAX(sal), MIN(sal) FROM emp;</strong></p>
+
+    </article>
+    <!-- license  -->
+    
+        <div class="license-wrapper">
+            <p>原文作者：<a href="http://yoursite.com">紫鱼</a>
+            <p>原文链接：<a href="http://yoursite.com/all/technology/‘MySQL基础/">http://yoursite.com/all/technology/‘MySQL基础/</a>
+            <p>发表日期：<a href="http://yoursite.com/all/technology/‘MySQL基础/">August 20th 2019, 10:13:50 am</a>
+            <p>更新日期：<a href="http://yoursite.com/all/technology/‘MySQL基础/">August 20th 2019, 8:34:06 pm</a>
+            <p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
+        </div>
+    
+    <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/all/technology/jQuery基础/" title= "jQuery基础">
+                    <div class="prevTitle">jQuery基础</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:12345@qq.com" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/Wake Up" class="iconfont-archer github" target="_blank" title=github></a>
+            
+        
+    
+        
+            
+                <span class="iconfont-archer wechat" title=wechat>
+                  
+                  <img class="profile-qr" src="/assets/  （ example_qr.png）" />
+                </span>
+            
+        
+    
+        
+            
+                <span class="iconfont-archer qq" title=qq>
+                  
+                  <img class="profile-qr" src="/assets/QQ.jpg" />
+                </span>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+            
+                <a href="/assets/" class="iconfont-archer steam" target="_blank" title=steam></a>
+            
+        
+    
+        
+    
+        
+            
+                <a href="/atom.xml" class="iconfont-archer rss" target="_blank" title=rss></a>
+            
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+    <div class="busuanzi-container">
+    
+     
+    <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+    
+    </div>
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#MySQL数据库"><span class="toc-number">1.</span> <span class="toc-text">MySQL数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MySQL数据库的安装和注意事项"><span class="toc-number">2.</span> <span class="toc-text">MySQL数据库的安装和注意事项</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#基本命令"><span class="toc-number">2.0.0.1.</span> <span class="toc-text">基本命令</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL语句"><span class="toc-number">3.</span> <span class="toc-text">SQL语句</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#语法要求"><span class="toc-number">3.0.0.1.</span> <span class="toc-text">语法要求</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#分类"><span class="toc-number">3.1.</span> <span class="toc-text">分类</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#DDL"><span class="toc-number">3.1.1.</span> <span class="toc-text">DDL</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#数据类型"><span class="toc-number">3.1.1.1.</span> <span class="toc-text">数据类型</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#实例操作"><span class="toc-number">3.1.2.</span> <span class="toc-text">实例操作</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#DML"><span class="toc-number">3.1.3.</span> <span class="toc-text">DML</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#插入数据语法"><span class="toc-number">3.1.3.1.</span> <span class="toc-text">插入数据语法</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#修改数据语法"><span class="toc-number">3.1.3.2.</span> <span class="toc-text">修改数据语法</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#删除数据语法"><span class="toc-number">3.1.3.3.</span> <span class="toc-text">删除数据语法</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#DCL"><span class="toc-number">3.1.4.</span> <span class="toc-text">DCL</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#创建用户语法"><span class="toc-number">3.1.4.1.</span> <span class="toc-text">创建用户语法</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#用户授权语法"><span class="toc-number">3.1.4.2.</span> <span class="toc-text">用户授权语法</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#撤销授权语法"><span class="toc-number">3.1.4.3.</span> <span class="toc-text">撤销授权语法</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#查看用户全限语法"><span class="toc-number">3.1.4.4.</span> <span class="toc-text">查看用户全限语法</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#修改用户密码语法"><span class="toc-number">3.1.4.5.</span> <span class="toc-text">修改用户密码语法</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#DQL-数据查询语法"><span class="toc-number">3.1.5.</span> <span class="toc-text">DQL(数据查询语法)</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#基础查询"><span class="toc-number">3.1.5.1.</span> <span class="toc-text">基础查询</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#条件查询"><span class="toc-number">3.1.5.2.</span> <span class="toc-text">条件查询</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#模糊查询"><span class="toc-number">3.1.5.3.</span> <span class="toc-text">模糊查询</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#字段控制查询"><span class="toc-number">3.1.5.4.</span> <span class="toc-text">字段控制查询</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#排序"><span class="toc-number">3.1.5.5.</span> <span class="toc-text">排序</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#COUNT"><span class="toc-number">3.1.5.6.</span> <span class="toc-text">COUNT</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#SUM和AVG"><span class="toc-number">3.1.5.7.</span> <span class="toc-text">SUM和AVG</span></a></li></ol></li></ol></li></ol></li></ol>
+    </div>
+    
+    <div class="back-top iconfont-archer">&#xe639;</div>
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 12
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2019 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/20</span><a class="archive-post-title" href= "/all/technology/‘MySQL基础/" >‘MySQL基础</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/19</span><a class="archive-post-title" href= "/all/technology/jQuery基础/" >jQuery基础</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/07</span><a class="archive-post-title" href= "/all/technology/javaScript基础/" >javaScript基础</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/07</span><a class="archive-post-title" href= "/all/technology/JavaScript相关/" >javaScript基础</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/05</span><a class="archive-post-title" href= "/all/technology/HTML/" >HTML</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/03</span><a class="archive-post-title" href= "/all/story/一个女孩/" >一个女孩</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/02</span><a class="archive-post-title" href= "/all/technology/XML/" >XML</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/01</span><a class="archive-post-title" href= "/all/technology/Stream流/" >Stream流</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/31</span><a class="archive-post-title" href= "/all/technology/类和集合等/" >类和集合等</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/30</span><a class="archive-post-title" href= "/all/technology/网络编程/" >网络编程</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/27</span><a class="archive-post-title" href= "/all/technology/在windows系统 blog的构建/" >在windows系统 blog的构建</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/26</span><a class="archive-post-title" href= "/all/technology/hello-world/" >Hello World</a>
+        </li>
+    
+    </div>
+  </div>
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="JavaScript"><span class="iconfont-archer">&#xe606;</span>JavaScript</span>
+    
+        <span class="sidebar-tag-name" data-tags="other"><span class="iconfont-archer">&#xe606;</span>other</span>
+    
+        <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
+    
+        <span class="sidebar-tag-name" data-tags="java"><span class="iconfont-archer">&#xe606;</span>java</span>
+    
+        <span class="sidebar-tag-name" data-tags="数据库"><span class="iconfont-archer">&#xe606;</span>数据库</span>
+    
+        <span class="sidebar-tag-name" data-tags="故事"><span class="iconfont-archer">&#xe606;</span>故事</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br/>
+    1、请确保node版本大于6.2<br/>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "紫鱼"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="/scripts/main.js"></script>
+    <!-- algolia -->
+    
+    <!-- busuanzi  -->
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
+     
+    </body>
+</html>
+
+
