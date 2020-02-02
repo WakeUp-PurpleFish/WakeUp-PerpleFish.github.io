@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+    <!-- title -->
+
+
+
+
+<!-- keywords -->
+
+
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="author" content="紫鱼">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="紫鱼">
+    
+    <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
+    
+    <meta name="description" content="一只学习狗">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>数据库技术基础（笔记三） · Wake Up</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+</style>
+
+    <link rel="preload" href="/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="stylesheet" href="/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
+
+
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
+</script>
+
+    <link rel="icon" href="/assets/favicon.ico">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script">
+    <link rel="preload" href="/scripts/main.js" as="script">
+    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+</head>
+
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >Wake Up</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">数据库技术基础（笔记三）</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href=/>Wake Up</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro" style="
+
+
+
+
+
+
+
+height:50vh;
+">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            数据库技术基础（笔记三）
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "笔记">笔记</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">5.3k</span>阅读时长: <span class="post-count reading-time">19 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2020/02/02</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "/lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <h2 id="数据库基础（三）"><a href="#数据库基础（三）" class="headerlink" title="数据库基础（三）"></a>数据库基础（三）</h2><h3 id="数据库SQL语言"><a href="#数据库SQL语言" class="headerlink" title="数据库SQL语言"></a>数据库SQL语言</h3><h6 id="SQL的特点"><a href="#SQL的特点" class="headerlink" title="SQL的特点"></a>SQL的特点</h6><ul>
+<li><strong>综合统一</strong><br>SQL集数据定义，数据操作和数据控制功能一体，可独立完成数据库生命周期的所有活动。</li>
+<li><strong>高度非过程化</strong><br>存储路径对用户透明化</li>
+<li><strong>面向集合的操作方式</strong><br>SQL语言采用面向集合的操作方式，其操作对象、查找结果可以是元组的集合。</li>
+<li><strong>使用方式方便</strong><br>用户可以在键盘输入SQL命令对数据库操作<br>把SQL语言嵌入到高级语言程序中</li>
+<li><strong>简洁易懂</strong><br>数据查询：SELECT。<br>数据定义：CREATE、DROP、ALTER。<br>数据操纵：DNSERT、UPDATE、DELETE.<br>数据控制：GRANT、REVORK。</li>
+</ul>
+<h4 id="SQL的基本组成"><a href="#SQL的基本组成" class="headerlink" title="SQL的基本组成"></a>SQL的基本组成</h4><p>（1）数据定义浙言。SOL DDL提供定义关系模式和视图、删除关系和视图、签改关系模式的命令。<br>（2）交互式数据操纵语言。SOL DML提供查询、插入、删除和修改的命令。<br>（3）事务控制（Transaction Control）。SOL提供定义事务开始和结束的命令。<br>（4）嵌入式SQL和动态SOL（Embeded SOL and Dymamic SQL）.用于嵌入到某种通用的高级语言（C、C叶、Java、PLA、COBOL 和VB等）中混合编程。其中，SOL.负责景纵数据库，高级语言负责控制程序流程。<br>（5）完整性（lntegity）。SOL DDL包括定义数据库中的数据必须满足的完整性约束条件的命令，对于破坏完整性约束条件的更新将被禁止。<br>（6）权限管理（Authorization）。SOL DDL中包括说明对关系和视图的访问权限。</p>
+<h4 id="SQL语言"><a href="#SQL语言" class="headerlink" title="SQL语言"></a>SQL语言</h4><p>1.创建表（CREATE TABLE）<br>语句格式：<br>CREATE TABLE&lt;表名&gt;(&lt;列名&gt;&lt;数据类型&gt;[列级完整性约束条件]<br>[,&lt;列名&gt;&lt;数据类型&gt;[列级完整性约束条件]]…<br>[,&lt;表级完整性约束条件&gt;])；</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CREANTE TABLE S(Sno CHAR(5) NOT NULL UNIQUE, </span><br><span class="line">Sname CHAR(30)UNIQUE, </span><br><span class="line">Status CHAR(8), </span><br><span class="line">City CHAR(20)</span><br><span class="line">PRIMARY KEY(Sno));</span><br></pre></td></tr></table></figure>
+
+<p>2.修改表（ALTER TABLE）<br>语句格式：<br>ALTER TABLE&lt;表名&gt;[ADD&lt;新列名&gt;&lt;数据类型&gt;[完整性约束条件]]<br>[DROP&lt;完整性约束名&gt;]<br>[MODIFY&lt;列名&gt;&lt;数据类型&gt;]；</p>
+<p>例如，向“供应商”表S增加ZAp“邮政编码”可用如下语句：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> S <span class="keyword">ADD</span> Zap <span class="built_in">CHAR</span>（<span class="number">6</span>)；</span><br></pre></td></tr></table></figure>
+
+<p>3.删除表（DROP TABLE）<br>语句格式：<br>DROP TABLE&lt;表名&gt;<br>例如:<br>执行</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> Student.</span><br></pre></td></tr></table></figure>
+
+<p>此后关系Sudet不再是数据库模式的一部分，关系中的元组也无法访问。</p>
+<h6 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h6><p><strong>作用</strong><br>（1）通过创建唯一索引，可以保证数据记录的唯一性。<br>（2）可以大大加快数据的检索速度。<br>（3）可以加速表与表之间的连接，这一点在实现数据的参服完整性方面有特别的意义，<br>（A）在使用ORDER BY和GROUP BY子句中进行检素数据时，可以显著减少查询中分组和排序的时间。<br>（5）使用索引可以在检索数据的过程中使用优化隐藏器，提高系统性能。</p>
+<p><strong>建立索引</strong>：<br>语句格式：<br>语句格式：CREATE [UNIQUE]  [CLUSTER] INDEX &lt;素引名&gt;<br>                ON&lt;表名&gt;（&lt;列名&gt;[&lt;次序&gt;] [,&lt;列名&gt;[&lt;次序&gt;]]……）；<br>  参数说明如下。<br> 次序：可选ASC（升序）或DSC（降序），默认值为ASC.<br> UNIQUE：表明此索引的每一个索引值只对应难一的数据记录。<br> CL0STER:表明要建立的索引是聚获索引，意为索引项的顺序是与表中记录的物理顺序一致的索引组织。</p>
+<p> <strong>例题</strong><br> 假设供应销售数据库中有供应商S、零件P、工程项目J、供销情况SPJ关系。希望建立4个素引。其中，供应商S中Sno按升序建立索引；零件P中Pno按升序建立索引；工程项目中J加Jno升序建立索引；供销情况SPJ中Sno按升序、Pno按降序、Jno按升序建立索引。<br>解：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">UNIQUE</span> <span class="keyword">INDEX</span> S-SNO <span class="keyword">ON</span> S（Sno）;</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">UNIQUE</span> <span class="keyword">INDEX</span> P-PNO <span class="keyword">ON</span> P（Pno）;</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">UNIQUE</span> <span class="keyword">INDEX</span> J-JNO <span class="keyword">ON</span> JJno）;</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">UNIQUE</span> <span class="keyword">INDEX</span> SPJ-<span class="keyword">NO</span> <span class="keyword">ON</span> SPJ(Sno <span class="keyword">ASC</span>，Pno <span class="keyword">DESC</span>，JNO <span class="keyword">ASC</span>）;</span><br></pre></td></tr></table></figure>
+
+<p><strong>删除索引</strong><br>语句格式：DROP INDEX&lt;索引名&gt;<br>高如执行 DROP INDEX xxxxxx，此后素引xxxxxx不再是数据库模式的一部分。</p>
+<h6 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h6><p><strong>作用</strong><br>（1）可以使用视图集中数据、简化和定制不同用户对数据库的不同数据要求。<br>（2）使用视留可以屏蔽数据的复杂性，用户不必了解数据库的结构，就可以方便地使用和管理数据，简化数据权限管理和重新组织数据以便输出到其他应用程序中。<br>（3）视图可以使用户只关心他感兴趣的某些待定数据和他们所负责的特定任务，而那些不需要的或者无用的数据则不在视图中显示。<br>（4）视图大大地简化了用户对数据的操作。<br>（5）视图可以让不同的用户以不同的方式看到不同或者相同的数据集。<br>（6）在某些情况下，由于表中数据量太大，因此在设计表时常将表进行水平或者垂直分制，以免表的结构的变化对应用程序产生不良的影响。<br>（7）视图提供了一个简单而有效的安全机制。</p>
+<p><strong>建立视图</strong></p>
+<p>语句格式：<br>CREATE VIEW 视图名（列表名）<br>AS SELECT查询子句<br>[WITH CHECK OPTION]；</p>
+<p>规则如下：<br>（1）子查询可以是任意复杂的SELECT语句，但通常不允许含有ORDER BY子句和DISTINCT短语。<br>（2）WITH CHECK OPTION 表示对UPDATE、INSERT、DELETE操作时保证更新、插入或删除的行满足视图定义中的谓词条件（即子查询中的条件表达式）。<br>（3）组成视图的属性列名或者全部省略或者全部指定。如果省略副性列名，则隐含该视图由SELECT子查询目标列的主属性组成。</p>
+<p>例题：<br>若学生关系模式为Student（Snmo，Sname，Sage，Sex，SD.Email，Tel），建立“计算机系”（CS表示计算机系）学生的视图，并要求进行修改、插入操作时保证该视图中只有计算机系的学生。<br>CREATE VIEW CS_STUDENT<br>AS SELECT Sno. Sname, Sage, Sex<br>FROM Student WHERE SD=’CS’<br>WITH CHECK OPTION;</p>
+<p><strong>视图的删除</strong><br>语句格式：DROP VIEW视图名<br>例如，DROP VIEW CS_STUDENT 将删除视图CS_STUDENT。</p>
+<h6 id="SQL数据查询"><a href="#SQL数据查询" class="headerlink" title="SQL数据查询"></a>SQL数据查询</h6><p><strong>SELECT基本结构</strong><br>语句格式：<br>SELECTE[ALL|DISTINCT]&lt;目标列表达式&gt;[,&lt;目标列表达式&gt;]…<br> FROM&lt;表名或视图名&gt;[,&lt;表名或视图名&gt;]<br>[WHERE&lt;条件表达式&gt;]<br>[GROUP BY&lt;列名1&gt;[HAVING&lt;条件表达式&gt;]]<br>[ORDER BY&lt;列名2&gt;[ASCIDESC]……]</p>
+<p>SOL.查询中的子句顺序为SELECT、FROM、WHERE、GROUP BY、HAVING 和ORDER BY.其中，SELECT、FROM是必需的，HAVING条件子句只能与GROUPBY搭配起来使用。</p>
+<p>SELECT子句对应的是关系代数中的投影运算，用来列出查询结果中的属性。其输出可以是列名、表达式、集函数（AVG、COUNT、MAX、MIN、SUM），DISTINCT选项可以保证查询的结果集中不存在重复元组。</p>
+<p><strong>简单查询</strong><br>SELECT [表的属性名]<br>FROM [表名]<br>WHERE [某个属性名（列名）]=[具体的名称];</p>
+<p><strong>连接查询</strong></p>
+<p>SELECT [表的属性名]<br>FROM [表名1],[表名2]<br>WHERE [表名1.[某个属性名（列名）]] AND [表名2.[某个属性名（列名）]=[具体的名称];</p>
+<p><strong>子查询与聚积函数</strong></p>
+<p>子查询也称嵌套查询。嵌套查询是指一个SELECT-FROM-WHERE查被块可以嵌入入另一个查询块之中。在SQL中允许多重嵌套。</p>
+<p><strong>例子</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> Sno,Sname</span><br><span class="line"><span class="keyword">FROM</span> S</span><br><span class="line"><span class="keyword">WHERE</span>  Sno= <span class="keyword">IN</span>(</span><br><span class="line">	<span class="keyword">SELECT</span> Sno </span><br><span class="line">	<span class="keyword">FROM</span> SC </span><br><span class="line">	<span class="keyword">WHERE</span> Cno <span class="keyword">IN</span>(</span><br><span class="line">		<span class="keyword">SELECT</span> Cno </span><br><span class="line">		<span class="keyword">FROM</span> C </span><br><span class="line">		<span class="keyword">WHERE</span> Cname=MS))</span><br></pre></td></tr></table></figure>
+
+<p>聚积函数是一个值的集合为输入，返回单个值的函数。SQL提供了5个预定义聚积函数。<br>平均值AVG、最小值MIN、最大值MAX、求和SUM以及计数COUNT</p>
+<p><strong>分组查询</strong></p>
+<p><strong>GROUP BY子句</strong><br>在WHERE子句后面加上GROUPBY子句可以对元组进行分组，保留字GROUPBY后面跟着一个分组属性列表。最简单的情况是FROM子句后面只有一个关系，根据分组照性对它的元组进行分组。SELECT子句中使用的聚集操作符仅用在每个分组上。</p>
+<p><strong>HAVING子句</strong><br>假如元组在分组前按照某种方式加上限制，使得不需要的分组为空，在GROUP BY子句后面跟一个HAVING子句即可。<br>注意：当元组含有空值时，应该记住以下两点。<br>（1）空值在任何聚集操作中被忽视。它对求和、求平均值和计数都没有影响。它也不能是来列的最大位或最小值。例如，COUNT（）是某个关系中所有元组装目之和，但COUNTCA0海是A属性非空的元组个数之和。<br>（2）NULL值又可以在分细属性中看作是一个一般的值。例如，在SELECTA.ANCB）FORMR中，当A的属性值为空时，就金统计A-NULL的所有元组中B的均值。</p>
+<p><strong>更名</strong><br>SQL提供了可为关系和属性重新命名的机制，这是通过使用具有如下形式的AS子句来实现的：<br>Old-name AS new-name<br> AS子句既可出现在SELECT子句，也可出现在FROM子句中</p>
+<p><strong>字符串</strong><br>对于字符串进行的最常用的操作是使用操作符LHKE的模式匹配。使用两个特殊的字符来描述模式：“%”匹配任意字符串：“<em>”匹配任意一个字符。模式是大小写敏感的。<br>例如：<br>Mary%配任何以Mary开头的字符串;<br>%idge%匹配任何包含idge的字符串;<br>“_”匹配只含两个字符的字符串；<br>“</em>%”匹配至少包含两个字符的字符串。</p>
+<p><strong>视图的查询</strong></p>
+<p><strong>例子</strong><br>建立“计算机系”（CS表示计算机系）学生的视围，并要求进行修改、插入操作时保证该视图只有计算机系的学生。<br>CREATE VIEW CS_STUDENT<br>AS SELECT Sno，Sname，Sage，Sex<br>FROM Student<br>WHERE SD=’CS’<br>WITH CHECK OPTION；<br>此时查询计算机系年龄小于20岁的学生的学号及年龄的SOL语句如下：<br>SELECT Sno，Age FORM CS_STUDENT WHERE SD-CS AND Age&lt;20;</p>
+<h6 id="SQL数据库更新"><a href="#SQL数据库更新" class="headerlink" title="SQL数据库更新"></a>SQL数据库更新</h6><p><strong>插入</strong></p>
+<p>INSERT INTO基本表名（字段名[，字段名…）<br>VALUES（常量[，常量]…）；查询语句</p>
+<p>INSERT INTO基本表名（列表名）<br>SELECT查询语句</p>
+<p><strong>删除</strong><br>DELETE FROM 基本表名<br>[WHERE条件表达式]</p>
+<p><strong>修改</strong><br>UPDATE 基本表名<br>SET列名一值表达式（列名一值表达式…）<br>[WHERE条件表达式]</p>
+<h6 id="SQL访问设置"><a href="#SQL访问设置" class="headerlink" title="SQL访问设置"></a>SQL访问设置</h6><p><strong>功能</strong></p>
+<ul>
+<li>通过GRANT和REVOKE将授权通知系统，并存入数据字典。 </li>
+<li>用户提出诗求时，根据授权情况检查是否执行操作请求。</li>
+</ul>
+<p><strong>授权的语句格式：</strong><br>GRANT&lt;权限&gt;[,&lt;权限&gt;]……[ON对象类型&lt;对象名&gt;TO&lt;用户&gt;[,&lt;用户&gt;]……<br>[WITH GRANT OPTION]；</p>
+<p><strong>收回权限语句格式</strong><br>REVOKE&lt;权限&gt;[,&lt;权限&gt;]……[ON&lt;对象类型&gt;&lt;对象名&gt;]<br>FROM&lt;用户&gt;[,&lt;用户]……；</p>
+<p><strong>例题</strong><br>如果用户要求给或者收回数据库SPJ中的供应商S、零件P，项目J表赋各种权限。</p>
+<p>1.将对供应商S、零件P、项目J的所有操作权限赋给用户User1 及 User2，其授权表示如下：<br>GRANT ALL PRIVILEGES ON TABLE S,P,J TO User1，User2;<br>2.将用户User1 及User2对供应商S、零件P、项目J的所有操作权限收回。<br>REVOKE ALL PRIVILEGES ON TABLE S,P,J<br>FROM User1，User2;</p>
+<h4 id="关系数据库的规范化"><a href="#关系数据库的规范化" class="headerlink" title="关系数据库的规范化"></a>关系数据库的规范化</h4><p><strong>1NF（第一范式）</strong><br><strong>定义</strong>：<br>若关系模式R的每一个分量是不可再分的数据项，则关系模式R属于第一范式。</p>
+<p><strong>例如</strong>，<br>供应者和它所提供的零件信息，关系模式FIRST和函数依赖集F如下：<br>FIRST（Sno，Sname，.Status.City，.Pno，Qty）<br>F={Sno→Same，Sno→status.Status→City,（Sno,Pno)→Qty｝</p>
+<p><strong>2NF（第二范式）</strong><br><strong>定义：</strong><br>若关系模式R∈1NF，且每一个非主属性完全依赖于码，则关系模式R∈2NF。<br>换句话说，当INF消除了非主属性对码的部分函数依赖，则称为2NF。</p>
+<p><strong>例如：</strong><br>FIRST关系中的码是Sno、Po，而Sno→Satus，因此非主属性Status部分函数依赖于码，故非2NF的。</p>
+<p><strong>3NF（第三范式）</strong><br><strong>定义：</strong><br>若关系模式R(U,F）中若不存在这样的码X，属性组Y及非主属性Z(Z(不属于)Y)使得X→Y(Y推导出X）,Y→Z成立，则关系模式R∈3NF。<br>即当2NF消除了非主属性对码的传递函数依赖，则称为3NF。</p>
+<p><strong>例如：</strong><br>FIRST13NF，因为在分解后的关系模式FIRSTI中有Sno-Saus，Saus–City，存在着非主属性City传递依赖于码Sno。若此时将FIRST1继续分解为：<br>FIRST11（Sno，Sname，Status）∈3NF<br>FIRST12（Status，City）∈3NF</p>
+<h4 id="数据库的控制功能"><a href="#数据库的控制功能" class="headerlink" title="数据库的控制功能"></a>数据库的控制功能</h4><h6 id="事务管理"><a href="#事务管理" class="headerlink" title="事务管理"></a>事务管理</h6><p>事务定义的语句有以下三条。<br>（1）BEGIN TRANSACTION：事务开始。<br>（2）COMMIT：事务提交。该操作表示事务成功地结束，它将通知事务管理器该事务的所有更新操作现在可以被提交或永久地保留。<br>（3）ROLLBACK：事务回滚。该操作表示事务非成功地结束，它将通知事务管理器出故障了，数据库可能处于不一致状态，该事务的所有更新操作必须回滚或撤销。</p>
+<p>事务具有原子性（Atomicity）、一致性（Consisency）、隔离性（lsolation）和持久性（Durability）。这4个特性也称事务的ACID性质。</p>
+<ol>
+<li>原子性。事务是原子的，要么都做，要么都不做。</li>
+<li>一致性。事务执行的结果必须保证数据库从一个一致性状态变到另一个一致性状态。因此，当数据库只包含成功事务提交的结果时，称数据库处于一致性状态。</li>
+<li>隔离性。事务相互隔高。当多个事务并发执行时，任一事务的更新操作直到其成功提交的整个过程，对其他事务都是不可见的。</li>
+<li>持久性。一旦事务成功提交，即使数据库崩渍，其对数据库的更新操作也将永久有效。</li>
+</ol>
+<h6 id="数据库备份和恢复"><a href="#数据库备份和恢复" class="headerlink" title="数据库备份和恢复"></a>数据库备份和恢复</h6><p><strong>故障类型</strong></p>
+<p>数据库中的4类故障是事务内部故障、系统故障、介质故障及计算机病毒。<br><strong>事务内部故障</strong>。事务内部的故障有的可以通过事务程序本身发现。例如，银行转账事务，将账户A的金额转X到账户B，此时应该将账户入的余额心，将账户B的余额.如果账户A的余额不足，那么，两个事务都不做，否则都做。但有些是非预期的，不能由事务程界处理，例如运算溢出、并发事务发生死锁等。</p>
+<p><strong>系统故障</strong>。通常称为软故障，是指造成系统停止运行的任何事件，使得系统要重新启动，例如CPU故障、操作系统故师和突然停电等。</p>
+<p><strong>介质故障</strong>。通常称为硬故障，如磁盘损坏、磁头碰撞和瞬时蛋磁干扰。此类故障发生的几率小，但破坏性最大。</p>
+<p><strong>计算机病毒</strong>。计算机病毒是一种人为的故障和破坏，是在计算机程序中插入的破坏，计算机功能或者数据可以繁殖和传播的一组计算机指令或程序代码。</p>
+<p><strong>备份方法</strong></p>
+<p>恢复的基本原理是“建立数据沉余”（重复存储）。建立冗余数据的方法是进行数据转信和登记日志文件。数据的转储分为静态转储和动态转储、海量转储和增量转德、日志文件。</p>
+<ul>
+<li><strong>静态转储和动态转储</strong>。静态转储是指在转储期间不允许对数据降进行任何存取、修改操作，动态转做是在转做期间允许对规据你进行存限、街改操件。因此，转做和用户事务可并发执行。</li>
+<li></li>
+<li><strong>海量转做和增量转储</strong>。海足转储是指每次转储全部数据：增量转储是指每次只特储上次转储后更新过的数据。</li>
+<li></li>
+<li><strong>日志文件</strong>，在事务处理的过程中，DBMS把事务开始、事务结束以及对数据库的插入、删除和修改的每一次操作写入日志文件。一旦发生故障，DBMS的恢复字系统利用日志文件城筋事务对数据库的改变，回退到事务的初始状态。因此，DBMS利用日志文件案进行事务故障恢复和系统故障恢复，并可协助后备副本进行介质故障恢复。</li>
+</ul>
+<p><strong>恢复</strong><br>事务恢复有以下3个步骤。</p>
+<ol>
+<li>反向扫描文件日态（即从最后向前扫描日态文件），查找该事务的更新操作。 </li>
+<li>对事务的更新操作执行逆操作。</li>
+<li>继婴及物扫品日志文件，查找该事务的其他更新操作，并做同样的处理，直到事务的开始标志。</li>
+</ol>
+<p><strong>数据库镜像</strong></p>
+<p> 为了避免磁盘介质出现故障影响数据库的可用性，许多DBMS提供数据库镜像功能见工数据库候复。需要说明的是，数据降镜像是通过复制数据实现的，但频案地复制数据会降低系统的运行效率。因此，在实际应用中往往对关键的数据和日志文件镜像。</p>
+<h6 id="并发控制"><a href="#并发控制" class="headerlink" title="并发控制"></a>并发控制</h6><p><strong>并发控制技术</strong><br>并发控制的主要技术是封做。基本封微的类型有排它锁（简称X锁或写锁）和共享锁（简称S锁或读锁）。</p>
+<p><strong>封锁</strong></p>
+<ol>
+<li>排它锁，若事务了对数据对象A加上X镜，则只允许了读取和修改A，其他事务都不能再对A加任何类型的锁，直到T释放A上的锁。</li>
+<li>共享锁，若事务了对数据对象A加上S，则只允许T读取A，但不能修改A，其他事务只能再对A加S锁，直到了释放A上的S锁。这就保证了其他事务可以读A，但在T释放A上的S锁之前不能对A进行任何修改。</li>
+</ol>
+<p><strong>三级封锁协议</strong></p>
+<ol>
+<li>一级封锁协议，事务在修改数据R之前必须先对其加X锁，直到事务结束才释放。事务结来包括正常结束（COMMIT）和非正常结家（ROLBACK），一级封领协议可以解决丢 失更新问题。</li>
+<li>二级封锁协议。在一级封健协议的基础上，加上事务工在读教器取之前色须无对其加5锁，接完后即可释放S锁。二级封领协议可以解决读难数据的同题。但是，由于二级封锁协议读完了数据后即可释放S锁，所以不能保证可重复读。</li>
+<li>三级封锁协议。在一级封锁协议基础上，加上事务T在读数据民R之前必需先对其加S锁，直到事务来时释放S锁，三级封锁协议除了防止丢失修改和不读“脏”数据外，还进一步防止了不可重复读。</li>
+</ol>
+<p><strong>活锁与死锁</strong><br><strong>活锁</strong>，是指当事务T1封锁了数据R时，事务T2求封锁数剧R，于是T2等待，当T，释放R上的封锁后，系统首先批准了T3请求，于是T2下仍等待，当T3释放了R上的封锁后，又批准了T4清求，依此类推，使得T2可能永远等待的现象。<br><strong>死锁</strong>，是指两个以上的事务分别请求封锁对方已经封锁的数据，导致了长期等待无发继续运行下去的现象。</p>
+<p><strong>并发调整的可串行性</strong><br>多个事务的并发执行是正确的，当且仅当其结果与某一次序串行地执行它们时的结果相同，称这种调度策略是可串行化的调度。<br>可串行性是升发事务正确性的准则，按这个准则规定，一个给定的并发调度，当且仅当它是可串行化的才认为是正确调度。</p>
+<p><strong>两段封锁协议</strong><br>两段封领协议，是指所有事务必须分两个阶段对数据项加锁和解锁。即事务分两个除段。<br>第一阶段是获得封锁，非务可以获得任的数据项上的任何类型的镜，但不能释放；<br>第二阶设是释放封锁，事务可以释放任何数据项上的任何类型的锁，但不能申请。</p>
+<p><strong>封锁的粒度</strong><br>封做对象的大小称为封领的粒度。封顿的对象可以是逻辅单元（如属性、元组、关系、索引项、整个案引甚至整个数据库），也可以是物理单元（如数据页或索引页）。</p>
+
+    </article>
+    <!-- license  -->
+    
+        <div class="license-wrapper">
+            <p>原文作者：<a href="http://yoursite.com">紫鱼</a>
+            <p>原文链接：<a href="http://yoursite.com/all/notes/数据库技术基础(笔记三)/">http://yoursite.com/all/notes/数据库技术基础(笔记三)/</a>
+            <p>发表日期：<a href="http://yoursite.com/all/notes/数据库技术基础(笔记三)/">February 2nd 2020, 7:50:11 pm</a>
+            <p>更新日期：<a href="http://yoursite.com/all/notes/数据库技术基础(笔记三)/">February 2nd 2020, 8:10:16 pm</a>
+            <p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
+        </div>
+    
+    <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/all/notes/数据库技术基础(笔记二)/" title= "数据库技术基础（笔记二）">
+                    <div class="prevTitle">数据库技术基础（笔记二）</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:12345@qq.com" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/Wake Up" class="iconfont-archer github" target="_blank" title=github></a>
+            
+        
+    
+        
+            
+                <span class="iconfont-archer wechat" title=wechat>
+                  
+                  <img class="profile-qr" src="/assets/  （ example_qr.png）" />
+                </span>
+            
+        
+    
+        
+            
+                <span class="iconfont-archer qq" title=qq>
+                  
+                  <img class="profile-qr" src="/assets/QQ.jpg" />
+                </span>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+            
+                <a href="/assets/" class="iconfont-archer steam" target="_blank" title=steam></a>
+            
+        
+    
+        
+    
+        
+            
+                <a href="/atom.xml" class="iconfont-archer rss" target="_blank" title=rss></a>
+            
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+    <div class="busuanzi-container">
+    
+     
+    <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+    
+    </div>
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#数据库基础（三）"><span class="toc-number">1.</span> <span class="toc-text">数据库基础（三）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#数据库SQL语言"><span class="toc-number">1.1.</span> <span class="toc-text">数据库SQL语言</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#SQL的特点"><span class="toc-number">1.1.0.0.1.</span> <span class="toc-text">SQL的特点</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SQL的基本组成"><span class="toc-number">1.1.1.</span> <span class="toc-text">SQL的基本组成</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SQL语言"><span class="toc-number">1.1.2.</span> <span class="toc-text">SQL语言</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#索引"><span class="toc-number">1.1.2.0.1.</span> <span class="toc-text">索引</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#视图"><span class="toc-number">1.1.2.0.2.</span> <span class="toc-text">视图</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#SQL数据查询"><span class="toc-number">1.1.2.0.3.</span> <span class="toc-text">SQL数据查询</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#SQL数据库更新"><span class="toc-number">1.1.2.0.4.</span> <span class="toc-text">SQL数据库更新</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#SQL访问设置"><span class="toc-number">1.1.2.0.5.</span> <span class="toc-text">SQL访问设置</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#关系数据库的规范化"><span class="toc-number">1.1.3.</span> <span class="toc-text">关系数据库的规范化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数据库的控制功能"><span class="toc-number">1.1.4.</span> <span class="toc-text">数据库的控制功能</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#事务管理"><span class="toc-number">1.1.4.0.1.</span> <span class="toc-text">事务管理</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#数据库备份和恢复"><span class="toc-number">1.1.4.0.2.</span> <span class="toc-text">数据库备份和恢复</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#并发控制"><span class="toc-number">1.1.4.0.3.</span> <span class="toc-text">并发控制</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
+    </div>
+    
+    <div class="back-top iconfont-archer">&#xe639;</div>
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 18
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2020 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/02</span><a class="archive-post-title" href= "/all/notes/数据库技术基础(笔记一)/" >数据库技术基础（笔记一）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/02</span><a class="archive-post-title" href= "/all/notes/数据库技术基础(笔记三)/" >数据库技术基础（笔记三）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/02</span><a class="archive-post-title" href= "/all/notes/数据库技术基础(笔记二)/" >数据库技术基础（笔记二）</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2019 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/26</span><a class="archive-post-title" href= "/all/technology/Servlet基础/" >Servlet基础</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/26</span><a class="archive-post-title" href= "/all/technology/EL表达式/" >EL表达式</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/22</span><a class="archive-post-title" href= "/all/technology/jsp基础/" >jsp基础</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/21</span><a class="archive-post-title" href= "/all/technology/JDBC/" >JDBC</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/20</span><a class="archive-post-title" href= "/all/technology/MySQL基础/" >MySQL基础</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/19</span><a class="archive-post-title" href= "/all/technology/jQuery基础/" >jQuery基础</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/07</span><a class="archive-post-title" href= "/all/technology/JavaScript基础/" >javaScript基础</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/05</span><a class="archive-post-title" href= "/all/technology/HTML/" >HTML</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/03</span><a class="archive-post-title" href= "/all/story/一个女孩/" >一个女孩</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/02</span><a class="archive-post-title" href= "/all/technology/XML/" >XML</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/01</span><a class="archive-post-title" href= "/all/technology/Stream流/" >Stream流</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/31</span><a class="archive-post-title" href= "/all/technology/类和集合等/" >类和集合等</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/30</span><a class="archive-post-title" href= "/all/technology/网络编程/" >网络编程</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/27</span><a class="archive-post-title" href= "/all/other/在windows系统 blog的构建/" >在windows系统 blog的构建</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/26</span><a class="archive-post-title" href= "/all/other/hello-world/" >Hello World</a>
+        </li>
+    
+    </div>
+  </div>
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
+    
+        <span class="sidebar-tag-name" data-tags="other"><span class="iconfont-archer">&#xe606;</span>other</span>
+    
+        <span class="sidebar-tag-name" data-tags="JavaScript"><span class="iconfont-archer">&#xe606;</span>JavaScript</span>
+    
+        <span class="sidebar-tag-name" data-tags="JDBC"><span class="iconfont-archer">&#xe606;</span>JDBC</span>
+    
+        <span class="sidebar-tag-name" data-tags="笔记"><span class="iconfont-archer">&#xe606;</span>笔记</span>
+    
+        <span class="sidebar-tag-name" data-tags="java"><span class="iconfont-archer">&#xe606;</span>java</span>
+    
+        <span class="sidebar-tag-name" data-tags="数据库"><span class="iconfont-archer">&#xe606;</span>数据库</span>
+    
+        <span class="sidebar-tag-name" data-tags="故事"><span class="iconfont-archer">&#xe606;</span>故事</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br/>
+    1、请确保node版本大于6.2<br/>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "紫鱼"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="/scripts/main.js"></script>
+    <!-- algolia -->
+    
+    <!-- busuanzi  -->
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
+     
+    </body>
+</html>
+
+

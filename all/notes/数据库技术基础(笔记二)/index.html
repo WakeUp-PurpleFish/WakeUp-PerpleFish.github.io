@@ -22,7 +22,7 @@
     <meta name="description" content="一只学习狗">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Wake Up</title>
+    <title>数据库技术基础（笔记二） · Wake Up</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -203,12 +203,23 @@
 </head>
 
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >Wake Up</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">数据库技术基础（笔记二）</a>
+            </div>
+    </div>
     
     <a class="home-link" href=/>Wake Up</a>
 </header>
@@ -220,24 +231,74 @@
 
 
 
+
+height:50vh;
 ">
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
+            
+            数据库技术基础（笔记二）
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "笔记">笔记</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">2.5k</span>阅读时长: <span class="post-count reading-time">8 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2020/02/02</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -338,182 +399,83 @@
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/all/technology/Stream流/" >
-            
-                <span>Stream流</span>
-        </a>
-        <div class="abstract-content">
-            Stream流
-   示例：
-123456789101112public class StreamFilter &#123;public static void main(String[] args) &#123;List&lt;String&gt; list = new ArrayList&lt;&gt;();list.add("张无忌");list.add("周芷若");list.add("赵敏");list.add("张强");list.add("张三丰");list.stream().filter(s ‐&gt; s.startsWith("张")).filter(s ‐&gt;...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/01</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "java">java</a>
-    
-</div>
-            
-        </div>
+            <main class="main post-page">
+    <article class="article-entry">
+        <h2 id="数据库基础（二）"><a href="#数据库基础（二）" class="headerlink" title="数据库基础（二）"></a>数据库基础（二）</h2><h3 id="数据模型"><a href="#数据模型" class="headerlink" title="数据模型"></a>数据模型</h3><h4 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h4><p>模型就是对现实世界特征的模拟和抽象，数据模型是对现实世界数据待征的抽象。对于具体的模型人们并不陌生，如航模飞机、地图和建筑设计沙盘等都是具体的模型。最常用的数据模型分为概念数据模型和基本数据模型。</p>
+<ol>
+<li><strong>概念数据模型</strong><br>概念数提根型也称信息模型，是按用户的观点对教据和信息难做：选现实让界到信品世界的第一层描象，蛋调其语义表达功能，易于用户理解。这类模型中最者名的是实体联系模型，简路E-R模型。</li>
+<li><strong>基本数据模型</strong><br>它是接计算机系统的观点对数据建模，是现实世界教待征的抽象。用于DBMS的实现。基本的数据模型有层次模型、网状模型、关系模型和面向对象模型（object Oriented Model）。</li>
+</ol>
+<h4 id="数据模型的三要素"><a href="#数据模型的三要素" class="headerlink" title="数据模型的三要素"></a>数据模型的三要素</h4><h6 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h6><p>数据结构是所研究的对象类型的结合，是对系统静态特征性的描述。</p>
+<h6 id="数据操作"><a href="#数据操作" class="headerlink" title="数据操作"></a>数据操作</h6><p>数据操作是对数翻屏中各种对象（型）的实例（值）允许执行的操作的集合，包括操作及操作规则。<br>例如：操作有检素、额入、副除和修改，操作规财有优先级别等。数据操作是对系统动态特性的描述。</p>
+<h6 id="数据的约束条件"><a href="#数据的约束条件" class="headerlink" title="数据的约束条件"></a>数据的约束条件</h6><p>数据的的束条件是一组完整性规则的集合，也就是说，对于具体的应用凝据必须避循特定的语义约束条件，以保证数据的正确、有效和相存，例如某单位人事管童中，要求在职的·“第”职工的年都必须大于18岁小于60，工程师的基本工资不能低于150元，每个职工可担任一个工种，这些要求可以通过建立数据的约束条件来实现。</p>
+<h4 id="E-R模型"><a href="#E-R模型" class="headerlink" title="E-R模型"></a>E-R模型</h4><p>  E-R模型是软件工程设计中的一个重要方法，因为它理解并且与计算机无关。所以用户容易接受，是用户和数据库设计人员交流的语言。但是E-R模型只能说明实体间的语义联系，还不能进一步地详细说明数据结构。</p>
+<h6 id="实体"><a href="#实体" class="headerlink" title="实体"></a>实体</h6><p>  在E-R模型中，实体用矩形表示，通常矩形框内写明实体名。实体是现实世界中可以区别于其他对象的“事件“或“物体”。</p>
+<p>  一般认为，客观上可以相互区分的事物就是实体，实体可以是具体的人和物，也可以是抽象的概念与联系。关键在于一个实体能与另一个实体相区别，具有相同属性的实体具有相同的特征和性质。用实体名及其属性名集合来抽象和刻画同类实体。在E-R图中用矩形表示，矩形框内写明实体名；比如学生张三、学生李四都是实体。如果是弱实体的话，在矩形外面再套实线矩形。</p>
+<h6 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h6><p>实体所具有的某一特性，一个实体可由若干个属性来刻画。属性不能脱离实体，属性是相对实体而言的。在E-R图中用椭圆形表示，并用无向边将其与相应的实体连接起来；比如学生的姓名、学号、性别、都是属性。如果是多值属性的话，在椭圆形外面再套实线椭圆。如果是派生属性则用虚线椭圆表示。</p>
+<h6 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h6><p>联系也称关系，信息世界中反映实体内部或实体之间的关联。实体内部的联系通常是指组成实体的各属性之间的联系；实体之间的联系通常是指不同实体集之间的联系。在E-R图中用菱形表示，菱形框内写明联系名，并用无向边分别与有关实体连接起来，同时在无向边旁标上联系的类型（1 : 1，1 : n或m : n）。比如老师给学生授课存在授课关系，学生选课存在选课关系。如果是弱实体的联系则在菱形外面再套菱形。<br><strong>两个不同实体集之间存在以下3种联系类型</strong>。<br>一对一（1:1）。<br>一对多（1:m）。<br>多对多（n:m）。</p>
+<h6 id="实体—联系方法"><a href="#实体—联系方法" class="headerlink" title="实体—联系方法"></a>实体—联系方法</h6><p>在ER图中有如下四个成分：E-R<br><strong>矩形框</strong>：表示实体，在框中记入实体名。<br><strong>菱形框</strong>：表示实体和实体之间的联系，在框中记入联系名。<br><strong>椭圆形框</strong>：表示实体或联系的属性，将属性名记入框中。对于主属性名，则在其名称下划一下划线。<br><strong>连线</strong>：实体与属性之间；实体与联系之间；联系与属性之间用直线相连，并在直线上标注联系的类型。</p>
+<p><strong>举例：</strong><br>用图书、作者两个实体及其属性和联系构建E-R图。<br>图书的属性：书号、书名、出版社、价格<br>作者的属性：身份证号、姓名、年龄</p>
+<p><img src="https://img-blog.csdnimg.cn/2020020114185795.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0NzYxMjcx,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h4 id="数据模型-1"><a href="#数据模型-1" class="headerlink" title="数据模型"></a>数据模型</h4><h6 id="层次模型"><a href="#层次模型" class="headerlink" title="层次模型"></a>层次模型</h6><p>层次模型（Hierarchical Model）采用树型结构表示数据与数据间的联系。在层次模型中，每一个结点表示一个记录类型（实体），记录之间的联系用结点之间的连线表示，并且根结点以外的其他结点有且仅有一个双亲结点。</p>
+<h6 id="网状模型"><a href="#网状模型" class="headerlink" title="网状模型"></a>网状模型</h6><p>网状模型（Newok Model）也称DBTG模型，该是一个比层次模型更具有普选性的数据结构，是层次模型的一个特例。网状模型可以直接地描述现实世界，因为去掉了层次模型的两个限制，允许两个结点之间有多种联系（称之为复合联系）。</p>
+<h6 id="关系模型"><a href="#关系模型" class="headerlink" title="关系模型"></a>关系模型</h6><p>关系模型（Relational Model）是目前最常用的数据模型之一。关系数据库系统采用关系模型作为数据的组织方式，在关系模型中用表格结构表达实体集以及实体集之间的联系，其最大特色是描述的一致性。</p>
+<h6 id="面向对象模型"><a href="#面向对象模型" class="headerlink" title="面向对象模型"></a>面向对象模型</h6><p>面向对象模型（Object Oricntcd Model）采用面向对象的方法来设计数据库。面向对象的数据库存储对象是以对象为单位，每个对象包含对象的属性和方法，具有类和继承等特点。</p>
+<h4 id="关系模型-1"><a href="#关系模型-1" class="headerlink" title="关系模型"></a>关系模型</h4><p>关系数据库系统采用关系模型作为数据的组织方式，在关系模型中用表格结构表达实体集以及实体集之间的联系，其最大特色是描述的一致性。关系模型是由若干个关系模式组成的集合。一个关系模式相当于一个记录型，对应于程序设计语言中类型定义的概念。</p>
+<p><strong>例题：</strong><br>教学数据库的4个关系模式如下<br>S（Sno（下划线），Sname，SD，Sage，Sex）：学生S关系模式，属性为学号、姓名、系、年龄和性别<br>T（Tno（下划线），Tname，Age.Sex）：教师T关系模式，属性为教师号、姓名、年龄和性别<br>C（Cno（下划线），Cname，Pcno）：课程C关系模式，属性为课程号、课程名和先修课程号<br>SC（Sno（下划线），Cno（下划线），Grade）；学生选课SC关系模式，属性为学号、课程号和成绩<br>关系模式中有下滑线是主码属性</p>
+<h2 id="关系代数"><a href="#关系代数" class="headerlink" title="关系代数"></a>关系代数</h2><h4 id="关系数据库的基本"><a href="#关系数据库的基本" class="headerlink" title="关系数据库的基本"></a>关系数据库的基本</h4><h6 id="属性和域"><a href="#属性和域" class="headerlink" title="属性和域"></a>属性和域</h6><p>描述一个事物常常取若干特征来表示，这些特征称为属性。<br>每个属性的取值范围对应一个值的集合，称为该属性的域。</p>
+<h6 id="关系的3种类型"><a href="#关系的3种类型" class="headerlink" title="关系的3种类型"></a>关系的3种类型</h6><ol>
+<li>基本关系。通常又称为基本表或基表，它是实际存在的表，是实际存储数据的逻辑表示。</li>
+<li>查询表。查询表是查询结果对应的表。</li>
+<li>视图装。视图表是由基本表或其他视图表导出的表。由于它本身不独立存储在数据库中，数据库中只存放它的定义，所以常称为虚表。</li>
+</ol>
+<h6 id="5种基本关系代数运算"><a href="#5种基本关系代数运算" class="headerlink" title="5种基本关系代数运算"></a>5种基本关系代数运算</h6><p>在关系代数运算中，有5种基本运算，它们是并（U）、差（—）、投影、选择、笛卡尔积（X），其它运算即交、连接和除，均可通过5种基本的运算来表达。</p>
+<p><strong>传统的集合运算</strong><br>1、并（UNION）设有两个关系R和S，它们具有相同的结构。R和S的并是由属于R或属于S的元组组成的集合，运算符为∪ 。记为T=R∪S。<br>2、差（DIFFERENCE）R和S的差是由属于R但不属于S的元组组成的集合，运算符为－ 。记为T=R－S。<br>3、交（INTERSCTION）R和S的交是由既属于R又属于S的元组组成的集合，运算符为∩  。记为T=R∩S。R∩S=R－（R－S）。<br><strong>选择运算</strong><br>  从关系中找出满足给定条件的那些元组称为选择。其中的条件是以逻辑表达式给出的，值为真的元组将被选取。这种运算是从水平方向抽取元组。在FOXPRO中的短语FOR&lt;条件&gt;和WHILE&lt;条件&gt;均相当于选择运算。<br>如：LISTFOR出版单位=’高等教育出版社’AND单价&lt;=20<br><strong>投影运算</strong><br>从关系模式中挑选若干属性组成新的关系称为投影。这是从列的角度进行的运算，相当于对关系进行垂直分解。在FOXPRO中短语FIELDS&lt;字段1，字段2，…&gt;相当于投影运算。如：LISTFIELDS单位，姓名<br><strong>连接运算</strong><br>选择和投影运算都是属于一目运算，它们的操作对象只是一个关系。连接运算是二目运算，需要两个关系作为操作对象。</p>
+
     </article>
+    <!-- license  -->
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/all/technology/类和集合等/" >
-            
-                <span>类和集合等</span>
-        </a>
-        <div class="abstract-content">
-            Object类  java.lang.Object类是java语言中的根类，即所有的类的父类。它描述的所有方法子类都可以使用。。在对象实例化的时候，最终找的父类就是Object。如果一个类没有特别指定父类，那么默认则继承自Object类。
-123public class MyClass /*extends Object*/ &#123;      &#125;
-
-toString方法12public String toString();//返回该对象的字符串表示。
-
-  toString方法返回该对象的字符串表示，其实该字符串内容就是对象的类型+@+内存地址值。由于toString方法返...
+        <div class="license-wrapper">
+            <p>原文作者：<a href="http://yoursite.com">紫鱼</a>
+            <p>原文链接：<a href="http://yoursite.com/all/notes/数据库技术基础(笔记二)/">http://yoursite.com/all/notes/数据库技术基础(笔记二)/</a>
+            <p>发表日期：<a href="http://yoursite.com/all/notes/数据库技术基础(笔记二)/">February 2nd 2020, 7:45:55 pm</a>
+            <p>更新日期：<a href="http://yoursite.com/all/notes/数据库技术基础(笔记二)/">February 2nd 2020, 8:10:11 pm</a>
+            <p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/31</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "java">java</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/all/technology/网络编程/" >
-            
-                <span>网络编程</span>
-        </a>
-        <div class="abstract-content">
-            网络编程软件结构：  c/s结构：全称为Client/Server结构，是客户端和服务器的结构。常见程序有QQ、迅雷、各种市场上的播放器等软件。
-  b/s结构：全称为Browser/Server结构，是指浏览器和服务器结构。常见有各种的市场上的浏览器如谷歌，火狐等。
-  两种架构，都离不开网络的支持。网络编程，就是在一定的协议下，实现两台计算机的通信的程序。
-网络通信协议：   定义：通信协议是对计算机必须遵守的规则，只有遵守这些规则，计算机之间才能进行通信。这就好比在道路中行驶的汽车一定要遵守交通规则一样，协议中对数据的传输格式、传输速率、传输步骤等做了统一规定，通信双方必须同时遵守...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/30</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "java">java</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/all/other/在windows系统 blog的构建/" >
-            
-                <span>在windows系统 blog的构建</span>
-        </a>
-        <div class="abstract-content">
-            在windows系统 blog的构建1.下载的工具  nodejs 、github一直默认就好。（安装时可以安装到其他盘中）
-2.安装git和nodejs  先安装好git和nodejs后。右键选着git bush。输入
-12node -vnpm -v
-
-   等出现相应的版本好是表示安装成功。
-3.开始安装hexo。​     先创建一个文件夹blog，然后cd到这个文件夹下（或者在这个文件夹下直接右键git bash打开）。
-1npm install -g hexo-cli
-
-输入
-1hexo -v
-
-出现相应的版本号即为成功。
-接着初始化hexo
-123hexo init blog...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/27</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/all/other/hello-world/" >
-            
-                <span>Hello World</span>
-        </a>
-        <div class="abstract-content">
-            Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick StartCreate a new post1$ hexo new "My New Post"
-
-More info: Writing
-Run server1$ hexo server
-
-Mo...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/26</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
     
     <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href= "/all/notes/数据库技术基础(笔记三)/" title= "数据库技术基础（笔记三）">
+                    <div class="nextTitle">数据库技术基础（笔记三）</div>
+                </a>
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/all/notes/数据库技术基础(笔记一)/" title= "数据库技术基础（笔记一）">
+                    <div class="prevTitle">数据库技术基础（笔记一）</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
-    <nav class="page-nav">
-        <a class="extend prev" rel="prev" href="/archives/2019/">&#60; PREV</a><a class="page-number" href="/archives/2019/">1</a><span class="page-number current">2</span>
-    </nav>
     
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -613,6 +575,24 @@ Mo...
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#数据库基础（二）"><span class="toc-number">1.</span> <span class="toc-text">数据库基础（二）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#数据模型"><span class="toc-number">1.1.</span> <span class="toc-text">数据模型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本概念"><span class="toc-number">1.1.1.</span> <span class="toc-text">基本概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数据模型的三要素"><span class="toc-number">1.1.2.</span> <span class="toc-text">数据模型的三要素</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#数据结构"><span class="toc-number">1.1.2.0.1.</span> <span class="toc-text">数据结构</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#数据操作"><span class="toc-number">1.1.2.0.2.</span> <span class="toc-text">数据操作</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#数据的约束条件"><span class="toc-number">1.1.2.0.3.</span> <span class="toc-text">数据的约束条件</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#E-R模型"><span class="toc-number">1.1.3.</span> <span class="toc-text">E-R模型</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#实体"><span class="toc-number">1.1.3.0.1.</span> <span class="toc-text">实体</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#属性"><span class="toc-number">1.1.3.0.2.</span> <span class="toc-text">属性</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#联系"><span class="toc-number">1.1.3.0.3.</span> <span class="toc-text">联系</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#实体—联系方法"><span class="toc-number">1.1.3.0.4.</span> <span class="toc-text">实体—联系方法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数据模型-1"><span class="toc-number">1.1.4.</span> <span class="toc-text">数据模型</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#层次模型"><span class="toc-number">1.1.4.0.1.</span> <span class="toc-text">层次模型</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#网状模型"><span class="toc-number">1.1.4.0.2.</span> <span class="toc-text">网状模型</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#关系模型"><span class="toc-number">1.1.4.0.3.</span> <span class="toc-text">关系模型</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#面向对象模型"><span class="toc-number">1.1.4.0.4.</span> <span class="toc-text">面向对象模型</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#关系模型-1"><span class="toc-number">1.1.5.</span> <span class="toc-text">关系模型</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关系代数"><span class="toc-number">2.</span> <span class="toc-text">关系代数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#关系数据库的基本"><span class="toc-number">2.0.1.</span> <span class="toc-text">关系数据库的基本</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#属性和域"><span class="toc-number">2.0.1.0.1.</span> <span class="toc-text">属性和域</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#关系的3种类型"><span class="toc-number">2.0.1.0.2.</span> <span class="toc-text">关系的3种类型</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#5种基本关系代数运算"><span class="toc-number">2.0.1.0.3.</span> <span class="toc-text">5种基本关系代数运算</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -1033,6 +1013,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>

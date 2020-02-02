@@ -22,7 +22,7 @@
     <meta name="description" content="一只学习狗">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>jsp基础 · Wake Up</title>
+    <title>数据库技术基础（笔记一） · Wake Up</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -217,7 +217,7 @@
                 <a href="/" >Wake Up</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">jsp基础</a>
+                <a href="#" class="post-name">数据库技术基础（笔记一）</a>
             </div>
     </div>
     
@@ -247,7 +247,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            jsp基础
+            数据库技术基础（笔记一）
             <!-- 404 -->
             
         </h1>
@@ -266,18 +266,18 @@ height:50vh;
                 
                     <div class= post-intro-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "web">web</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "笔记">笔记</a>
     
 </div>
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">965</span>阅读时长: <span class="post-count reading-time">4 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">3.1k</span>阅读时长: <span class="post-count reading-time">10 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2019/08/22</span>
+                    <span class="post-intro-time">2020/02/02</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -401,60 +401,62 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h3 id="jsp基础"><a href="#jsp基础" class="headerlink" title="jsp基础"></a>jsp基础</h3><p>  JSP（Java Server Page）是一种创建动态页面的技术。是由静态和动态内容混合组成的动态页面（*.jsp）</p>
-<p>  <strong>静态内容：</strong></p>
-<p>  HTML,XML,Text</p>
-<p>  <strong>动态内容：</strong></p>
-<p>java代码；<br>显示JavaBeans的属性；<br>使用自定义标签调用业务逻辑</p>
-<p> <strong>JSP= HTML+JAVA</strong></p>
-<h6 id="JSP的特点"><a href="#JSP的特点" class="headerlink" title="JSP的特点"></a>JSP的特点</h6><p>内容的展现逻辑分离<br>使用JSP，JavaBeans and custom tags开发网页更加简明<br>使用组件实现软件复用（JavaBeans，custom tags）<br>JSP页面更新时会自动重新编译<br>使制作网页更容易<br>平台可移植<br>高性能，可伸缩和可靠<br>和企业系统应用合并后成为J2EE的一部分</p>
-<p>Server功能强大，比较适合处理逻辑，而不善于处理显示的部分。</p>
-<p>使用println（）函数生成HTML页面<br>维护HTML页面</p>
-<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">out.println（<span class="string">"&lt;html&gt;"</span>）;</span><br><span class="line">   out.printin（""&lt;head&gt;&lt;title&gt;demo1&lt;/title&gt;&lt;/head&gt;"）;</span><br><span class="line">   out.printin（<span class="string">"&lt;body&gt;"</span>）;</span><br><span class="line">   out.printin（<span class="string">"Hello World &lt;br&gt;"</span>）;</span><br><span class="line">   out.println（<span class="string">"大家好"</span>）;</span><br><span class="line">   out.println（<span class="string">"&lt;/body&gt;"</span>）;</span><br><span class="line">   out.println（<span class="string">"&lt;/html&gt;"</span>）；</span><br></pre></td></tr></table></figure>
-
-<h6 id="jsp环境"><a href="#jsp环境" class="headerlink" title="jsp环境"></a>jsp环境</h6><p>​        <strong>开发环境</strong></p>
-<p>​        浏览器：Internet Explorer（IE），Netscape Communicator，Mozilla等.<br>​        最简单的：像notepad，vi等基于文本的编辑器.<br>​        开源集成开发环境（Open Source IDE）：Eclipse，NetBeans等.<br>​        商业集成开发环境（Commercial IDE）：Websphere studio，JBuilder，Sun Java Studio等.</p>
-<p>​    <strong>部署和执行环境-Web容器</strong>（Web Container）<br>​        自由软件：Tomcat，JBoss，Resin等。<br>​        商业软件：Bea Weblogic，IBM Websphere，Oracle Application Server，Sun Java Application Server，Macromedia Jrun等.</p>
-<h6 id="Tomcat安装后的目录结构"><a href="#Tomcat安装后的目录结构" class="headerlink" title="Tomcat安装后的目录结构"></a>Tomcat安装后的目录结构</h6><figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">apache-tomcat/</span><br><span class="line"></span><br><span class="line">	bin/</span><br><span class="line">	lib/</span><br><span class="line">	conf/</span><br><span class="line">		Catalina/</span><br><span class="line">			localhost/</span><br><span class="line">		server.xml/</span><br><span class="line">		web.xml/</span><br><span class="line">	webapps/</span><br><span class="line">	work/</span><br><span class="line">	logs/</span><br></pre></td></tr></table></figure>
-
-<h6 id="部署JSP"><a href="#部署JSP" class="headerlink" title="部署JSP"></a>部署JSP</h6><p><strong>方法一</strong>：修改Tomcat的server.xml文件<br>    位置：Tomcat安装目录/conf/server.xml<br>    内容：&lt;Context path=”/jspdev”docBase=”E:/workspace/jspdev”<br>reloadable=”true“/&gt;<br><strong>方法二</strong>：创建jspdev.xml文件<br>    位置：Tomcat 安装目录/conf/Catalina/localhost<br>    内容：&lt;Context docBase=”E:/workspace/jspdev”reloadable=”true“/&gt;<br><strong>方法三</strong>：直接将WEB工程拷贝到Tomcat的webapps目录</p>
-<h5 id="JSP的生命周期"><a href="#JSP的生命周期" class="headerlink" title="JSP的生命周期"></a>JSP的生命周期</h5><p> <strong>编译阶段：</strong></p>
-<p>servlet容器编译servlet源文件，生成servlet类</p>
-<p>  <strong><em>三个步骤</em>：</strong></p>
-<ul>
-<li><p>解析JSP文件</p>
-</li>
-<li><p>将JSP文件转为sevlet</p>
-</li>
-<li><p>编译servlet  </p>
-<p><strong>初始化阶段</strong>：</p>
-</li>
+        <h2 id="数据库基础（一）"><a href="#数据库基础（一）" class="headerlink" title="数据库基础（一）"></a>数据库基础（一）</h2><h4 id="数据库系统"><a href="#数据库系统" class="headerlink" title="数据库系统"></a>数据库系统</h4><p>  数据库系统（DBS）是一个采用了数据库技术，有组织地，动态地储存大量相关数据，方便用户访问的计算机系统。<br>  DBS是由数据库、硬件、软件和人员组成的。</p>
+<h6 id="数据库（DB）"><a href="#数据库（DB）" class="headerlink" title="数据库（DB）"></a>数据库（DB）</h6><p>  数据库是统一管理的、长期存储在计算机内的，有组织的相关数据的集合。<br>   特点是数据间联系密切、沉余度小、独立性较高、易扩展，并且可以各类用户共享。</p>
+<h6 id="硬件"><a href="#硬件" class="headerlink" title="硬件"></a>硬件</h6><p>   硬件是构成计算机系统的各种物理设备，包括存储数据所需的外部设备。硬件的配置应满足整个数据库系统的需要。</p>
+<h6 id="软件"><a href="#软件" class="headerlink" title="软件"></a>软件</h6><p>   软件包括操作系统、数据库管理系统及应用程序。数据库管理系统简称DBMS它是数据库系统的核心软件，需要在操作系统的支持下工作，解决如何科学地组织和存储数据，如何高效地获取和维护数据。其主要功能包括数据定义功能、数据操纵功能、数据库的运行管理和数据库的建立与维护。</p>
+<h6 id="人员"><a href="#人员" class="headerlink" title="人员"></a>人员</h6><p>   系统分析和数据库设计人员<br>   应用程序员<br>   用户<br>   数据库管理员</p>
+<h4 id="数据库管理系统的功能"><a href="#数据库管理系统的功能" class="headerlink" title="数据库管理系统的功能"></a>数据库管理系统的功能</h4><p>数据库管理系统（DataBase Management System，DBMS）实现对共享数据有效地组织吗，管理和存取。</p>
+<h6 id="数据定义"><a href="#数据定义" class="headerlink" title="数据定义"></a>数据定义</h6><p>  DBMS提供数据定义语言(Data Definition Language, DDL)，用户可以对数据库的结构进行描述，包括外模式、模式和内模式的定义:数据库的完整性定义;安全保密定义，如口今、级别和存取权限等。这些定义存储在数据字典中，是DBMS运行的基本依据。        </p>
+<h6 id="数据库操作"><a href="#数据库操作" class="headerlink" title="数据库操作"></a>数据库操作</h6><p>  DBMS向用户提供数据操纵语言(Data Manipulation Language, DML), 实现对数据库中数据的基本操作，例如检索、插入、修改和删除。<br>  DML分为两类，即宿主型和自含型。<br>  所谓宿主型是指将DML语句嵌入某种主语言(如C、COBOL等)中使用:自含型是指可以单独使用DML语句，供用户交互使用。        </p>
+<h6 id="数据库运行管理"><a href="#数据库运行管理" class="headerlink" title="数据库运行管理"></a>数据库运行管理</h6><p> 数据库在运行期间多用户环境下的并发控制、安全性检查和存取控制、完整性检查和执行、运行日志的组织管理、事务管理和自动恢复等是DBMS的重要组成部分，这些功能可以保证数据库系统的正常运行。        </p>
+<h6 id="数据的组织，存储和管理"><a href="#数据的组织，存储和管理" class="headerlink" title="数据的组织，存储和管理"></a>数据的组织，存储和管理</h6><p>  DBMS分类组织、存储和管理各种数据，包括数据字典、用户数据和存取路径等。因此要确定以何种文件结构和存取在存储级上组织这些数据，一提高存取效率。</p>
+<h6 id="数据库的建立和维护"><a href="#数据库的建立和维护" class="headerlink" title="数据库的建立和维护"></a>数据库的建立和维护</h6><p>  数据库的建立和维护包括数据库的初始建立，数据的转换、数据库的转储和恢复、数据库的重组和重构、性能监测和分析等。</p>
+<h6 id="其他功能"><a href="#其他功能" class="headerlink" title="其他功能"></a>其他功能</h6><p>DBMS的网络通信功能</p>
+<h4 id="数据库管理系统的特征及分类"><a href="#数据库管理系统的特征及分类" class="headerlink" title="数据库管理系统的特征及分类"></a>数据库管理系统的特征及分类</h4><h6 id="DBMS的特征"><a href="#DBMS的特征" class="headerlink" title="DBMS的特征"></a>DBMS的特征</h6><ul>
+<li><strong>数据结构统一化管理</strong><br> 数据库中的DBMS统一管理。由于数据库体统采用复杂的数据模型表示数据结构，数据模型不仅描述数据本身的特点，还描述数据之间的联系。</li>
+<li><strong>有较高的数据独立性</strong><br> 数剧独立性是指数据与程序独立。DBMS负责数据的存储。应用程序负责数据的逻辑结构。<br> 数据的独立性包括数据的物理独立性和数据的逻辑独立性。</li>
+<li><strong>数据控制功能</strong><br>1.数据库的安全性<br>  保护数据库以防止不合法的使用所造成的数据泄漏、更改和破坏。<br>2.数据库的完整性<br> 数据库的正确性和兼容性<br>3.并法控制<br>多用户共享的系统中，许多用户可能同时对同一数据进行操作。<br>4.故障恢复<br>事务内部故障、系统故障、介质故障以及计算机病毒</li>
 </ul>
-<p>加载与JSP对应的servlet类，创建其实例，并调用它的初始化方法</p>
-<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//容器载入jsp文件后，它会在为请求任何服务前调用jspInit()方法</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">jspInit</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="comment">//初始化代码</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p> <strong>执行阶段</strong>：</p>
-<p>调用与JSP对应的servlet实例的服务方法</p>
-<p>​    描述了JSP生命周期中一切与请求相关的交互行为，直到被销毁。 </p>
-<pre><code>当JSP网页完成初始化后，JSP引擎将会调用_jspService()方法。 </code></pre><p>​     _jspService()方法需要一个HttpServletRequest对象和一个HttpServletResponse对象作为它的参数。</p>
-<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">_jspService</span><span class="params">(HttpServletRequest request,</span></span></span><br><span class="line"><span class="function"><span class="params">                 HttpServletResponse response)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="comment">// 服务端处理代码</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p> <strong>销毁阶段</strong>：</p>
-<p>调用与JSP对应的servlet实例的销毁方法，然后销毁servlet实例</p>
-<p>​    JSP生命周期的销毁阶段描述了当一个JSP网页从容器中被移除时所发生的一切。<br>     jspDestroy()方法在JSP中等价于servlet中的销毁方法。当您需要执行任何清理工作时复写jspDestroy()方法，比如释放数据库连接或者关闭文件夹等等。 </p>
-<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//jspDestroy()方法</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">jspDestroy</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="comment">// 清理代码</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h6 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h6><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">jsp生命周期代码实例</span><br><span class="line">&lt;%@ page language=<span class="string">"java"</span> contentType=<span class="string">"text/html; charset=UTF-8"</span></span><br><span class="line">    pageEncoding=<span class="string">"UTF-8"</span>%&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;title&gt;life.jsp&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;%! </span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">int</span> initVar=<span class="number">0</span>;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">int</span> serviceVar=<span class="number">0</span>;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">int</span> destroyVar=<span class="number">0</span>;</span><br><span class="line">%&gt;</span><br><span class="line">  </span><br><span class="line">&lt;%!</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">jspInit</span><span class="params">()</span></span>&#123;</span><br><span class="line">    initVar++;</span><br><span class="line">    System.out.println(<span class="string">"jspInit(): JSP被初始化了"</span>+initVar+<span class="string">"次"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">jspDestroy</span><span class="params">()</span></span>&#123;</span><br><span class="line">    destroyVar++;</span><br><span class="line">    System.out.println(<span class="string">"jspDestroy(): JSP被销毁了"</span>+destroyVar+<span class="string">"次"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">%&gt;</span><br><span class="line"></span><br><span class="line">&lt;%</span><br><span class="line">  serviceVar++;</span><br><span class="line">  System.out.println(<span class="string">"_jspService(): JSP共响应了"</span>+serviceVar+<span class="string">"次请求"</span>);</span><br><span class="line"></span><br><span class="line">  String content1=<span class="string">"初始化次数 : "</span>+initVar;</span><br><span class="line">  String content2=<span class="string">"响应客户请求次数 : "</span>+serviceVar;</span><br><span class="line">  String content3=<span class="string">"销毁次数 : "</span>+destroyVar;</span><br><span class="line">%&gt;</span><br><span class="line">&lt;h1&gt;菜鸟教程 JSP 测试实例&lt;/h1&gt;</span><br><span class="line">&lt;p&gt;&lt;%=content1 %&gt;&lt;/p&gt;</span><br><span class="line">&lt;p&gt;&lt;%=content2 %&gt;&lt;/p&gt;</span><br><span class="line">&lt;p&gt;&lt;%=content3 %&gt;&lt;/p&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-
+<h6 id="DBMS的分类"><a href="#DBMS的分类" class="headerlink" title="DBMS的分类"></a>DBMS的分类</h6><ul>
+<li><strong>关系数据库体统</strong><br>数据库系统是建立在关系数据库模型基础上的数据库，借助于集合代数等概念和方法来处理数据库中的数据。  </li>
+<li><strong>面对对象的数据库系统</strong><br>支持以对象形式对数据建模的数据库管理系统，包括对对象的类，类属性的继承和子类的支持。<br>特点：<br>面对对象数据模型能完整的描述现实世界的数据结构，能表达数据间的嵌套、递归联系。<br>面对对象技术的封装性和继承性提高了软件的可重用性。    </li>
+<li><strong>对象关系数据库系统</strong><br>对象关系数据库系统在传统的关系数据模型基础上提供元组、数组、集合等更为丰富的数据类型以及处理新的数据类型以及处理新的数据类型操作的能力。</li>
+</ul>
+<h4 id="数据库系统的体系结构"><a href="#数据库系统的体系结构" class="headerlink" title="数据库系统的体系结构"></a>数据库系统的体系结构</h4><h6 id="集中试数据库系统"><a href="#集中试数据库系统" class="headerlink" title="集中试数据库系统"></a>集中试数据库系统</h6><p>在系统中数据是集中的，数据的管理也是集中的，数据库系统中所有的功能都集中在DBMS所在的计算机中。</p>
+<h6 id="客户端-服务器结构"><a href="#客户端-服务器结构" class="headerlink" title="客户端/服务器结构"></a>客户端/服务器结构</h6><p>一个处理机（客户端）的请求被送到另一个处理机（服务器）上执行<br><strong>事务服务器</strong><br>事务服务器也称查询服务器。它提供一个接口，使得客户端可以发出执行一个动作的请求，服务器响应客户端请求，并执行结构返回给客户端。用户端可以用SQL，通过应用程序使用调用机制来表达请求。<br><strong>数据服务器</strong><br>  数据服务器系统使用客户端可以与服务器交互，以文件或页面为单位对数据进行读取或进行读取或更新。</p>
+<h6 id="并行数据库系统"><a href="#并行数据库系统" class="headerlink" title="并行数据库系统"></a>并行数据库系统</h6><ul>
+<li><strong>共享内存式多处理器</strong><br> 一台计算机上同时有多个活动的CPU，他们共享一个内存和一个公共磁盘接口。</li>
+<li><strong>无共享式并行体系结构</strong><br> 一台计算机上同时有多个活动的CPU，他们都有自己的内存和公共磁盘。<h6 id="分布试数据库系统"><a href="#分布试数据库系统" class="headerlink" title="分布试数据库系统"></a>分布试数据库系统</h6>分布式DBMS有两种：物理上的分布和逻辑上的分布<br>物理上的分布的指导思想是把单位的数据模式(称为全局数据模式)按数据来源和用途合理地分布在系统的多个结点上，使大部分数据可以就地或就近存取。数据在物理上分布后，由系统统一管理，使用户不感到数据的分布。<br>逻辑上的分布：<br>一般由两部分组成:一是 本结点的数据模式，<br>二是本结点共享的其他结点上有关的数据模式。结点间的数据共享由双方协商确定。这种数据库结构有利于数据库的集成、扩展和重新配置。</li>
+</ul>
+<h4 id="数据库的三级模式结构"><a href="#数据库的三级模式结构" class="headerlink" title="数据库的三级模式结构"></a>数据库的三级模式结构</h4><h6 id="概念模式"><a href="#概念模式" class="headerlink" title="概念模式"></a>概念模式</h6><p>概念模式是数据库中全部数据的逻辑结构和特征的描述，由若干个概念记录类型组成，只涉及的描述，不涉及具体的值。<br>概念模式反映的事数据库的结构及其联系，所以是相对稳定的；而实例反应的是数据库某一时刻的状态，所以是相对变动的。</p>
+<h6 id="外模式"><a href="#外模式" class="headerlink" title="外模式"></a>外模式</h6><p>外模式是用户与数据库系统的接口，是用户用到的那一部分数据的描述。他由若干的外部记录类型组成。<br>用户使用数据操纵语言对数据库进行操作，实际上是对外模式的外部记录进行操作。</p>
+<h6 id="内模式"><a href="#内模式" class="headerlink" title="内模式"></a>内模式</h6><p>  内模式也称存储模式，是数据物理结构和存储方式的措述，是数据在数据库内部的表示方式，定义所有的内部记录类型、索引和文件的组织方式，以及数据控制方面的细节。<br>  内部记录并不部及物理记录，也不涉及设备的约束。它比内模式更接近于幼理存储和访间的那些软件机制，是操作系统的一部分（即文件系统）。例如，从磁盘上读、写数据。</p>
+<h6 id="两级映像"><a href="#两级映像" class="headerlink" title="两级映像"></a>两级映像</h6><p>（1）模式内模式映像。存在于概念级和内部级之间，实现了概念模式和内模式之间的相互转换。<br>（2）外模式/模式映像。存在于外部级和概念级之间，实现了外模式和概念模式之间的相互转换。</p>
+<p>  数据的独立性是指数据与程序独立，将数据的定义从程序中分离出去，由DBMS负责数据的存储，从而简化应用程序，大大减少应用程序编制的工作量。数据的独立性是由DBMS的二级映像功能来保证的。<br>  数据的独立性：<br>（1）数据的物理独立性。数据的物理独立性是指当数据库的内模式发生改变时，数据的逻辑结构不变。由于应用程序处理的只是数据的逻辑结构，这样物理独立性可以保证，当数据的物理结构改变时，应用程序不用改变。但是，为了保证应用程序能够正确执行，需要修改概念模式和内模式之间的映像。<br>（2）数据的逻辑独立性。数据的逻辑独立性是指用户的应用程序与数据库的逻辑结构是相互独立的。数据的逻辑结构发生变化后，用户程序也可以不修改。但是，为了保证应用程序能够正确执行，需要修改外模式和概念模式之间的映像。</p>
+<h4 id="大数据"><a href="#大数据" class="headerlink" title="大数据"></a>大数据</h4><h6 id="大数据的特征"><a href="#大数据的特征" class="headerlink" title="大数据的特征"></a>大数据的特征</h6><ol>
+<li><p><strong>大数据</strong>（Big Data）是指“无法用现有的软件工具提取、存储、搜索、共享、分析和处理的海量的、复杂的数据集合”。业界通常用“4V”来概括大数据的特征。</p>
+<p><strong>大量化</strong>（Volume）指数据体量巨大。随着IT技术的迅猛发展，数据量级已从TB（1012字节）发展至PB乃至ZB，可称海量、巨量乃至超量。</p>
+<p><strong>多样化</strong>（Variety）指数据类型案多。相对于以往便于存储的以文本为主的结构化数据，非结构化数据越来越多，包括网络日志、音频、视频、图片、地理位置信息等，这些多类型的数据对数据的处理能力提出了更高的要求。</p>
+<p><strong>价值密度低</strong>（Value）指大量的不相关信息导致价值密度的高低与数据总量的大小成反比。以视频为例，一部一小时的视频，在连续不间断的监控中，有用数据可能仅有一两秒。因此，如何通过强大的机器算法更迅速地完成数据的价值并提高其价值，如何对未来趋势与模式的可预测分析、深度复杂分析成为目前大数据背景下需要解决的难题。</p>
+<p><strong>快速化</strong>（velocity）指处理速度快。大数据时代对时效性要求很高，这是大数据区分于传统数据挖掘的最显著特征。</p>
+</li>
+</ol>
+<h6 id="大数据研究的问题"><a href="#大数据研究的问题" class="headerlink" title="大数据研究的问题"></a>大数据研究的问题</h6><p>  大数据不仅仅是指海量的信息，更强调人类对信息的筛选、处理，保留有价值的信息，即让大数据更有意义，挖掘其清在的“大价值”这才是对大数据的正确理解。为此，有许多问题需要研究与解决。</p>
+<ol>
+<li>高并发数据存取的性能要求及数据存储的横向扩展问题。目前，多从架构和并行等方面考虑解决。</li>
+<li>实现大数据资源化、知识化、普适化的问题，解决这些问题的关键是对非结构化数据的内容理解。</li>
+<li>非结构化海量信息的智能化处理问题，主要解决自然语言理解、多媒体内容理解、机器学习等问题。</li>
+</ol>
 
     </article>
     <!-- license  -->
     
         <div class="license-wrapper">
             <p>原文作者：<a href="http://yoursite.com">紫鱼</a>
-            <p>原文链接：<a href="http://yoursite.com/all/technology/jsp基础/">http://yoursite.com/all/technology/jsp基础/</a>
-            <p>发表日期：<a href="http://yoursite.com/all/technology/jsp基础/">August 22nd 2019, 3:11:06 pm</a>
-            <p>更新日期：<a href="http://yoursite.com/all/technology/jsp基础/">August 22nd 2019, 5:03:27 pm</a>
+            <p>原文链接：<a href="http://yoursite.com/all/notes/数据库技术基础(笔记一)/">http://yoursite.com/all/notes/数据库技术基础(笔记一)/</a>
+            <p>发表日期：<a href="http://yoursite.com/all/notes/数据库技术基础(笔记一)/">February 2nd 2020, 7:43:21 pm</a>
+            <p>更新日期：<a href="http://yoursite.com/all/notes/数据库技术基础(笔记一)/">February 2nd 2020, 8:10:27 pm</a>
             <p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -463,16 +465,16 @@ height:50vh;
         <li class="next">
             
                 <div class="nextSlogan">Next Post</div>
-                <a href= "/all/technology/EL表达式/" title= "EL表达式">
-                    <div class="nextTitle">EL表达式</div>
+                <a href= "/all/notes/数据库技术基础(笔记二)/" title= "数据库技术基础（笔记二）">
+                    <div class="nextTitle">数据库技术基础（笔记二）</div>
                 </a>
             
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href= "/all/technology/JDBC/" title= "JDBC">
-                    <div class="prevTitle">JDBC</div>
+                <a href= "/all/technology/Servlet基础/" title= "Servlet基础">
+                    <div class="prevTitle">Servlet基础</div>
                 </a>
             
         </li>
@@ -606,7 +608,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#jsp基础"><span class="toc-number">1.</span> <span class="toc-text">jsp基础</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#JSP的特点"><span class="toc-number">1.0.0.1.</span> <span class="toc-text">JSP的特点</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#jsp环境"><span class="toc-number">1.0.0.2.</span> <span class="toc-text">jsp环境</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Tomcat安装后的目录结构"><span class="toc-number">1.0.0.3.</span> <span class="toc-text">Tomcat安装后的目录结构</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#部署JSP"><span class="toc-number">1.0.0.4.</span> <span class="toc-text">部署JSP</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#JSP的生命周期"><span class="toc-number">1.0.1.</span> <span class="toc-text">JSP的生命周期</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#实例"><span class="toc-number">1.0.1.1.</span> <span class="toc-text">实例</span></a></li></ol></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#数据库基础（一）"><span class="toc-number">1.</span> <span class="toc-text">数据库基础（一）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#数据库系统"><span class="toc-number">1.0.1.</span> <span class="toc-text">数据库系统</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#数据库（DB）"><span class="toc-number">1.0.1.0.1.</span> <span class="toc-text">数据库（DB）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#硬件"><span class="toc-number">1.0.1.0.2.</span> <span class="toc-text">硬件</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#软件"><span class="toc-number">1.0.1.0.3.</span> <span class="toc-text">软件</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#人员"><span class="toc-number">1.0.1.0.4.</span> <span class="toc-text">人员</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数据库管理系统的功能"><span class="toc-number">1.0.2.</span> <span class="toc-text">数据库管理系统的功能</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#数据定义"><span class="toc-number">1.0.2.0.1.</span> <span class="toc-text">数据定义</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#数据库操作"><span class="toc-number">1.0.2.0.2.</span> <span class="toc-text">数据库操作</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#数据库运行管理"><span class="toc-number">1.0.2.0.3.</span> <span class="toc-text">数据库运行管理</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#数据的组织，存储和管理"><span class="toc-number">1.0.2.0.4.</span> <span class="toc-text">数据的组织，存储和管理</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#数据库的建立和维护"><span class="toc-number">1.0.2.0.5.</span> <span class="toc-text">数据库的建立和维护</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#其他功能"><span class="toc-number">1.0.2.0.6.</span> <span class="toc-text">其他功能</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数据库管理系统的特征及分类"><span class="toc-number">1.0.3.</span> <span class="toc-text">数据库管理系统的特征及分类</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#DBMS的特征"><span class="toc-number">1.0.3.0.1.</span> <span class="toc-text">DBMS的特征</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#DBMS的分类"><span class="toc-number">1.0.3.0.2.</span> <span class="toc-text">DBMS的分类</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数据库系统的体系结构"><span class="toc-number">1.0.4.</span> <span class="toc-text">数据库系统的体系结构</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#集中试数据库系统"><span class="toc-number">1.0.4.0.1.</span> <span class="toc-text">集中试数据库系统</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#客户端-服务器结构"><span class="toc-number">1.0.4.0.2.</span> <span class="toc-text">客户端/服务器结构</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#并行数据库系统"><span class="toc-number">1.0.4.0.3.</span> <span class="toc-text">并行数据库系统</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#分布试数据库系统"><span class="toc-number">1.0.4.0.4.</span> <span class="toc-text">分布试数据库系统</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数据库的三级模式结构"><span class="toc-number">1.0.5.</span> <span class="toc-text">数据库的三级模式结构</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#概念模式"><span class="toc-number">1.0.5.0.1.</span> <span class="toc-text">概念模式</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#外模式"><span class="toc-number">1.0.5.0.2.</span> <span class="toc-text">外模式</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#内模式"><span class="toc-number">1.0.5.0.3.</span> <span class="toc-text">内模式</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#两级映像"><span class="toc-number">1.0.5.0.4.</span> <span class="toc-text">两级映像</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#大数据"><span class="toc-number">1.0.6.</span> <span class="toc-text">大数据</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#大数据的特征"><span class="toc-number">1.0.6.0.1.</span> <span class="toc-text">大数据的特征</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#大数据研究的问题"><span class="toc-number">1.0.6.0.2.</span> <span class="toc-text">大数据研究的问题</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
