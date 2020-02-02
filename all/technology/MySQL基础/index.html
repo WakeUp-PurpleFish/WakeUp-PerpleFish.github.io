@@ -272,7 +272,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">3.6k</span>阅读时长: <span class="post-count reading-time">16 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">7.2k</span>阅读时长: <span class="post-count reading-time">29 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -587,21 +587,216 @@ DML（Data Manipulation Language）：数据操作语言，用来定义数据库
 <p>  <strong>查询有佣金的人数，以及有领导的人数：</strong></p>
 <p>SELECT COUNT(comm), COUNT(mgr) FROM emp;</p>
 <p><strong>SUM和AVG</strong></p>
-<p>当需要纵向求和时使用sum()函数。</p>
-<p>  查询所有雇员月薪和：</p>
-<p><strong>SELECT SUM(sal) FROM emp;</strong></p>
-<p>  查询所有雇员月薪和，以及所有雇员佣金和：</p>
-<p><strong>SELECT SUM(sal), SUM(comm) FROM emp;</strong></p>
-<p>  查询所有雇员月薪+佣金和：</p>
-<p><strong>SELECT SUM(sal+IFNULL(comm,0)) FROM emp;</strong></p>
-<p>  统计所有员工平均工资：</p>
-<p><strong>SELECT SUM(sal), COUNT(sal) FROM emp;</strong></p>
-<p>或者</p>
-<p><strong>SELECT AVG(sal) FROM emp;</strong></p>
+<p><strong>当需要纵向求和时使用sum()函数。</strong></p>
+<p>  <strong>查询所有雇员月薪和：</strong></p>
+<p>SELECT SUM(sal) FROM emp;</p>
+<p>  <strong>查询所有雇员月薪和，以及所有雇员佣金和：</strong></p>
+<p>SELECT SUM(sal), SUM(comm) FROM emp;</p>
+<p>  <strong>查询所有雇员月薪+佣金和：</strong></p>
+<p>SELECT SUM(sal+IFNULL(comm,0)) FROM emp;</p>
+<p>  <strong>统计所有员工平均工资：</strong></p>
+<p>SELECT SUM(sal), COUNT(sal) FROM emp;</p>
+<p><strong>或者</strong></p>
+<p>SELECT AVG(sal) FROM emp;</p>
 <p><strong>MAX和MIN</strong></p>
-<p>  查询最高工资和最低工资：</p>
-<p><strong>SELECT MAX(sal), MIN(sal) FROM emp;</strong></p>
-<h6 id="分组查询"><a href="#分组查询" class="headerlink" title="分组查询"></a><strong>分组查询</strong></h6>
+<p>  <strong>查询最高工资和最低工资：</strong></p>
+<p>SELECT MAX(sal), MIN(sal) FROM emp;</p>
+<h6 id="分组查询"><a href="#分组查询" class="headerlink" title="分组查询"></a><strong>分组查询</strong></h6><p>​    <strong>当需要分组查询时需要使用GROUP BY子句。如查询每个部门的工资和，这说明要使用部分来分组。</strong></p>
+<p> <strong>查询每个部门的部门编号和每个部门的工资和</strong></p>
+<p>SELECT deptno,SUM(sal) FROM emp GROUP BY deptno;</p>
+<p><strong>查询每个部门的部门编号以及每个部门的人数</strong></p>
+<p>SELECT deptno,COUNT(*) FROM emp GROUP BY deptno;</p>
+<p><strong>查询每个部门的部门编号以及每个部门工资大于1500的人数</strong></p>
+<p>SELECT deptno,COUNT(*) FROM sal&gt;1500 GROUP BY deptno;</p>
+<p><strong>HAVING字句</strong></p>
+<p><strong>查询工资总和大于9000的部门编号以及工资和</strong></p>
+<p>SELECT deptno,SUM(sal) FROM emp GROUP BY deptno HAVING SUM(sal)&gt;9000;</p>
+<p>​    <strong>注意</strong>：WHERE是对分组前记录的条件，如果某行记录没有满足WHERE子句的条件，那么这行记录不会参加分组；而HAVING是对分组后数据的约束。</p>
+<h6 id="LIMIT"><a href="#LIMIT" class="headerlink" title="LIMIT"></a>LIMIT</h6><p>LIMIT用来限定查询结果的起始行，以及总行数。</p>
+<p><strong>查询5行记录，起始行从0开始</strong></p>
+<p>SELECT * FROM emp LIMIT 0,5;</p>
+<p><strong>注意</strong>：起始行从0开始，即第一行开始。</p>
+<p><strong>查询10行记录，起始行从3开始</strong></p>
+<p>SELECT * FROM emp LIMIT 3, 10;</p>
+<h5 id="完整性约束"><a href="#完整性约束" class="headerlink" title="完整性约束"></a>完整性约束</h5><p>​        完整性约束是为了表的数据的正确性！如果数据不正确，那么一开始就不能添加到表中。</p>
+<h6 id="主键"><a href="#主键" class="headerlink" title="主键"></a>主键</h6><p>​        当某一列添加了主键约束后，那么这一列的数据就不能重复出现。这样每行记录中其主键列的值就是这一行的唯一标识。例如学生的学号可以用来做唯一标识，而学生的姓名是不能做唯一标识的，因为学习有可能同名。​<br>​        主键列的值不能为NULL，也不能重复！<br>​        指定主键约束使用PRIMARY KEY关键字。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">	创建表：定义列时指定主键：</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> stu(</span><br><span class="line">		<span class="keyword">sid</span>	    <span class="built_in">CHAR</span>(<span class="number">6</span>) PRIMARY <span class="keyword">KEY</span>,</span><br><span class="line">		sname	<span class="built_in">VARCHAR</span>(<span class="number">20</span>),</span><br><span class="line">		age		<span class="built_in">INT</span>,</span><br><span class="line">		gender	<span class="built_in">VARCHAR</span>(<span class="number">10</span>) </span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">	创建表：定义列之后独立指定主键：</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> stu(</span><br><span class="line">		<span class="keyword">sid</span>	    <span class="built_in">CHAR</span>(<span class="number">6</span>),</span><br><span class="line">		sname	<span class="built_in">VARCHAR</span>(<span class="number">20</span>),</span><br><span class="line">		age		<span class="built_in">INT</span>,</span><br><span class="line">		gender	<span class="built_in">VARCHAR</span>(<span class="number">10</span>),</span><br><span class="line">		PRIMARY <span class="keyword">KEY</span>(<span class="keyword">sid</span>)</span><br><span class="line">); </span><br><span class="line"></span><br><span class="line">	修改表时指定主键：</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> stu</span><br><span class="line"><span class="keyword">ADD</span> PRIMARY <span class="keyword">KEY</span>(<span class="keyword">sid</span>);</span><br><span class="line"></span><br><span class="line">	删除主键（只是删除主键约束，而不会删除主键列）：</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> stu <span class="keyword">DROP</span> PRIMARY <span class="keyword">KEY</span>;</span><br></pre></td></tr></table></figure>
+
+<h6 id="主键自增长"><a href="#主键自增长" class="headerlink" title="主键自增长"></a>主键自增长</h6><p>  MySQL提供了主键自动增长的功能！这样用户就不用再为是否有主键是否重复而烦恼了。当主键设置为自动增长后，在没有给出主键值时，主键的值会自动生成，而且是最大主键值+1，也就不会出现重复主键的可能了。</p>
+<p>  创建表时设置主键自增长（主键必须是整型才可以自增长）：</p>
+<p><strong>CREATE TABLE stu(</strong></p>
+<p>​          <strong>sid INT PRIMARY KEY AUTO_INCREMENT,</strong></p>
+<p>​                  <strong>sname      VARCHAR(20),</strong></p>
+<p>​                  <strong>age            INT,</strong></p>
+<p>​                  <strong>gender     VARCHAR(10)</strong></p>
+<p><strong>);</strong></p>
+<p>  <strong>修改表时设置主键自增长：</strong></p>
+<p>ALTER TABLE stu CHANGE sid sid INT AUTO_INCREMENT;</p>
+<p>  <strong>修改表时删除主键自增长：</strong></p>
+<p>ALTER TABLE stu CHANGE sid sid INT;</p>
+<h6 id="非空"><a href="#非空" class="headerlink" title="非空"></a>非空</h6><p>​    指定非空约束的列不能没有值，也就是说在插入记录时，对添加了非空约束的列一定要给值；在修改记录时，不能把非空列的值设置为NULL。</p>
+<p>  <strong>指定非空约束：</strong></p>
+<p>CREATE TABLE stu(</p>
+<p>​          sid INT PRIMARY KEY AUTO_INCREMENT,</p>
+<p>​          sname VARCHAR(10) NOT NULL,</p>
+<p>​                  age            INT,</p>
+<p>​                  gender     VARCHAR(10)</p>
+<p>);</p>
+<p>当为sname字段指定为非空后，在向stu表中插入记录时，必须给sname字段指定值，否则会报错：</p>
+<p><strong>INSERT INTO stu(sid) VALUES(1);</strong> </p>
+<p>插入的记录中sname没有指定值，所以会报错！</p>
+<h6 id="唯一"><a href="#唯一" class="headerlink" title="唯一"></a>唯一</h6><p>​    还可以为字段指定唯一约束！当为字段指定唯一约束后，那么字段的值必须是唯一的。这一点与主键相似！例如给stu表的sname字段指定唯一约束：</p>
+<p><strong>CREATE TABLE tab_ab(</strong></p>
+<p>​         <strong>sid INT PRIMARY KEY AUTO_INCREMENT,</strong></p>
+<p>​         <strong>sname VARCHAR(10) UNIQUE</strong></p>
+<p><strong>);</strong></p>
+<p> <strong>INSERT INTO sname(sid, sname) VALUES(1001, ‘zs’);</strong></p>
+<p><strong>INSERT INTO sname(sid, sname) VALUES(1002, ‘zs’);</strong></p>
+<p>　当两次插入相同的名字时，MySQL会报错！</p>
+<h6 id="外键"><a href="#外键" class="headerlink" title="外键"></a>外键</h6><p>​    主外键是构成表与表关联的唯一途径！</p>
+<p>​    外键是另一张表的主键！例如员工表与部门表之间就存在关联关系，其中员工表中的部门编号字段就是外键，是相对部门表的外键。</p>
+<p><strong>例如</strong>：在t_section表中sid为1的记录说明有一个分类叫java，版主是t_user表中uid为1的用户，即zs！</p>
+<p><strong>例如</strong>：在t_topic表中tid为2的记录是名字为“Java是咖啡”的帖子，它是java版块的帖子，它的作者是ww。</p>
+<p>外键就是用来约束这一列的值必须是另一张表的主键值！！！</p>
+<p>  <strong>创建t_user表，指定uid为主键列：</strong></p>
+<p>CREATE TABLE t_user(</p>
+<p>​         uid   INT PRIMARY KEY AUTO_INCREMENT,</p>
+<p>​         uname     VARCHAR(20) UNIQUE NOT NULL</p>
+<p>);</p>
+<p>  <strong>创建t_section表，指定sid为主键列，u_id为相对t_user表的uid列的外键：</strong></p>
+<p>CREATE TABLE t_section(</p>
+<p>​          sid    INT PRIMARY KEY AUTO_INCREMENT,</p>
+<p>​          sname      VARCHAR(30),</p>
+<p>​          u_id INT,</p>
+<p>​          CONSTRAINT fk_t_user FOREIGN KEY(u_id) REFERENCES t_user(uid)</p>
+<p>);</p>
+<p> <strong>修改t_section表，指定u_id为相对t_user表的uid列的外键：</strong></p>
+<p>ALTER TABLE t_section ADD CONSTRAINT fk_t_user FOREIGN KEY(u_id) REFERENCES t_user(uid);</p>
+<p> <strong>修改t_section表，删除u_id的外键约束：</strong></p>
+<p>ALTER TABLE t_section DROP FOREIGN KEY fk_t_user;</p>
+<h6 id="表与表之间的关系"><a href="#表与表之间的关系" class="headerlink" title="表与表之间的关系"></a>表与表之间的关系</h6><ul>
+<li><p>一对一：例如t_person表和t_card表，即人和身份证。这种情况需要找出主从关系，即谁是主表，谁是从表。人可以没有身份证，但身份证必须要有人才行，所以人是主表，而身份证是从表。设计从表可以有两种方案：</p>
+<p>​          在t_card表中添加外键列（相对t_user表），并且给外键添加唯一约束；</p>
+<pre><code>给t_card表的主键添加外键约束（相对t_user表），即t_card表的主键也是外键。</code></pre></li>
+<li><p>一对多（多对一）：最为常见的就是一对多！一对多和多对一，这是从哪个角度去看得出来的。t_user和t_section的关系，从t_user来看就是一对多，而从t_section的角度来看就是多对一！这种情况都是在多方创建外键！</p>
+</li>
+<li><p>多对多：例如t_stu和t_teacher表，即一个学生可以有多个老师，而一个老师也可以有多个学生。这种情况通常需要创建中间表来处理多对多关系。例如再创建一张表t_stu_tea表，给出两个外键，一个相对t_stu表的外键，另一个相对t_teacher表的外键。</p>
+</li>
+</ul>
+<h5 id="编码"><a href="#编码" class="headerlink" title="编码"></a>编码</h5><h6 id="查看MySQL编码"><a href="#查看MySQL编码" class="headerlink" title="查看MySQL编码"></a>查看MySQL编码</h6><p><strong>SHOW VARIABLES LIKE ‘char%’;</strong></p>
+<p>因为当初安装时指定了字符集为UTF8，所以所有的编码都是UTF8。</p>
+<p>  character_set_client：你发送的数据必须与client指定的编码一致！！！服务器会使用该编码来解读客户端发送过来的数据；</p>
+<p>  character_set_connection：通过该编码与client一致！该编码不会导致乱码！当执行的是查询语句时，客户端发送过来的数据会先转换成connection指定的编码。但只要客户端发送过来的数据与client指定的编码一致，那么转换就不会出现问题；</p>
+<p>  character_set_database：数据库默认编码，在创建数据库时，如果没有指定编码，那么默认使用database编码；</p>
+<p>  character_set_server：MySQL服务器默认编码；</p>
+<p>  character_set_results：响应的编码，即查询结果返回给客户端的编码。这说明客户端必须使用result指定的编码来解码；</p>
+<h6 id="控制台编码"><a href="#控制台编码" class="headerlink" title="控制台编码"></a>控制台编码</h6><p>修改character_set_client、character_set_results、character_set_connection为GBK，就不会出现乱码了。但其实只需要修改character_set_client和character_set_results。</p>
+<p>控制台的编码只能是GBK，而不能修改为UTF8，这就出现一个问题。客户端发送的数据是GBK，而character_set_client为UTF8，这就说明客户端数据到了服务器端后一定会出现乱码。既然不能修改控制台的编码，那么只能修改character_set_client为GBK了。</p>
+<p>服务器发送给客户端的数据编码为character_set_result，它如果是UTF8，那么控制台使用GBK解码也一定会出现乱码。因为无法修改控制台编码，所以只能把character_set_result修改为GBK。</p>
+<p>​      <strong>修改character_set_client变量：</strong></p>
+<p>set character_set_client=gbk;</p>
+<p>​      <strong>修改character_set_results变量：</strong></p>
+<p>set character_set_results=gbk;</p>
+<h5 id="多表查询"><a href="#多表查询" class="headerlink" title="多表查询"></a>多表查询</h5><p>多表查询有如下几种：</p>
+<p>合并结果集</p>
+<p>连接查询</p>
+<p>​        内连接</p>
+<p>​        外连接</p>
+<p>​            左外连接</p>
+<p>​            右外连接</p>
+<p>​            全外连接（MySQL不支持）</p>
+<p>​        自然连接</p>
+<p>​    子查询</p>
+<h5 id="合并结果集"><a href="#合并结果集" class="headerlink" title="合并结果集"></a>合并结果集</h5><p>  <strong>作用</strong>：合并结果集就是把两个select语句的查询结果合并到一起</p>
+<p>​    合并结果集有两种方式：</p>
+<p>​         <strong>UNION</strong>：去除重复记录，例如：SELECT * FROM t1 UNION SELECT * FROM t2；</p>
+<p>​        <strong>UNION ALL</strong>：不去除重复记录，例如：SELECT * FROM t1 UNION ALL SELECT * FROM t2。</p>
+<p><strong>要求</strong>：被合并的两个结果：列数、列类型必须相同。</p>
+<p><strong>连接查询</strong></p>
+<p>​        连接查询会产生笛卡尔积，假设集合A={a,b}，集合B={0,1,2}，则两个集合的笛卡尔积为{(a,0),(a,1),(a,2),(b,0),(b,1),(b,2)}。可以扩展到多个集合的情况。</p>
+<p>​        那么多表查询产生这样的结果并不是我们想要的，那么怎么去除重复的，不想要的记录呢，当然是通过条件过滤。通常要查询的多个表之间都存在关联关系，那么就通过关联关系去除笛卡尔积。</p>
+<p>​        你能想像到emp和dept表连接查询的结果么？emp一共14行记录，dept表一共4行记录，那么连接后查询出的结果是56行记录。</p>
+<p>​        也就你只是想在查询emp表的同时，把每个员工的所在部门信息显示出来，那么就需要使用主外键来去除无用信息了。</p>
+<p><strong>使用外连接关系做为条件来去除无用信息</strong></p>
+<p>​    SELECT * FROM emp,dept WHERE emp.deptno=dept.deptno;</p>
+<p>在多表查询中，在使用列时必须指定列所从属的表，例如emp.deptno表示emp表的deptno列。</p>
+<p><strong>还可以为表指定别名，然后在引用列时使用别名即可</strong></p>
+<p>​    SELECT e.ename,e.sal,e.comm,d.dname FROM emp AS e,dept AS d WHERE e.deptno=d.deptno;</p>
+<p>其中AS是可以省略的</p>
+<h6 id="内连接"><a href="#内连接" class="headerlink" title="内连接"></a><strong>内连接</strong></h6>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SELECT * </span><br><span class="line">FROM emp e </span><br><span class="line">INNER JOIN dept d </span><br><span class="line">ON e.deptno=d.deptno;</span><br></pre></td></tr></table></figure>
+
+<h6 id="外连接"><a href="#外连接" class="headerlink" title="外连接"></a><strong>外连接</strong></h6><p> 外连接的特点：查询出的结果存在不满足条件的可能</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//左链接</span><br><span class="line">SELECT * FROM emp e </span><br><span class="line">LEFT OUTER JOIN dept d </span><br><span class="line">ON e.deptno=d.deptno;</span><br></pre></td></tr></table></figure>
+
+<p>​        <strong>左连接</strong>是先查询出左表（即以左表为主），然后查询右表，右表中满足条件的显示出来，不满足条件的显示NULL。</p>
+<p>​       <strong>右连接</strong>就是先把右表中所有记录都查询出来，然后左表满足条件的显示，不满足显示NULL。例如在dept表中的40部门并不存在员工，但在右连接中，如果dept表为右表，那么还是会查出40部门，但相应的员工信息为NULL。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//右链接</span><br><span class="line">SELECT * FROM emp e </span><br><span class="line">RIGHT OUTER JOIN dept d </span><br><span class="line">ON e.deptno=d.deptno;</span><br></pre></td></tr></table></figure>
+
+<p><strong>连接查询心得</strong>：</p>
+<p>​    <em>连接不限与两张表，连接查询也可以是三张、四张，甚至N**张表的连接查询。通常连接查询不可能需要整个笛卡尔积，而只是需要其中一部分，那么这时就需要使用条件来去除不需要的记录。这个条件大多数情况下都是使用主外键关系去除。</em></p>
+<p>​    <em>两张表的连接查询一定有一个主外键关系，三张表的连接查询就一定有两个主外键关系，所以在大家不是很熟悉连接查询时，首先要学会去除无用笛卡尔积，那么就是用主外键关系作为条件来处理。如果两张表的查询，那么至少有一个主外键条件，三张表连接至少有两个主外键条件。</em></p>
+<h6 id="自然连接"><a href="#自然连接" class="headerlink" title="自然连接"></a>自然连接</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM emp NATURAL JOIN dept;</span><br><span class="line">SELECT * FROM emp NATURAL LEFT JOIN dept;</span><br><span class="line">SELECT * FROM emp NATURAL RIGHT JOIN dept;</span><br></pre></td></tr></table></figure>
+
+<h6 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h6><p>子查询就是嵌套查询，即SELECT中包含SELECT，如果一条语句中存在两个，或两个以上SELECT，那么就是子查询语句了。</p>
+<p>  子查询出现的位置：</p>
+<p>  where后，作为条件的一部分；</p>
+<p>  from后，作为被查询的一条表；</p>
+<p>  当子查询出现在where后作为条件时，还可以使用如下关键字：</p>
+<p>  any   all</p>
+<p>  子查询结果集的形式：</p>
+<ul>
+<li>单行单列（用于条件）</li>
+<li>单行多列（用于条件）</li>
+<li>多行单列（用于条件）</li>
+<li>多行多列（用于表）</li>
+</ul>
+<p>练习：</p>
+<ol>
+<li>工资高于甘宁的员工。</li>
+</ol>
+<p>分析：</p>
+<p>查询条件：工资&gt;甘宁工资，其中甘宁工资需要一条子查询。 </p>
+<p>第一步：查询甘宁的工资</p>
+<p>第二步：查询高于甘宁工资的员工</p>
+<p>结果：</p>
+<p>  子查询作为条件</p>
+<p>  子查询形式为单行单列</p>
+<ol start="2">
+<li>工资高于30部门所有人的员工信息</li>
+</ol>
+<p>分析：</p>
+<p>查询条件：工资高于30部门所有人工资，其中30部门所有人工资是子查询。高于所有需要使用all关键字。 </p>
+<p>第一步：查询30部门所有人工资</p>
+<p>第二步：查询高于30部门所有人工资的员工信息</p>
+<p>结果：</p>
+<p>  子查询作为条件</p>
+<p>  子查询形式为多行单列（当子查询结果集形式为多行单列时可以使用ALL或ANY关键字）</p>
+<ol start="3">
+<li>查询工作和工资与殷天正完全相同的员工信息</li>
+</ol>
+<p>分析：</p>
+<p>查询条件：工作和工资与殷天正完全相同，这是子查询 </p>
+<p>第一步：查询出殷天正的工作和工资</p>
+<p>第二步：查询出与殷天正工作和工资相同的人</p>
+<p>结果：</p>
+<p>  子查询作为条件</p>
+<p>  子查询形式为单行多列</p>
+<ol start="4">
+<li>查询员工编号为1006的员工名称、员工工资、部门名称、部门地址</li>
+</ol>
+<p>分析：</p>
+<p>查询列：员工名称、员工工资、部门名称、部门地址</p>
+<p>查询表：emp和dept，分析得出，不需要外连接（外连接的特性：某一行（或某些行）记录上会出现一半有值，一半为NULL值）</p>
+<p>条件：员工编号为1006</p>
+<p>第一步：去除多表，只查一张表，这里去除部门表，只查员工表</p>
+<p>第二步：让第一步与dept做内连接查询，添加主外键条件去除无用笛卡尔积</p>
+<p>第二步中的dept表表示所有行所有列的一张完整的表，这里可以把dept替换成所有行，但只有dname和loc列的表，这需要子查询。</p>
+<p>第三步：查询dept表中dname和loc两列，因为deptno会被作为条件，用来去除无用笛卡尔积，所以需要查询它。</p>
+<p>第四步：替换第二步中的dept</p>
+<p>  子查询作为表</p>
+<p>  子查询形式为多行多列</p>
+<hr>
+
     </article>
     <!-- license  -->
     
@@ -609,13 +804,18 @@ DML（Data Manipulation Language）：数据操作语言，用来定义数据库
             <p>原文作者：<a href="http://yoursite.com">紫鱼</a>
             <p>原文链接：<a href="http://yoursite.com/all/technology/MySQL基础/">http://yoursite.com/all/technology/MySQL基础/</a>
             <p>发表日期：<a href="http://yoursite.com/all/technology/MySQL基础/">August 20th 2019, 10:13:50 am</a>
-            <p>更新日期：<a href="http://yoursite.com/all/technology/MySQL基础/">August 20th 2019, 9:02:25 pm</a>
+            <p>更新日期：<a href="http://yoursite.com/all/technology/MySQL基础/">August 22nd 2019, 8:13:05 pm</a>
             <p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
     <!-- paginator  -->
     <ul class="post-paginator">
         <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href= "/all/technology/jsp基础/" title= "jsp基础">
+                    <div class="nextTitle">jsp基础</div>
+                </a>
             
         </li>
         <li class="previous">
@@ -756,7 +956,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#MySQL数据库"><span class="toc-number">1.</span> <span class="toc-text">MySQL数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MySQL数据库的安装和注意事项"><span class="toc-number">2.</span> <span class="toc-text">MySQL数据库的安装和注意事项</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#基本命令"><span class="toc-number">2.0.0.1.</span> <span class="toc-text">基本命令</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL语句"><span class="toc-number">3.</span> <span class="toc-text">SQL语句</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#语法要求"><span class="toc-number">3.0.0.1.</span> <span class="toc-text">语法要求</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#分类"><span class="toc-number">3.1.</span> <span class="toc-text">分类</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#DDL"><span class="toc-number">3.1.1.</span> <span class="toc-text">DDL</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#数据类型"><span class="toc-number">3.1.1.1.</span> <span class="toc-text">数据类型</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#实例操作"><span class="toc-number">3.1.2.</span> <span class="toc-text">实例操作</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#DML"><span class="toc-number">3.1.3.</span> <span class="toc-text">DML</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#插入数据语法"><span class="toc-number">3.1.3.1.</span> <span class="toc-text">插入数据语法</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#修改数据语法"><span class="toc-number">3.1.3.2.</span> <span class="toc-text">修改数据语法</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#删除数据语法"><span class="toc-number">3.1.3.3.</span> <span class="toc-text">删除数据语法</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#DCL"><span class="toc-number">3.1.4.</span> <span class="toc-text">DCL</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#创建用户语法"><span class="toc-number">3.1.4.1.</span> <span class="toc-text">创建用户语法</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#用户授权语法"><span class="toc-number">3.1.4.2.</span> <span class="toc-text">用户授权语法</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#撤销授权语法"><span class="toc-number">3.1.4.3.</span> <span class="toc-text">撤销授权语法</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#查看用户全限语法"><span class="toc-number">3.1.4.4.</span> <span class="toc-text">查看用户全限语法</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#修改用户密码语法"><span class="toc-number">3.1.4.5.</span> <span class="toc-text">修改用户密码语法</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#DQL-数据查询语法"><span class="toc-number">3.1.5.</span> <span class="toc-text">DQL(数据查询语法)</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#基础查询"><span class="toc-number">3.1.5.1.</span> <span class="toc-text">基础查询</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#条件查询"><span class="toc-number">3.1.5.2.</span> <span class="toc-text">条件查询</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#模糊查询"><span class="toc-number">3.1.5.3.</span> <span class="toc-text">模糊查询</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#字段控制查询"><span class="toc-number">3.1.5.4.</span> <span class="toc-text">字段控制查询</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#排序"><span class="toc-number">3.1.5.5.</span> <span class="toc-text">排序</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#聚合函数"><span class="toc-number">3.1.5.6.</span> <span class="toc-text">聚合函数</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#分组查询"><span class="toc-number">3.1.5.7.</span> <span class="toc-text">分组查询</span></a></li></ol></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#MySQL数据库"><span class="toc-number">1.</span> <span class="toc-text">MySQL数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MySQL数据库的安装和注意事项"><span class="toc-number">2.</span> <span class="toc-text">MySQL数据库的安装和注意事项</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#基本命令"><span class="toc-number">2.0.0.1.</span> <span class="toc-text">基本命令</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL语句"><span class="toc-number">3.</span> <span class="toc-text">SQL语句</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#语法要求"><span class="toc-number">3.0.0.1.</span> <span class="toc-text">语法要求</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#分类"><span class="toc-number">3.1.</span> <span class="toc-text">分类</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#DDL"><span class="toc-number">3.1.1.</span> <span class="toc-text">DDL</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#数据类型"><span class="toc-number">3.1.1.1.</span> <span class="toc-text">数据类型</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#实例操作"><span class="toc-number">3.1.2.</span> <span class="toc-text">实例操作</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#DML"><span class="toc-number">3.1.3.</span> <span class="toc-text">DML</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#插入数据语法"><span class="toc-number">3.1.3.1.</span> <span class="toc-text">插入数据语法</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#修改数据语法"><span class="toc-number">3.1.3.2.</span> <span class="toc-text">修改数据语法</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#删除数据语法"><span class="toc-number">3.1.3.3.</span> <span class="toc-text">删除数据语法</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#DCL"><span class="toc-number">3.1.4.</span> <span class="toc-text">DCL</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#创建用户语法"><span class="toc-number">3.1.4.1.</span> <span class="toc-text">创建用户语法</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#用户授权语法"><span class="toc-number">3.1.4.2.</span> <span class="toc-text">用户授权语法</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#撤销授权语法"><span class="toc-number">3.1.4.3.</span> <span class="toc-text">撤销授权语法</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#查看用户全限语法"><span class="toc-number">3.1.4.4.</span> <span class="toc-text">查看用户全限语法</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#修改用户密码语法"><span class="toc-number">3.1.4.5.</span> <span class="toc-text">修改用户密码语法</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#DQL-数据查询语法"><span class="toc-number">3.1.5.</span> <span class="toc-text">DQL(数据查询语法)</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#基础查询"><span class="toc-number">3.1.5.1.</span> <span class="toc-text">基础查询</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#条件查询"><span class="toc-number">3.1.5.2.</span> <span class="toc-text">条件查询</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#模糊查询"><span class="toc-number">3.1.5.3.</span> <span class="toc-text">模糊查询</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#字段控制查询"><span class="toc-number">3.1.5.4.</span> <span class="toc-text">字段控制查询</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#排序"><span class="toc-number">3.1.5.5.</span> <span class="toc-text">排序</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#聚合函数"><span class="toc-number">3.1.5.6.</span> <span class="toc-text">聚合函数</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#分组查询"><span class="toc-number">3.1.5.7.</span> <span class="toc-text">分组查询</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#LIMIT"><span class="toc-number">3.1.5.8.</span> <span class="toc-text">LIMIT</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#完整性约束"><span class="toc-number">3.1.6.</span> <span class="toc-text">完整性约束</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#主键"><span class="toc-number">3.1.6.1.</span> <span class="toc-text">主键</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#主键自增长"><span class="toc-number">3.1.6.2.</span> <span class="toc-text">主键自增长</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#非空"><span class="toc-number">3.1.6.3.</span> <span class="toc-text">非空</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#唯一"><span class="toc-number">3.1.6.4.</span> <span class="toc-text">唯一</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#外键"><span class="toc-number">3.1.6.5.</span> <span class="toc-text">外键</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#表与表之间的关系"><span class="toc-number">3.1.6.6.</span> <span class="toc-text">表与表之间的关系</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#编码"><span class="toc-number">3.1.7.</span> <span class="toc-text">编码</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#查看MySQL编码"><span class="toc-number">3.1.7.1.</span> <span class="toc-text">查看MySQL编码</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#控制台编码"><span class="toc-number">3.1.7.2.</span> <span class="toc-text">控制台编码</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#多表查询"><span class="toc-number">3.1.8.</span> <span class="toc-text">多表查询</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#合并结果集"><span class="toc-number">3.1.9.</span> <span class="toc-text">合并结果集</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#内连接"><span class="toc-number">3.1.9.1.</span> <span class="toc-text">内连接</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#外连接"><span class="toc-number">3.1.9.2.</span> <span class="toc-text">外连接</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#自然连接"><span class="toc-number">3.1.9.3.</span> <span class="toc-text">自然连接</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#子查询"><span class="toc-number">3.1.9.4.</span> <span class="toc-text">子查询</span></a></li></ol></li></ol></li></ol></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -896,9 +1096,36 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 11
+        Total : 14
         </div>
         <!-- search  -->
         
@@ -911,6 +1138,21 @@ top:50vh;
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/26</span><a class="archive-post-title" href= "/all/technology/Servlet基础/" >Servlet基础</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/26</span><a class="archive-post-title" href= "/all/technology/EL表达式/" >EL表达式</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/22</span><a class="archive-post-title" href= "/all/technology/jsp基础/" >jsp基础</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -959,12 +1201,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">07/27</span><a class="archive-post-title" href= "/all/technology/在windows系统 blog的构建/" >在windows系统 blog的构建</a>
+            <span class="archive-post-date">07/27</span><a class="archive-post-title" href= "/all/other/在windows系统 blog的构建/" >在windows系统 blog的构建</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">07/26</span><a class="archive-post-title" href= "/all/technology/hello-world/" >Hello World</a>
+            <span class="archive-post-date">07/26</span><a class="archive-post-title" href= "/all/other/hello-world/" >Hello World</a>
         </li>
     
     </div>
@@ -972,15 +1214,15 @@ top:50vh;
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
-        <span class="sidebar-tag-name" data-tags="JavaScript"><span class="iconfont-archer">&#xe606;</span>JavaScript</span>
+        <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
     
         <span class="sidebar-tag-name" data-tags="other"><span class="iconfont-archer">&#xe606;</span>other</span>
     
-        <span class="sidebar-tag-name" data-tags="数据库"><span class="iconfont-archer">&#xe606;</span>数据库</span>
-    
-        <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
+        <span class="sidebar-tag-name" data-tags="JavaScript"><span class="iconfont-archer">&#xe606;</span>JavaScript</span>
     
         <span class="sidebar-tag-name" data-tags="java"><span class="iconfont-archer">&#xe606;</span>java</span>
+    
+        <span class="sidebar-tag-name" data-tags="数据库"><span class="iconfont-archer">&#xe606;</span>数据库</span>
     
         <span class="sidebar-tag-name" data-tags="故事"><span class="iconfont-archer">&#xe606;</span>故事</span>
     

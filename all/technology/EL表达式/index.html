@@ -22,7 +22,7 @@
     <meta name="description" content="一只学习狗">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Hello World · Wake Up</title>
+    <title>EL表达式 · Wake Up</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -217,7 +217,7 @@
                 <a href="/" >Wake Up</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">Hello World</a>
+                <a href="#" class="post-name">EL表达式</a>
             </div>
     </div>
     
@@ -247,7 +247,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            Hello World
+            EL表达式
             <!-- 404 -->
             
         </h1>
@@ -264,14 +264,20 @@ height:50vh;
             <div class="post-intros">
                 <!-- 文章页标签  -->
                 
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "web">web</a>
+    
+</div>
+                
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">73</span>阅读时长: <span class="post-count reading-time">1 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">128</span>阅读时长: <span class="post-count reading-time">1 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2019/07/26</span>
+                    <span class="post-intro-time">2019/08/26</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -395,28 +401,31 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <h1 id="EL表达式"><a href="#EL表达式" class="headerlink" title="EL表达式"></a>EL表达式</h1><p>  <strong>EL</strong>全名Expression Language。基于JSTL 1.0的一种方便获取数据的语言：</p>
+<ul>
+<li><p>可用容器环境（pageContext的属性）</p>
+</li>
+<li><p>作用域内获取数据</p>
+</li>
+<li><p>关系，逻辑和算术运算符</p>
+</li>
+<li><p>一组隐式对象</p>
+</li>
+<li><p>可扩展的功能映射到java类中的静态方法</p>
+<p>EL在标准或者自定义标签的属性值中和页面文本内可用<br>通过javax.servlet.jsp.el编程访问<br>支持自定义EL函数</p>
+</li>
+</ul>
+<h3 id="格式"><a href="#格式" class="headerlink" title="格式"></a>格式</h3><p>  ${EL表达式语言 }</p>
+<p>  以${开始，以 } </p>
 
     </article>
     <!-- license  -->
     
         <div class="license-wrapper">
             <p>原文作者：<a href="http://yoursite.com">紫鱼</a>
-            <p>原文链接：<a href="http://yoursite.com/all/technology/hello-world/">http://yoursite.com/all/technology/hello-world/</a>
-            <p>发表日期：<a href="http://yoursite.com/all/technology/hello-world/">July 26th 2019, 7:58:41 am</a>
-            <p>更新日期：<a href="http://yoursite.com/all/technology/hello-world/">July 26th 2019, 7:58:41 am</a>
+            <p>原文链接：<a href="http://yoursite.com/all/technology/EL表达式/">http://yoursite.com/all/technology/EL表达式/</a>
+            <p>发表日期：<a href="http://yoursite.com/all/technology/EL表达式/">August 26th 2019, 9:23:43 am</a>
+            <p>更新日期：<a href="http://yoursite.com/all/technology/EL表达式/">August 26th 2019, 10:55:06 pm</a>
             <p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -425,12 +434,17 @@ height:50vh;
         <li class="next">
             
                 <div class="nextSlogan">Next Post</div>
-                <a href= "/all/technology/在windows系统 blog的构建/" title= "在windows系统 blog的构建">
-                    <div class="nextTitle">在windows系统 blog的构建</div>
+                <a href= "/all/technology/Servlet基础/" title= "Servlet基础">
+                    <div class="nextTitle">Servlet基础</div>
                 </a>
             
         </li>
         <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/all/technology/jsp基础/" title= "jsp基础">
+                    <div class="prevTitle">jsp基础</div>
+                </a>
             
         </li>
     </ul>
@@ -563,7 +577,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-number">1.1.</span> <span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-number">1.2.</span> <span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-number">1.3.</span> <span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#EL表达式"><span class="toc-number">1.</span> <span class="toc-text">EL表达式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#格式"><span class="toc-number">1.0.1.</span> <span class="toc-text">格式</span></a></li></ol></li></ol></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -703,9 +717,36 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 11
+        Total : 14
         </div>
         <!-- search  -->
         
@@ -718,6 +759,21 @@ top:50vh;
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/26</span><a class="archive-post-title" href= "/all/technology/Servlet基础/" >Servlet基础</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/26</span><a class="archive-post-title" href= "/all/technology/EL表达式/" >EL表达式</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/22</span><a class="archive-post-title" href= "/all/technology/jsp基础/" >jsp基础</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -766,12 +822,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">07/27</span><a class="archive-post-title" href= "/all/technology/在windows系统 blog的构建/" >在windows系统 blog的构建</a>
+            <span class="archive-post-date">07/27</span><a class="archive-post-title" href= "/all/other/在windows系统 blog的构建/" >在windows系统 blog的构建</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">07/26</span><a class="archive-post-title" href= "/all/technology/hello-world/" >Hello World</a>
+            <span class="archive-post-date">07/26</span><a class="archive-post-title" href= "/all/other/hello-world/" >Hello World</a>
         </li>
     
     </div>
@@ -779,15 +835,15 @@ top:50vh;
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
-        <span class="sidebar-tag-name" data-tags="JavaScript"><span class="iconfont-archer">&#xe606;</span>JavaScript</span>
+        <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
     
         <span class="sidebar-tag-name" data-tags="other"><span class="iconfont-archer">&#xe606;</span>other</span>
     
-        <span class="sidebar-tag-name" data-tags="数据库"><span class="iconfont-archer">&#xe606;</span>数据库</span>
-    
-        <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
+        <span class="sidebar-tag-name" data-tags="JavaScript"><span class="iconfont-archer">&#xe606;</span>JavaScript</span>
     
         <span class="sidebar-tag-name" data-tags="java"><span class="iconfont-archer">&#xe606;</span>java</span>
+    
+        <span class="sidebar-tag-name" data-tags="数据库"><span class="iconfont-archer">&#xe606;</span>数据库</span>
     
         <span class="sidebar-tag-name" data-tags="故事"><span class="iconfont-archer">&#xe606;</span>故事</span>
     
